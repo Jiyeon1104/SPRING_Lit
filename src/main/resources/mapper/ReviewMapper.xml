@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.review.ReviewMapper">
+    <!--    ###############################동적 쿼리 쓸것-->
+    <select id="getList" resultType="reviewDTO">
+        SELECT REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, CONTENT, REGISTER_DATE, CATEGORY, STATUS, LIKE_COUNT
+        FROM(
+            SELECT ROWNUM RN,
+            REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, CONTENT, REGISTER_DATE, CATEGORY, STATUS, LIKE_COUNT
+            FROM(
+                SELECT REVIEW_NUMBER, USER_NUMBER,
+                PROJECT_NUMBER, CONTENT, REGISTER_DATE,
+                CATEGORY,STATUS,
+                NVL(LIKE_CNT, 0) AS LIKE_COUNT
+                FROM(
+                    SELECT r.REVIEW_NUMBER, r.USER_NUMBER,
+                    r.PROJECT_NUMBER, r.CONTENT, r.REGISTER_DATE,
+                    p.CATEGORY, p.STATUS,
+                    l.LIKE_CNT
+                    FROM TBL_REVIEW r
+                    INNER JOIN TBL_PROJECT p
+                    ON p.PROJECT_NUMBER = r.PROJECT_NUMBER
+                    LEFT OUTER JOIN (
+                        SELECT REVIEW_NUMBER, COUNT(USER_NUMBER) AS LIKE_CNT
+                        FROM TBL_LIKE
+                        GROUP BY REVIEW_NUMBER
+                    ) l
+                    ON l.REVIEW_NUMBER = r.REVIEW_NUMBER
+                )
+                WHERE STATUS = 1
+                <if test="category != 'all'">
+                    AND CATEGORY = #{category}
+                </if>
+                <if test="projectNumber != null and projectNumber != ''">
+                    AND PROJECT_NUMBER = #{projectNumber}
+                </if>
+                <if test="order != null and order != ''">
+                    <choose>
+                        <when test="order == 'popular'">
+                            ORDER BY LIKE_CNT DESC
+                        </when>
+                        <when test="order == 'new'">
+                            ORDER BY REGISTER_DATE DESC
+                        </when>
+                    </choose>
+                </if>
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+        )
+        <![CDATA[
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <insert id="insert">
+        <selectKey keyProperty="reviewNumber" resultType="long" order="BEFORE">
+            SELECT SEQ_REVIEW.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_REVIEW
+        (REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, CONTENT, NICKNAME)
+        VALUES(#{reviewNumber}, #{userNumber}, #{projectNumber}, #{content}, (SELECT NICKNAME FROM TBL_USER WHERE USER_NUMBER = #{userNumber}))
+    </insert>
+
+    <select id="get" resultType="reviewVO">
+        SELECT NICKNAME, CONTENT, REGISTER_DATE
+        FROM TBL_REVIEW
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_REVIEW WHERE REVIEW_NUMBER = #{reviewNumber}
+    </delete>
+
+    <update id="update">
+        UPDATE TBL_REVIEW
+        SET CONTENT = #{content}, REGISTER_DATE = SYSDATE
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </update>
+
+    <update id="updateNickname">
+        UPDATE TBL_REVIEW
+        SET NICKNAME = #{nickname}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER) FROM TBL_REVIEW
+    </select>
+
+    <select id="resultCount" resultType="_int">
+        SELECT COUNT(RV.REVIEW_NUMBER)
+        FROM TBL_REVIEW RV, TBL_USER US, TBL_PROJECT PJ
+        WHERE RV.USER_NUMBER = US.USER_NUMBER
+        AND RV.PROJECT_NUMBER = PJ.PROJECT_NUMBER ;
+    </select>
+
+    <select id="searchReview" resultType="reviewDTO">
+    SELECT TOTAL,
+    REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, CONTENT, TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') AS REGISTER_DATE,
+    CATEGORY, STATUS,
+    EMAIL
+    FROM(
+        SELECT ROWNUM RN, TOTAL, REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, CONTENT, REGISTER_DATE,
+        CATEGORY, STATUS,
+        EMAIL
+        FROM(
+            SELECT COUNT(r.REVIEW_NUMBER) OVER() AS TOTAL,
+            r.REVIEW_NUMBER, r.USER_NUMBER, r.PROJECT_NUMBER, r.CONTENT, r.REGISTER_DATE,
+            p.CATEGORY, p.STATUS,
+            u.EMAIL
+            FROM TBL_USER u
+            INNER JOIN TBL_REVIEW r
+            ON r.USER_NUMBER = u.USER_NUMBER
+            INNER JOIN TBL_PROJECT p
+            ON p.PROJECT_NUMBER = r.PROJECT_NUMBER
+            WHERE
+            <choose>
+                <when test="type.equals('email')">
+                    u.${type}
+                </when>
+                <otherwise>
+                    r.${type}
+                </otherwise>
+            </choose>
+            LIKE '%'||#{keyword}||'%'
+            <if test="category != null and category != ''">
+                AND p.CATEGORY = #{category}
+            </if>
+            <if test="startDate != null and startDate != ''">
+                <![CDATA[
+            AND TO_CHAR(r.REGISTER_DATE, 'yyyy-mm-dd') >= #{startDate}
+            ]]>
+            </if>
+            <if test="endDate != null and endDate != ''">
+                <![CDATA[
+            AND TO_CHAR(r.REGISTER_DATE, 'yyyy-mm-dd') <= #{endDate}
+            ]]>
+            </if>
+            <if test="status != null and status != ''">
+                AND p.STATUS = #{status}
+            </if>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test="desc == true">
+                    ORDER BY ${order} DESC
+                </when>
+                <otherwise>
+                    ORDER BY ${order}
+                </otherwise>
+            </choose>
+        </if>
+        )
+        <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+    )
+    <![CDATA[
+    WHERE RN > (#{pageNum} - 1) * #{amount}
+    ]]>
+
+    </select>
+    <select id="getTotalToday" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER) FROM TBL_REVIEW
+        WHERE TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') = TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+    </select>
+    <select id="getReviewChart" resultType="long">
+        SELECT COUNT(REVIEW_NUMBER)
+        FROM TBL_REVIEW
+        WHERE TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') = #{date}
+    </select>
+
+    <select id="getMainList" resultType="reviewDTO">
+        SELECT REVIEW_NUMBER, TOTAL, USER_NUMBER,
+        PROJECT_NUMBER, CONTENT, REGISTER_DATE,
+        CATEGORY,STATUS,
+        LIKE_COUNT,
+        NICKNAME,
+        NVL(REPLY_COUNT, 0) AS REPLY_COUNT
+        FROM
+        (
+            SELECT ROWNUM RN, TOTAL, REVIEW_NUMBER, USER_NUMBER,
+            PROJECT_NUMBER, CONTENT, REGISTER_DATE,
+            CATEGORY,STATUS,
+            LIKE_COUNT,
+            NICKNAME,
+            REPLY_COUNT
+            FROM(
+                SELECT COUNT(REVIEW_NUMBER) OVER() AS TOTAL, REVIEW_NUMBER, USER_NUMBER,
+                PROJECT_NUMBER, CONTENT, REGISTER_DATE,
+                CATEGORY,STATUS,
+                NVL(LIKE_CNT, 0) AS LIKE_COUNT,
+                NICKNAME,
+                REPLY_COUNT
+                FROM(
+                    SELECT r.REVIEW_NUMBER, r.USER_NUMBER,
+                    r.PROJECT_NUMBER, r.CONTENT, r.REGISTER_DATE,
+                    p.CATEGORY, p.STATUS,
+                    l.LIKE_CNT,
+                    u.NICKNAME,
+                    rp.REPLY_COUNT
+                    FROM TBL_REVIEW r
+                    INNER JOIN TBL_PROJECT p
+                    ON p.PROJECT_NUMBER = r.PROJECT_NUMBER
+                    LEFT OUTER JOIN (
+                        SELECT REVIEW_NUMBER, COUNT(USER_NUMBER) AS LIKE_CNT
+                        FROM TBL_LIKE
+                        GROUP BY REVIEW_NUMBER
+                    ) l
+                    ON l.REVIEW_NUMBER = r.REVIEW_NUMBER
+                    INNER JOIN TBL_USER u
+                    ON u.USER_NUMBER = r.USER_NUMBER
+                    LEFT OUTER JOIN (
+                        SELECT REVIEW_NUMBER, COUNT(REPLY_NUMBER) AS REPLY_COUNT
+                        FROM TBL_REPLY
+                        GROUP BY REVIEW_NUMBER
+                    ) rp
+                    ON r.REVIEW_NUMBER = rp.REVIEW_NUMBER
+                )
+                WHERE STATUS = 1 --메인은 진행중인 것만 띄우기
+                <if test="category != null and category != ''">
+                    AND CATEGORY = #{category}
+                </if>
+                <if test="order != null and order != ''">
+                    <choose>
+                        <when test="order == 'popular'">
+                            ORDER BY LIKE_COUNT DESC
+                        </when>
+                        <when test="order == 'new'">
+                            ORDER BY REGISTER_DATE DESC
+                        </when>
+                    </choose>
+                </if>
+            )
+            <![CDATA[
+                WHERE ROWNUM <= #{pageNum} * #{amount}
+                ]]>
+        )
+        <![CDATA[
+    WHERE RN > (#{pageNum} - 1) * #{amount}
+    ]]>
+    </select>
+
+    <!-- 메달3 조건 관련   -->
+    <select id="getTotalByUserNumber" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER) FROM TBL_REVIEW
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="reviewTotal" resultType="long">
+        SELECT COUNT(*) FROM TBL_REVIEW WHERE PROJECT_NUMBER = #{projectNumber}
+    </select>
+
+    <select id="getForAlert" resultType="long">
+        SELECT USER_NUMBER
+        FROM TBL_REVIEW
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </select>
+
+    <select id="getMyList" resultType="reviewDTO">
+        SELECT REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, NICKNAME, CONTENT, REGISTER_DATE,
+        LIKE_COUNT
+        FROM(
+            SELECT ROWNUM RN, REVIEW_NUMBER, USER_NUMBER, PROJECT_NUMBER, NICKNAME, CONTENT, REGISTER_DATE,
+            LIKE_COUNT
+            FROM(
+                SELECT r.REVIEW_NUMBER, r.USER_NUMBER, r.PROJECT_NUMBER, r.NICKNAME, r.CONTENT, r.REGISTER_DATE,
+                NVL(LIKE_COUNT, 0) AS LIKE_COUNT
+                FROM TBL_REVIEW r
+                LEFT OUTER JOIN (
+                    SELECT REVIEW_NUMBER, COUNT(USER_NUMBER) AS LIKE_COUNT
+                    FROM TBL_LIKE
+                    GROUP BY REVIEW_NUMBER
+                ) l
+                ON r.REVIEW_NUMBER = l.REVIEW_NUMBER
+                WHERE USER_NUMBER = #{userNumber}
+                ORDER BY REGISTER_DATE DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE RN > (#{pageNum}-1) * #{amount}
+        ]]>
+    </select>
+</mapper>

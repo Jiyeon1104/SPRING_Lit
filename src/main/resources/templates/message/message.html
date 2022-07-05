@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>채팅</title>
+    <link rel="stylesheet" href="/assets/css/message/message.css">
+    <link rel="stylesheet" href="/assets/css/default.css">
+    <link rel="stylesheet" href="/assets/css/project/default.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+</head>
+
+<body>
+<header th:insert="~{/header :: header}"></header>
+<main>
+    <div class="mainWrap">
+
+        <section class="sec1">
+            <div class="dmWrap">
+
+                <div class="colBox">
+                    <div class="link">
+                        <p>아이디</p>
+                        <div class="iconBox">
+                            <a class="icon_writing_square" href="javascript:dmSubmit();" id="modalOnBtn1"></a>
+                        </div>
+                    </div>
+                    <div class="dmList">
+                            <figure th:if="${recentSendMessage.size()!=0}" th:each="item,i :${recentSendMessage}" class="dmBtn">
+                                <a th:id="${item.get('RECEIVE_USER_NUMBER')}" class="userDMList">
+                                    <div class="dmImg">
+                                        <img class="_aa8j" th:src="'/user/display?fileName='+ ${sendImageList[i.index].uploadPath} + '/' + ${sendImageList[i.index].uuid} + '_' + ${sendImageList[i.index].name}" th:if="${sendImageList[i.index] != null}">
+                                        <img class="_aa8j" th:unless="${sendImageList[i.index] != null}" th:src="'/images/main/profile_ex.png'">
+                                    </div>
+                                    <div class="dmData">
+                                        <p th:text="${item.get('NICKNAME')}"></p>
+                                        <p class="recentMessage" th:text="${item.get('CONTENT')}"></p>
+                                        <input type="hidden" th:id="${item.get('ROOM_ID')}">
+                                    </div>
+                                </a>
+                            </figure>
+
+                            <figure th:if="${(recentReceiveMessage.size()!=0 and recentSendMessage.size() == 0) or (recentReceiveMessage.size()==0 and recentSendMessage.size() != 0)}" th:each="item, i:${recentReceiveMessage}" class="dmBtn">
+                                <a th:id="${item.get('SEND_USER_NUMBER')}" class="userDMList">
+                                    <div class="dmImg">
+                                        <img class="_aa8j" th:src="'/user/display?fileName='+ ${receiveImageList[i.index].uploadPath} + '/' + ${receiveImageList[i.index].uuid} + '_' + ${receiveImageList[i.index].name}" th:if="${receiveImageList[i.index] != null}">
+                                        <img class="_aa8j" th:unless="${receiveImageList[i.index] != null}" th:src="'/images/main/profile_ex.png'">
+                                    </div>
+                                    <div class="dmData">
+                                        <p th:text="${item.get('NICKNAME')}"></p>
+                                        <p class="recentMessage" th:text="${item.get('CONTENT')}"></p>
+                                        <input type="hidden" th:id="${item.get('ROOM_ID')}">
+                                    </div>
+                                </a>
+                            </figure>
+
+                    </div>
+                </div>
+                <!-- 첫 페이지시 보여지는 창-->
+                <div class="colBox firstBox on">
+                    <div>
+                        <div class="iconBox">
+                            <svg aria-label="Direct" class="_ab6-" color="#262626" fill="#262626" height="96"
+                                 role="img" viewBox="0 0 96 96" width="96">
+                                <circle cx="48" cy="48" fill="none" r="47" stroke="currentColor"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></circle>
+                                <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                      x1="69.286" x2="41.447" y1="33.21" y2="48.804"></line>
+                                <polygon fill="none"
+                                         points="47.254 73.123 71.376 31.998 24.546 32.002 41.448 48.805 47.254 73.123"
+                                         stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                            </svg>
+                        </div>
+                        <p>내 메시지</p>
+                        <p>친구에게 메세지를 보내 보세요</p>
+                        <div class="iconBox userListBtn">
+                            <a href="javascript:dmSubmit();">메세지 보내기</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:if="${recentSendMessage.size()!=0}" th:each="item:${recentSendMessage}" class="colBox dmBox" th:id="${item.get('NICKNAME')}"></div>
+                <div th:if="${(recentReceiveMessage.size()!=0 and recentSendMessage.size() == 0) or (recentReceiveMessage.size()==0 and recentSendMessage.size() != 0)}" th:each="item:${recentReceiveMessage}" class="colBox dmBox" th:id="${item.get('NICKNAME')}"></div>
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<aside class="modal1" id="modal1">
+    <div>
+        <div class="modalTop">
+            <div>
+                <a href="" id="modalClose">
+                    <svg aria-label="닫기" class="_ab6-" color="#262626" fill="#262626" height="18" role="img"
+                         viewBox="0 0 24 24" width="18">
+                        <polyline fill="none" points="20.643 3.357 12 12 3.353 20.647" stroke="currentColor"
+                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></polyline>
+                        <line fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                              stroke-width="3" x1="20.649" x2="3.354" y1="20.649" y2="3.354"></line>
+                    </svg>
+                </a>
+            </div>
+            <div>
+                팔로잉 목록
+            </div>
+            <div class="hidden">다음</div>
+        </div>
+        <div class="modalSearch">
+            <input type="text" placeholder="팔로워 검색...">
+        </div>
+        <div class="userList">
+            <!-- 반복 문 실행==========================================-->
+<!--            <div>-->
+<!--                <div class="dmImg">-->
+<!--                    <img src="/images/project/domImg/indi01.webp" alt="">-->
+<!--                </div>-->
+<!--                <div class="userData">-->
+<!--                    <p>유저아이디1</p>-->
+<!--                    <p>유저네임1</p>-->
+<!--                </div>-->
+<!--                <div class="dmBtn">-->
+<!--                    <a href="" class="userDMLink">채팅</a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+            <!--========================================================-->
+
+        </div>
+    </div>
+</aside>
+
+</body>
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script defer src="/assets/js/message/messageAjax.js"></script>
+<script defer src="/assets/js/message/message.js"></script>
+<script th:inline = "javascript">
+    // 세션에서 유저 넘버 받아오기
+    userNumber = [[${session.userNumber}]];
+
+    let sendImageList = [[${sendImageList}]];
+    let receiveImageList = [[${receiveImageList}]];
+
+    console.log(sendImageList);
+    console.log(receiveImageList);
+
+    if(!userNumber){
+        location.href = '/user/login';
+    }
+
+    let webSocket;
+    // 헤더에서 뽑아 오기
+    let nickname = [[${session.userNumber}]] + "님";
+    let roomId;
+
+
+
+    function connect(){
+        webSocket = new WebSocket("ws://localhost:12000/ws/message/message");
+        webSocket.onopen = onOpen;
+        webSocket.onclose = onClose;
+        webSocket.onmessage = onMessage;
+    }
+
+    function disconnect(){
+        webSocket.send(JSON.stringify({chatRoomId : roomId, type:'LEAVE', writer:nickname}));
+        webSocket.close();
+    }
+
+    function send(roomId, nickname, receiveNickname, content, sendUserNumber){
+        webSocket.send(JSON.stringify({chatRoomId : roomId, type:'CHAT', writer:nickname, receiver: receiveNickname, message : content, sendUserNumber:sendUserNumber}));
+    }
+
+    function onOpen(){
+        webSocket.send(JSON.stringify({chatRoomId : roomId, type:'ENTER', writer:nickname}));
+    }
+
+    function onMessage(e){
+        let data = JSON.parse(e.data);
+        let $messageBoard = $('.contentTop').find('.'+data.chatRoomId).closest('.contentTop').siblings('.content').children(0)
+        console.log(data)
+
+        if(data.message){
+            let img = messageService.getProfileImage(data.sendUserNumber)
+
+            //메세지 두개 비교해줄 조건
+
+            if(data.writer == nickname) {
+                let str = "<div class=\"dmStyle1\">" +
+                    "<div class=\"dmImg\">" +
+                    "<img src=\"\" alt=\"\">" +
+                    "</div>" +
+                    "<div class=\"text\">" +
+                    data.message +
+                    "</div>" +
+                    "</div>"
+                $messageBoard.append(str);
+            }else{
+                let str = "<div class=\"dmStyle2\">" +
+                    "<div class=\"dmImg\">" +
+                    '<img class="_aa8j" src="/user/display?fileName=' +
+                    img.uploadPath + "/" + img.uuid + "_" + img.name +
+                    '" onerror="this.src=\'/images/main/profile_ex.png\'">' +
+                    "</div>" +
+                    "<div class=\"text\">" +
+                    data.message +
+                    "</div>" +
+                    "</div>";
+                $messageBoard.append(str);
+            }
+            $('.dmList > figure > a').find('.dmData').find('#'+data.chatRoomId).siblings('.recentMessage').text(data.message);
+        }
+        $messageBoard.closest('.content').scrollTop($messageBoard.closest('.content').height() + $(window).height());
+    }
+
+    function onClose(){
+        disconnect();
+    }
+
+
+</script>
+</html>

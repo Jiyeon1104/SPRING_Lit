@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lit_MAIN</title>
+    <link rel="stylesheet" href="/assets/css/changeinfo/withdraw.css" />
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+    <!-- 경로 잡아야함 -->
+</head>
+
+<body style="background-color: rgb(250,250,250);">
+
+    <header th:insert="~{/header :: header}"></header>
+
+    <main>
+        <div class="_changepw_main_wrapper">
+            <ul class="mainUl">
+                <li class="mainLi"><a class="mainA" href="/user/editInfo"
+                                      tabindex="0">프로필 편집</a></li>
+                <li class="mainLi"><a class="mainA" href="/user/changePw"
+                                      tabindex="0">비밀번호 변경</a>
+                </li>
+                <li class="mainLi"><a class="mainA" href="/user/withdraw"
+                                      tabindex="0">회원 탈퇴</a>
+                </li>
+
+            </ul>
+            <div class="_withdrawl_wrapper">
+                <div class="_withdrawl_profile flexclass">
+                    <div class="_profile_icon">
+                        <div class="_profile_wrapper">
+                            <img width="38px" height="38px"
+                                 th:src="'/user/display?fileName='+ ${userFileList.uploadPath} + '/' + ${userFileList.uuid} + '_' + ${userFileList.name}"
+                                 th:if="*{userFileList.fileNumber != null}"
+                            />
+                            <img class="info1ArticleImg" th:unless="*{userFileList.fileNumber != null}" th:src="'/images/main/profile_ex.png'"/>
+                        </div>
+                    </div>
+                    <div class="_profile_nickname">
+                        <h1 class="_nickname" th:text="${nickName}"></h1>
+                    </div>
+                </div>
+                <form class="_withdrawl_form">
+                    <div class="_checkPassword flexclass detail">
+                        <div class="_label_wrapper">
+                            <label for="checkPassword">비밀번호 확인</label>
+                        </div>
+                        <div class="_input_wrapper">
+                            <input class="_withdrawlPassword" id="_withdrawlPassword" name="withdrawlPassword"
+                                required="" spellcheck="true" type="password" value="" style="padding-right: 140px;">
+                        </div>
+                    </div>
+                    <div class="_label_wrapper2"></div>
+                    <div class="_checkArea1"></div>
+                    <div class="flexclass detail">
+                        <aside class="sxIVS  tvweK"><label></label></aside>
+                        <div class="ada5V">
+                            <div class="_5Q0UX"><button class="buttonStyle" type="button" id="btnNoOff">회원 탈퇴</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer th:insert="~{/footer :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="/assets/js/changeinfo/withdraw.js"></script>
+<script src="/assets/js/changeinfo/changeInfoAjax.js"></script>
+<script th:inline="javascript">
+    let pw = $('#_withdrawlPassword');
+    let pwBtn = $('#btnNoOff');
+
+    // 비밀번호 확인
+    $('#_withdrawlPassword').on("keyup", function () {
+        let $password = $(this).val();
+        // console.log($password);
+        // console.log($('#_withdrawlPassword'));
+
+        if($password.length == 0) {
+            $('._checkArea1').html('');
+        }
+
+        changeInfoAjax.checkWithdrawPw({
+            userNumber : userNumber,
+            password : $password
+        }, function (result) {
+            console.log(result);
+
+                if(result){ // 비번 유효성 검사
+                    $ ('._checkArea1').html('비밀번호가 일치합니다.');
+                    pwBtn.attr('class', 'buttonOn');
+                    pwBtn.attr('disabled', false);
+                    $('._checkArea1').css('color', 'black');
+                } else if($password.length != 0 && !result){
+                    $ ('._checkArea1').html('비밀번호가 일치하지 않습니다.');
+                    $('._checkArea1').css('color', 'red');
+                    pwBtn.attr('class', 'buttonStyle');
+                    pwBtn.attr('disabled', true);
+                }
+            });
+        });
+
+    // 회원 탈퇴
+    pwBtn.on("click", function(){
+
+            if (confirm("정말 탈퇴하시겠습니까?") == true){    //확인
+                changeInfoAjax.withdrawUser(userNumber, function (result) {
+                    console.log(result);
+                });
+                alert("회원탈퇴가 완료되었습니다.");
+
+                location.href= "/main";
+
+            } else{   //취소
+                return false;
+            }
+        });
+
+
+
+</script>
+</html>

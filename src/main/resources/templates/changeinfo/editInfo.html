@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>회원정보수정</title>
+    <link rel="stylesheet" href="/assets/css/changeinfo/editInfo.css">
+    <link rel="stylesheet" href="/assets/css/default.css"/>
+    <link rel="stylesheet" href="/assets/css/header.css"/>
+    <link rel="stylesheet" href="/assets/css/footer.css"/>
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+</head>
+
+<body style="background-color: rgb(250,250,250);">
+<header th:insert="~{/header :: header}"></header>
+
+<main class="main" role="main">
+    <div class="mainWrapper">
+        <ul class="mainUl">
+            <li class="mainLi"><a class="mainA" href="/user/editInfo"
+                                  tabindex="0">프로필 편집</a></li>
+            <li class="mainLi"><a class="mainA" href="/user/changePw"
+                                  tabindex="0">비밀번호 변경</a>
+            </li>
+            <li class="mainLi"><a class="mainA" href="/user/withdraw"
+                                  tabindex="0">회원 탈퇴</a>
+            </li>
+
+        </ul>
+        <article class="info1Article" th:object="${userVO}">
+            <div class="info1ArticleDiv1">
+                <div class="info1ArticleDiv2">
+                    <div class="info1ArticleDiv3">
+                        <button class="info1ArticleBtn " title="프로필 사진 바꾸기">
+                            <img alt="프로필 사진 바꾸기" class="info1ArticleImg" id="proFileImg"
+                                 th:src="'/user/display?fileName='+ *{userFileList.uploadPath} + '/' + *{userFileList.uuid} + '_' + *{userFileList.name}"
+                                 th:if="*{userFileList.fileNumber != null}"
+                            />
+                            <img class="info1ArticleImg" id="proFileImg" th:unless="*{userFileList.fileNumber != null}"
+                                 th:src="'/images/main/profile_ex.png'"/>
+                        </button>
+                        <div class="info1ArticleDiv4">
+                            <form enctype="multipart/form-data" method="POST" role="presentation">
+                                <input accept="image/jpeg,image/png" class="info1ArticleInput1" type="file">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoDiv2_1">
+                    <h1 class="infoDiv2H1 " th:text="*{nickname}"></h1>
+                    <button class="infoDiv2_2" type="button" onclick="changeProfileModal()">프로필 사진 바꾸기</button>
+                    <div class="infoDiv2_3">
+                        <form enctype="multipart/form-data" method="POST" role="presentation">
+                            <input
+                                    accept="image/jpeg,image/png" class="infoDivInput2" type="file">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <form class="infoDiv3_0" method="post" id="editForm" action="/user/changeInfo">
+                <div class="infoDiv3" style="display: flex; ">
+                    <aside class="infoAside"><label for="pepName" class="nameLabel">이름</label></aside>
+                    <div class="infoDiv3_2">
+                        <div class="infoDiv3_3" style="width: 100%; max-width: 355px;">
+                            <input aria-required="false" id="pepName" placeholder="이름" type="text"
+                                   class="infoInput3" th:value="*{name}" name="name">
+                            <div class="infoDiv3_4" style="width: 100%; max-width: 355px;">
+                                <div class="infoDiv3_5">
+                                    <div class="infoDiv3_6">사람들이
+                                        이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.
+                                    </div>
+                                </div>
+                                <div class="infoDiv3_7">이름은 14일 안에
+                                    두 번만 변경할 수 있습니다.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="infoDiv4" style="display: flex;">
+                    <aside class="infoDiv4_2"><label for="pepUsername">사용자 이름</label></aside>
+                    <div class="infoDiv4_3">
+                        <div class="infoDiv4_4" style="width: 100%; max-width: 355px;">
+                            <input aria-required="true" id="pepUsername" placeholder="사용자 이름" type="text"
+                                   class="infoDiv4_5" th:value="*{nickname}" name="nickname">
+                            <div class="_label_wrapper2"></div>
+                            <div class="_checkArea1"></div>
+                            <div class="infoDiv4_6" style="width: 100%; max-width: 355px;">
+                                <div class="infoDiv4_7">
+                                    <div class="infoDiv4_8">대부분의 경우
+                                        이후 14일 동안 사용자 이름을 다시 xldms.dl(으)로 변경할 수 있습니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infoDiv6" style="display: flex;">
+                    <aside class="infoDiv6_2"><label for="pepBio" class="infoDiv6_3">소개</label></aside>
+                    <div class="infoDiv6_4"><textarea class="infoDiv6_5" id="pepBio" th:text="*{content}"
+                                                      name="content"></textarea></div>
+                </div>
+
+                <div class="infoDiv7" style="display: flex;">
+                    <aside class="infoDiv7_2"><label></label></aside>
+                    <div class="infoDiv7_3">
+                        <div class="infoDiv7_4" style="width: 100%; max-width: 355px;">
+                            <div class="infoDiv7_5">
+                                <h2 class="infoDiv7_6">개인정보</h2>
+                            </div>
+                            <div class="infoDiv7_7">비즈니스나 반려동물 등에
+                                사용된 계정인 경우에도 회원님의 개인정보를 입력하세요.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infoDiv5" style="display: flex;">
+                    <aside class="infoDiv5_2"><label for="email">이메일</label></aside>
+                    <div class="infoDiv5_3">
+                        <div class="infoDiv5_4" style="width: 100%; max-width: 355px;">
+                            <input aria-required="false" id="email" placeholder="123@gmail.com" type="text"
+                                   class="infoDiv5_5" th:value="*{email}" name="email">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submitBtnDivvvv" style="display:flex">
+                    <aside class="submitBtnDivvv"><label></label></aside>
+                    <div class="submitBtnDivv">
+                        <div class="submitBtnDiv">
+                            <button class="submitBtn" type="button" id="subBtn">제출</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </article>
+    </div>
+</main>
+
+
+<!-- 프로필 사진 바꾸기 -->
+<div class="changeProfile0" id="changeProfile">
+    <div class="changeProfile1" role="presentation">
+        <div class="changeProfile2" role="dialog">
+            <div class="changeProfile3">
+                <div class="changeProfile4" data-testid="EditProfilePicMenu-testID">
+                    <div class="changeProfile5">
+                        <h3 class="changeProfile6">프로필 사진 바꾸기</h3>
+                    </div>
+                    <div class="changeProfile7">
+                        <button class="aww changeProfile8" tabindex="0" onclick="uploadProfile()">사진 업로드</button>
+                        <button class="aww changeProfile9" tabindex="0" onclick="changeProfileDelete()">현재 사진
+                            삭제
+                        </button>
+                        <button class="aww changeProfile10" tabindex="0"
+                                onclick="changeProfileModalClose()">취소
+                        </button>
+                        <form enctype="multipart/form-data" method="POST" role="presentation">
+                            <input accept="image/jpeg,image/png" class="changeProfileInput" type="file"
+                                   id="ModalFileInput">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:insert="~{/footer :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="/assets/js/changeinfo/editInfo.js"></script>
+<script src="/assets/js/changeinfo/changeInfoAjax.js"></script>
+<script th:inline="javascript">
+    let $editForm = $("#editForm");
+    let $subBtn = $("#subBtn");
+
+    let p = [[${userVO.userFileList.fileNumber}]]
+    console.log(p)
+
+    // 닉네임 유효성 검사 (db조회)
+    $("#pepUsername").on("keyup", function () {
+        let $nickname = $('#pepUsername').val();
+        changeInfoAjax.profileEditNicknameCheck($nickname, function (result) {
+
+            checkNick(result);
+            if (result && userName.val().length > 0 && nickNameCk.val().length > 0) {
+                $('#subBtn').attr("class", "submitBtnOn");
+                $('#subBtn').attr("disabled", false);
+            } else {
+                $('#subBtn').attr("class", "submitBtn");
+                $('#subBtn').attr("disabled", "true");
+            }
+        });
+    });
+
+</script>
+
+</html>

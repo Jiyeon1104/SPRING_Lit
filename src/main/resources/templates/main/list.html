@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list</title>
+    <!--    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main/main.css" />-->
+    <!--    <link rel="stylesheet" href="/src/main/resources/static/assets/css/default.css" />-->
+    <!--    <link rel="stylesheet" href="/src/main/resources/static/assets/css/header.css" />-->
+    <!--    <link rel="stylesheet" href="/src/main/resources/static/assets/css/footer.css" />-->
+    <link rel="stylesheet" href="/assets/css/main/main.css"/>
+    <link rel="stylesheet" href="/assets/css/default.css"/>
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <style>
+        div.photoContents {
+            height: 100%;
+        }
+
+        div.photoContents > div {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        div.photoContents figure {
+            width: 33.33%;
+            height: 250px;
+            padding: 10px;
+        }
+
+        div.photoContents figure a {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
+        div.photoContents figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s ease;
+            transform-origin: center center;
+        }
+        div.photoContents img:hover {
+            transform: scale(1.1);
+            transform-origin: center center;
+        }
+
+        div._category_wrapper > a.on div._category_img_box{
+            border:2px solid rgb(255 87 87);
+        }
+
+    </style>
+
+</head>
+
+<body>
+<header th:insert="~{/header :: header}"></header>
+<main>
+    <div class="_main_wrapper">
+        <div class="_main_top_wrapper">
+            <!-- 카테고리 선택 창 -->
+            <div class="_category_wrapper">
+                <a href="life">
+                    <div class="_category_detail _life">
+                        <div class="_category_img_box" style="padding:10px ;">
+                            <div class="_category_img">
+                                <img class="_img" src="/images/main/life.png">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            생 활
+                        </div>
+                    </div>
+                </a>
+                <a href="exercise">
+                    <div class="_category_detail _exercise">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/exercise.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            운 동
+                        </div>
+                    </div>
+                </a>
+                <a href="hobby">
+                    <div class="_category_detail _hobby">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/hobby.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            취 미
+                        </div>
+                    </div>
+                </a>
+                <a href="art">
+                    <div class="_category_detail _art">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/art.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            예 술
+                        </div>
+                    </div>
+                </a>
+                <a href="heart">
+                    <div class="_category_detail _heart">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/heart.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            정 서
+                        </div>
+                    </div>
+                </a>
+                <a href="eating">
+                    <div class="_category_detail _eating">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/eating.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            식 습 관
+                        </div>
+                    </div>
+                </a>
+                <a href="study">
+                    <div class="_category_detail _study">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/study.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            공 부
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- 본문 시작 -->
+        <div class="_main_bottom_wrapper">
+            <!-- 변경 버튼 -->
+            <div class="litChange">
+                <div>
+                    <a class="lits1Off" id="lits1">
+                        <div>
+                            <img class="litSvg" id="lit1Img" src="/images/mypage/menu2.png">
+                            <span class="litSpan">Lit up</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a class="lits2On" id="lits2">
+                        <div><img class="litSvg" id="lit2Img" src="/images/mypage/lists.png">
+                            <span class="litSpan">Lits</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 프로젝트 시작 -->
+            <div class="photoContents">
+                <div>
+                    <!--                        <figure>-->
+                    <!--                            <a href="">-->
+                    <!--                                <img alt="" src="">-->
+                    <!--                            </a>-->
+                    <!--                        </figure>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:insert="~{/footer :: footer}"></footer>
+</main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script th:inline="javascript">
+    let category = [[${ category }]];
+    let pageNum = 1;
+    const contBox = $('div.photoContents > div');
+    let cate1 = "lits";     // lits / litups
+    let cate2 = "all";  // 카테고리 기본 all
+    let order = "new";  // new 신규 / popular 인기
+</script>
+<script src="/assets/js/main/list.js"></script>
+
+</html>

@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list</title>
+
+    <link rel="stylesheet" href="/assets/css/main/main.css"/>
+    <link rel="stylesheet" href="/assets/css/default.css"/>
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <!--    여기 충돌 날수도 있는데 모달 헤더에 넣느라 추가 한거에여!! 필요함!!!-->
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+    <link rel="stylesheet" href="/assets/css/certification/certificationDetail.css">
+    <link rel="stylesheet" href="/assets/css/certification/report.css">
+    <style>
+        div.photoContents {
+            height: 100%;
+        }
+
+        div.photoContents > div {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        div.photoContents figure {
+            width: 33.33%;
+            height: 250px;
+            padding: 10px;
+        }
+
+        div.photoContents figure a {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
+        div.photoContents figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s ease;
+            transform-origin: center center;
+        }
+        div.photoContents img:hover {
+            transform: scale(1.1);
+            transform-origin: center center;
+        }
+
+        div._category_wrapper > a.on div._category_img_box{
+            border:2px solid rgb(255 87 87);
+        }
+
+        div.change_color{
+            color: rgb(255 87 87);
+            font-weight: bolder;
+        }
+
+        div._selector_wrapper div.on{
+            border-bottom: 2px solid rgb(255 87 87);
+            color: rgb(255 87 87);
+        }
+        div._selector{
+            margin-top: -2px;
+        }
+    </style>
+
+</head>
+
+<body>
+<header th:insert="~{/header :: header}"></header>
+<div th:insert="~{/certification/certificationDetail :: certificationDetail}"></div>
+<main>
+
+    <div class="_main_wrapper">
+        <div class="_main_top_wrapper">
+            <!-- 선택창 -->
+            <div class="_top_selector">
+                <div class="_selector_wrapper">
+                    <a href="" class="_top_home a__selector">
+                        <div class="_selector on">전체</div>
+                    </a>
+                    <a href="popular" class="_top_popular a__selector">
+                        <div class="_selector">인기</div>
+                    </a>
+                    <a href="new" class="_top_new a__selector">
+                        <div class="_selector">신규</div>
+                    </a>
+                </div>
+            </div>
+            <!-- 광고 배너 -->
+            <div class="_top_ad">
+                <div class="_ad_wrapper">
+                    <img src="/images/main/banner_ad1.jpg" width="895" height="208">
+                    <img src="/images/main/banner_ad2.png" width="895" height="208" style="left:0%; z-index:1">
+                    <img src="/images/main/banner_ad3.png" width="895" height="208" style="left:-100%">
+                </div>
+            </div>
+            <!-- 카테고리 선택 창 -->
+            <div class="_category_wrapper">
+                <a href="life">
+                    <div class="_category_detail _life">
+                        <div class="_category_img_box" style="padding:10px ;">
+                            <div class="_category_img">
+                                <img class="_img" src="/images/main/life.png">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            생 활
+                        </div>
+                    </div>
+                </a>
+                <a href="exercise">
+                    <div class="_category_detail _exercise">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/exercise.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            운 동
+                        </div>
+                    </div>
+                </a>
+                <a href="hobby">
+                    <div class="_category_detail _hobby">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/hobby.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            취 미
+                        </div>
+                    </div>
+                </a>
+                <a href="art">
+                    <div class="_category_detail _art">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/art.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            예 술
+                        </div>
+                    </div>
+                </a>
+                <a href="heart">
+                    <div class="_category_detail _heart">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/heart.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            정 서
+                        </div>
+                    </div>
+                </a>
+                <a href="eating">
+                    <div class="_category_detail _eating">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/eating.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            식 습 관
+                        </div>
+                    </div>
+                </a>
+                <a href="study">
+                    <div class="_category_detail _study">
+                        <div class="_category_img_box">
+                            <div class="_category_img">
+                                <img src="/images/main/study.png" class="_img">
+                            </div>
+                        </div>
+                        <div class="_category_write">
+                            공 부
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- 본문 시작 -->
+        <div class="_main_bottom_wrapper">
+            <!-- 변경 버튼 -->
+            <div class="litChange">
+                <div>
+                    <a class="lits1On" id="lits1">
+                        <div><img class="litSvg" id="lit1Img" src="/images/mypage/menu.png">
+                            <span class="litSpan">Lit up</span>
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    <a class="lits2Off" id="lits2">
+                        <div><img class="litSvg" id="lit2Img" src="/images/mypage/fire.png">
+                            <span class="litSpan">Lits</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 프로젝트 시작 -->
+            <div class="photoContents">
+                <div class ="a">
+                <!-- 사진 리스트 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    <footer th:insert="~{/footer :: footer}"></footer>-->
+</main>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="/assets/js/main/main.js"></script>
+<script defer src="/assets/js/certification/certificationDetail.js"></script>
+<script defer src="/assets/js/certification/report.js"></script>
+<script defer src="/assets/js/certification/certificationDetailAjax.js"></script>
+<script th:inline="javascript">
+    let file;
+    const replyDiv = $(".reply_area");
+    let pageNum = 1;
+    // cretificationDetail에서 모달 버튼 매개변수로 넘어옴
+    let $reviewNumber;
+    // session에서 받아야함
+
+    $(".a").on("click","figure.reviewView",function () {
+        $reviewNumber=$(this).attr("id")
+        $fileWriter = $(this).children("input").attr("id")
+
+        projectDetailModalShow($reviewNumber, userNumber)
+        $.getJSON("/litUp/profilePic", {userNumber: $fileWriter}, function(pic){showMainUserPic(pic);}).fail(
+            function () {
+                let pic = {userNumber:$fileWriter, uploadPath:"noPic" }
+                showMainUserPic(pic);
+            }
+        );
+        $.getJSON("/litUp/reviewPic", {reviewNumber: $reviewNumber}, function(pic){showReviewPic(pic);})
+    })
+
+    // 댓글 목록 불러오기
+    function showList(page){
+        reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function(total, list){
+                let str = "";
+
+                if(list == null || list.length == 0) {
+                    replyDiv.html("");
+                    return;
+                }
+
+                $.each(list, function(i, reply){
+                    ////////// getJSON -> AJAX 동기식으로 변경해서 file에 pic 담을 것
+                    $.ajax({
+                        url:"/litUp/profilePic",
+                        type: "get",
+                        data:{userNumber:reply.userNumber},
+                        async:false,
+                        success:function (pic) {
+                            file = pic;
+                        }
+                    });
+
+                    str += '<div class="detailContentWriteContainer">';
+                    str += '<div class="detailContentWriteWrapper">';
+                    str += '<div class="detailContentProfileImage">';
+                    str += '<div class="detailContentProfileImageInner">';
+                    if (file != null && file != "") {
+                        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'></a>";
+                    } else {
+                        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                    }
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeed">';
+                    str += '<div class="detailContentWrite">';
+                    str += '<div class="detailContentWriteName">'
+                    str +=  reply.nickname;
+                    str += '</div>';
+                    str += '<div class="detailContentWriteComment">';
+                    str +=  reply.content;
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeedBottom">';
+                    str += '<div class="detailContentRegisterDate">';
+                    str +=  reviewDetailService.getReplyDate(reply.registerDate);
+                    str += '</div>';
+                    str += '<div class="detailContentCommentDelete">';
+                    str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+
+                });
+                replyDiv.html(str.trim());
+                showReplyPage(total);
+            },function (a,b,c){console.log("error");}
+        );
+
+    };
+
+    //댓글 추가 보기
+    function showAppendList(page) {
+
+        reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function (total, list) {
+
+                $(".appendReply div").html("");
+                let str = "";
+
+                $.each(list, function (i, reply) {
+                    $.ajax({
+                        url:"/litUp/profilePic",
+                        type: "get",
+                        data:{userNumber:reply.userNumber},
+                        async:false,
+                        success:function (pic) {
+                            file = pic;
+                            console.log(file);
+                        }
+                    })
+                    str += '<div class="detailContentWriteContainer">';
+                    str += '<div class="detailContentWriteWrapper">';
+                    str += '<div class="detailContentProfileImage">';
+                    str += '<div class="detailContentProfileImageInner">';
+                    str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'>";
+                    if (file != null && file != "") {
+                        str +="<img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>";
+                    } else {
+                        str += "<img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                    }
+                    str += '</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeed">';
+                    str += '<div class="detailContentWrite">';
+                    str += '<div class="detailContentWriteName">'
+                    str += reply.nickname;
+                    str += '</div>';
+                    str += '<div class="detailContentWriteComment">';
+                    str += reply.content;
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeedBottom">';
+                    str += '<div class="detailContentRegisterDate">';
+                    str += reviewDetailService.getReplyDate(reply.registerDate);
+                    str += '</div>';
+                    str += '<div class="detailContentCommentDelete">';
+                    str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+
+                });
+
+                replyDiv.append(str.trim());
+                showReplyPage(total);
+            }, function (a, b, c) {
+                console.log("error");
+            }
+        )};
+
+
+    // 신고하기
+    $(".reportButton").on("click", function () {
+        let $reason = $(this).attr("value");
+
+        reviewDetailService.addReport({
+                userNumber: userNumber, reviewNumber: $reviewNumber, reason: $reason
+            },
+            function (result) {
+                reportModalClose();
+                alert("신고 되었습니다.");
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            }
+        );
+    })
+
+    // 댓글쓰기
+    $(".commentButton").on("click", function () {
+        let $commentValue = $(".detailContentFooterCommentInputArea").val();
+        reviewDetailService.addReply({
+                reviewNumber: $reviewNumber, userNumber: userNumber, content: $commentValue
+            },
+            function (result) {
+                $(".detailContentFooterCommentInputArea").val("");
+                pageNum = 1;
+                showList(1);
+                $(".detailContentFeed").scrollTop(0);
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            }
+        );
+    })
+
+    // 좋아요
+    $(".detailContentLikeButton").on("click", function () {
+        reviewDetailService.addLike({reviewNumber: $reviewNumber, userNumber: userNumber},
+            function (result) {
+                $("#likeCount").html(result);
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            })
+    })
+
+
+    // 좋아요 해제
+    $(".detailContentLikeCancel").on("click", function () {
+        reviewDetailService.removeLike({userNumber: userNumber, reviewNumber: $reviewNumber},
+            function (result) {
+                $("#likeCount").html(result);
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            })
+    })
+
+    //댓글 append
+    $(".appendReply div").on("click", function (e) {
+        e.preventDefault();
+        pageNum = pageNum + 1;
+        showAppendList(pageNum);
+
+    })
+
+    //댓글 삭제
+    $(".reply_area").on("click", "div.detailContentCommentDelete a.remove", function (e) {
+        e.preventDefault();
+        let $replyNumber = $(this).attr("class").split(/\s+/);
+        // 유저넘버임
+        reviewDetailService.removeReply($replyNumber[1], userNumber, function (result) {
+            if(result) {
+                pageNum = 1;
+                showList(pageNum);
+            }else{
+                alert("본인 게시물만 삭제 가능합니다.");
+            }
+        })
+    })
+
+    // 클릭시 노출페이지 조절
+    function showReplyPage(total) {
+        let realEnd = Math.ceil(total / 10.0);
+        const $paging = $(".appendReply div");
+
+
+        let next = pageNum < realEnd;
+        let str = "<svg aria-label=\"댓글 더 읽어들이기\" class=\"_ab6-\" color=\"#262626\" fill=\"#262626\" height=\"24\" role=\"img\" viewBox=\"0 0 24 24\" " +
+            "width=\"24\"><circle cx=\"12.001\" cy=\"12.005\" fill=\"none\" r=\"10.5\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"></circle>" +
+            "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"7.001\" x2=\"17.001\" y1=\"12.005\" y2=\"12.005\"></line>" +
+            "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"12.001\" x2=\"12.001\" y1=\"7.005\" y2=\"17.005\"></line></svg>";
+
+        if (next) {
+            $paging.html(str);
+        }
+    }
+
+
+    // 프로필 사진 출력
+    function showMainUserPic(file){
+        let str ="";
+        let str2 ="";
+
+        console.log("===========================" + file);
+        if(file.uploadPath != "noPic" ){
+            str += "<div class=\"detailContentProfileImageInner\">"
+            str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str += "</a></div>"
+
+            str2 +="<div class=\"detailContentProfileImageInner\">"
+            str2 +="<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str2 +="</a></div>"
+        }else{
+            str += "<div class=\"detailContentProfileImageInner\">"
+            str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" src='/images/main/profile_ex.png' style='width: 100%'>"
+            str += "</a></div>"
+
+            str2 +="<div class=\"detailContentProfileImageInner\">"
+            str2 +="<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" src='/images/main/profile_ex.png' style='width: 100%'>"
+            str2 +="</a></div>"
+        }
+
+
+
+        $("#userFileBottom").html(str);
+        $("div.top").html(str2);
+    }
+
+    function showReviewPic(pic) {
+        let str ="";
+        let strBtn ="";
+        $.each(pic,function (i, file) {
+            str += "<li id=a" + i + "><img class=\"innerImage\" src='/litUp/display?fileName=" + file.uploadPath  + "/" + file.uuid + "_"  + file.name + "' /></li>"
+            strBtn +="<div id=b"+ i +"></div>"
+        })
+        $(".innerImageSlides").html(str);
+        $(".innerImagePageButtons").html(strBtn);
+        $("li#a0").addClass("active");
+        $("div#b0").addClass("active");
+    }
+
+
+</script>
+
+</html>

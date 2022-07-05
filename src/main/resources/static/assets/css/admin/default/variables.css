@@ -1,0 +1,15 @@
+@charset "UTF-8";
+:root {
+  /* Color */
+  --border-gray: rgb(219, 219, 219);
+  --background-gray: #efefef;
+  --background-black: #353535; /* 53,53,53 */
+  
+
+  --red: rgb(250, 100, 98);
+  --red-event: rgb(255, 69, 67);
+  --red-none: rgba(255, 69, 67, 0.3);
+  --side-black: #353535;
+
+  --font-gray: #a9a9a9;
+}

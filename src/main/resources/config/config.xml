@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0/EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.example.lit.domain.vo.project.ParticipationVO" alias="participationVO"/>
+        <typeAlias type="com.example.lit.domain.vo.project.ProjectFileVO" alias="projectFileVO"/>
+        <typeAlias type="com.example.lit.domain.vo.project.ProjectVO" alias="projectVO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.LikeVO" alias="likeVO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.ReplyVO" alias="replyVO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.ReportVO" alias="reportVO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.ReviewFileVO" alias="reviewFileVO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.ReviewVO" alias="reviewVO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.FollowVO" alias="followVO"/>
+        <typeAlias type="com.example.lit.domain.vo.messsage.MessageVO" alias="messageVO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.UserFileVO" alias="userFileVO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.UserVO" alias="userVO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.achievement.AchievementVO" alias="achievementVO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.achievement.MedalDTO" alias="medalDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.messsage.MessageDTO" alias="messageDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.UserDTO" alias="userDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.ReviewDTO" alias="reviewDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.review.ReportDTO" alias="reportDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.user.AlertDTO" alias="alertDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.project.ProjectDTO" alias="projectDTO"/>
+        <typeAlias type="com.example.lit.domain.vo.messsage.MessageRoom" alias="messageRoom"/>
+
+    </typeAliases>
+</configuration>

@@ -1,0 +1,456 @@
+.mainWrap {
+    padding: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section {
+    width: 935px;
+    padding: 0 20px;
+    margin: auto;
+    /* transition: 1s ease; */
+}
+
+
+.dmWrap {
+    height: 90vh;
+    display: flex;
+}
+
+.dmWrap > div {
+    border: 1px solid #e5e5e5;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+div.dmBox {
+    display: none;
+}
+
+div.dmBox.on {
+    display: flex;
+}
+
+div.firstBox {
+    display: none;
+}
+
+.dmWrap > div:nth-child(1) {
+    min-width: 350px;
+}
+
+.dmWrap > div:nth-child(n+2) {
+    flex-grow: 1;
+}
+
+/* 첫페이지------------- */
+div.firstBox.on {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.firstBox > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+div.firstBox > div > * {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+div.firstBox .userListBtn {
+    padding: 0 10px;
+}
+
+div.firstBox .userListBtn > a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgb(250, 100, 98);
+    color: #ffffff;
+}
+
+div.firstBox .userListBtn > a:hover {
+    background: rgb(255, 69, 67);
+}
+
+
+.link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.link > div.iconBox {
+    position: absolute;
+    display: block;
+    width: 25px;
+    height: 25px;
+    right: 10px;
+}
+
+.link > p {
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.link > p::after {
+    display: block;
+    content: "\02C5";
+    padding: 0 10px;
+    font-size: 1.2rem;
+}
+
+.dmList {
+    border-top: 1px solid #e5e5e5;
+    padding: 5px;
+}
+
+.dmList > figure {
+    background: #efefef;
+    padding: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.dmList > figure > a {
+    display: flex;
+}
+
+.dmList .dmImg {
+    width: 56px;
+    height: 56px;
+    margin-right: 10px;
+    border-radius: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,.0975);
+}
+
+.dmData {
+
+}
+
+.dmData > p:nth-child(1) {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* coxld sodyd */
+.dmData > p:nth-child(2) {
+    font-size: 0.8rem;
+    padding-top: 3px;
+}
+
+
+/* 컨탠츠 리스트 */
+.contentTop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+    padding: 0 20px;
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.contentTop > div {
+
+}
+
+.contentTop > div:nth-child(1) {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.contentTop > div:nth-child(2) {
+    font-weight: 600;
+}
+
+.contentTop > .iconBox {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 25px;
+    height: 25px;
+    right: 10px;
+}
+
+
+.content {
+    flex-grow: 1;
+    overflow: hidden auto;
+}
+
+.content > div {
+    /*flex-direction: column-reverse;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100%;
+}
+
+.content > div:nth-child(1) {
+    flex-grow: 1;
+    /* border: 1px solid #e5e5e5; */
+    padding: 20px 20px 0;
+}
+
+.content > div:nth-child(2) {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    display: flex;
+}
+
+.textInput {
+    margin: 20px 10px;
+}
+
+.textInput > div {
+    align-items: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 22px;
+    display: flex;
+    height: 44px;
+    padding: 0 15px;
+    width: 100%;
+}
+
+.textInput .iconBox {
+    width: 32px;
+}
+
+.textInput .inputBox {
+    flex-grow: 1;
+}
+
+.inputBox > input {
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px;
+    border: none;
+}
+
+.inputBox > input:focus {
+    outline: none;
+}
+
+.content div[class^="dmStyle"] {
+    margin: 10px 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.content div[class="dmStyle1"] {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content div[class="dmStyle1"] img {
+    display: none;
+}
+
+.content div[class="dmStyle2"] {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.content div[class="dmStyle2"] .dmImg{
+    border: 1px solid rgba(0,0,0,.0975);
+}
+
+.content .dmImg {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.content div[class^="dmStyle"] .text {
+    border: 1px solid #e5e5e5;
+    border-radius: 30px;
+    padding: 10px 20px;
+    max-width: 40%;
+}
+
+.iconBox > a[class^="icon"] {
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
+a.icon_heart_pink {
+    background: url("../../../images/project/icon/icon-heart-pink.png") 100% 100%;
+}
+
+a.icon_heart_white {
+    background: url("../../../images/project/icon/icon-heart-white.png") 100% 100%;
+}
+
+a.icon_happy {
+    background: url("../../../images/project/icon/icon-happy.png") 100% 100%;
+}
+
+a.icon_writing_square {
+    background: url("../../../images/project/icon/icon-writing-square.png") 100% 100%;
+}
+
+/*a.icon_info{*/
+/*    background: url("../../../images/project/icon/icon-info.png") 100% 100%;*/
+/*}*/
+
+
+/* 모달창 ================================= */
+
+aside.modal1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #66666650;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+aside.modal1.on {
+    display: flex;
+}
+
+aside.modal1 > div {
+    background: #ffffff;
+    width: 400px;
+    height: 68vh;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+aside.modal1 > div > div:nth-child(1) {
+    height: 44px;
+}
+
+aside.modal1 > div > div:nth-child(2) {
+    border-top: 1px solid #e5e5e5;
+}
+
+aside.modal1 > div > div:nth-child(3) {
+    flex-grow: 1;
+    border-top: 1px solid #e5e5e5;
+}
+
+.modalTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalTop > div {
+}
+
+.modalTop > div:nth-child(1) {
+    padding: 0 10px;
+}
+
+.modalTop > div:nth-child(2) {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.modalTop > div:nth-child(3) {
+}
+
+.modalTop > div:nth-child(3) {
+    padding: 0 10px;
+}
+
+.modalSearch {
+
+}
+
+.modalSearch > input {
+    width: 100%;
+    padding: 20px 15px;
+    border-style: none;
+}
+
+.modalSearch > input:focus {
+    outline: none;
+}
+
+.userList {
+    padding: 10px 15px;
+}
+
+.userList > div {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.userList > div > .dmImg {
+    width: 56px;
+    height: 56px;
+    margin-right: 10px;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.userList > div > .userData {
+    padding: 0 10px;
+    flex-grow: 1;
+}
+
+.userList .userData > p:nth-child(1) {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.userList .userData > p:nth-child(2) {
+    font-size: 0.9rem;
+}
+
+.userList > div > .dmBtn2 {
+    padding: 0 10px;
+}
+
+.userList .dmBtn2 > a {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgb(250, 100, 98);
+    color: #ffffff;
+    font-size: 0.9rem;
+}
+
+.userList .dmBtn2 > a:hover {
+    background: rgb(255, 69, 67);
+}
+
+

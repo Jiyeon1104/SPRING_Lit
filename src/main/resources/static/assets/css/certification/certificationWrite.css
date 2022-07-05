@@ -1,0 +1,592 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    height : 100vh;
+    width : 100%;
+}
+
+.closeArea {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.certificationWriteBackground{
+    margin:0;
+    padding:0;
+    background-color: rgba(0,0,0,0.6);
+    display: none; /*none으로 변경*/
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size : cover;
+    position: fixed;
+    z-index: 4;
+}
+
+
+
+.modalCloseButton{
+    position: absolute;
+    right: 10px;
+    top: 1%;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    cursor:pointer;
+    border: none;
+    font-size: 1.5em;
+    color: white;
+    z-index: 1;
+}
+
+.certificationWriteModalContainer{
+    position: relative;
+    min-height: 100%;
+}
+
+.certificationWriteModal{
+    background-color:  white;
+    width: 35%;
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    height: 68.7vh;
+    border-radius: 17px;
+    transform:translate(-50%,-50%);
+    transition:width ease-out 0.4s 0s;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.certificationHeader,
+.certificationContentHeader,
+.certificationContentButtons,
+.certificationInner,
+.certificationContHeaderWrapper,
+.certificationNextButton,
+.certificationContentProfileImage,
+.ceritficationContentProfileImageWrapper,
+.certificationContentFooterButtons,
+.projectInfoDropDownContent{
+    display: flex;
+}
+
+.certificationInner{
+    height: 63.9vh;
+}
+
+.certificationHeader{
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(219,219,219);
+}
+
+.certificationHeaderLabel{
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.certificationImageWrapper{
+    width: 100%;
+    height: 63.9vh;
+    max-height: 66vh;
+    background-color: black;
+    border-radius: 0px 0px 0px 15px;
+    position: relative;
+}
+
+.certificationImages{
+    height: 63.9vh;
+    width: 100%;
+    overflow:hidden;
+}
+
+.certificationImageInner{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    height: 63.9vh;
+}
+
+.certificationImageInner > li{
+    width: 100%;
+    height: 63.9vh;
+    list-style: none;
+    opacity: 0;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    transition: opacity 0.3s;
+}
+
+.certificationImageInner > li.active{
+    opacity: 1;
+}
+
+.certificationImageInner > li > img{
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+
+}
+
+.certificationContent{
+    width: 43%;
+    min-height: 100%;
+}
+
+.certificationContentHeader{
+    width: 100%;
+    height: 62px;
+}
+
+.certificationContHeaderWrapper{
+    width: 90%;
+    margin: 0px auto;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.ceritficationContentProfileImageWrapper{
+    width: 30px;
+    height: 30px;
+    align-items: center;
+}
+
+.certificationContentProfileImage{
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(219, 219, 219);
+}
+
+.certificationContentProfileImage > img{
+    object-fit: cover;
+    min-height: 100%;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.certificationUserId{
+    margin-left: 16px;
+}
+
+.certificationContentArea{
+    overflow-x: hidden;
+    height: 230px;
+    border-bottom: 1px solid rgb(219,219,219);
+    width: 99.5%;
+}
+
+.certificationContentArea > textarea{
+    resize: none;
+    width: 315px;
+    height: 190px !important;
+    border: none;
+    padding: 0px 16px;
+    font-size: 16px;
+    padding-top: 5px;
+    vertical-align: middle;
+}
+
+.certificationContentArea > textarea:focus{
+    outline: none;
+}
+
+.certificationContentArea > textarea::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.certificationNextButton > button{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    cursor:pointer;
+    color: rgb(250, 100, 98);
+    font-weight: bold;
+    font-size: 16px;
+    border:none;
+    background-color: transparent;
+}
+
+.certificationBackButton{
+    width: 24px;
+    height: 24px;
+}
+
+.certificationBackButton > button {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+}
+
+.certificationContentButtons{
+    justify-content: flex-end;
+}
+
+.certificationContentButtons > div{
+    margin: 0px 5px;
+    display: flex;
+}
+
+.certificationContentButtons > div > div:first-child{
+    color: rgb(250, 100, 98);
+    font-size: 12px;
+    padding: 6px;
+    margin-right: 94px;
+    max-width: 160px;
+    width: 160px;
+}
+
+.certificationContentButtons > div > div > button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ABABAB;
+}
+
+.certificationContentButtons > div > div > button:hover{
+    color: rgb(0, 0, 0);
+}
+
+.certificationContentFooterButtonsWrapper{
+    min-height: 182px;
+    align-items: center;
+}
+
+.certificationContentFooterButtons{
+    width: 100%;
+    justify-content: space-between;
+    min-height:40px;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid rgb(219,219,219);
+}
+
+.certificationContentFooterButtons:first-child{
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.certificationContentFooterButtons > span{
+    position: absolute;
+    right: 8px;
+    cursor: pointer;
+}
+
+.projectInfoDropDown{
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width:100%;
+    height: 0;
+    transition:height ease-out 0.5s 0s;
+}
+
+.projectInfoDropDown::-webkit-scrollbar {
+    display: none;
+}
+
+.projectInfoDropDownContentWrapper{
+    padding-top: 10px;
+}
+
+.projectInfoDropDownContent{
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.projectInfoDropDownContent > span{
+    font-weight:100;
+    font-size: 13px;
+}
+
+.certificationWriteWarning{
+    min-height: 140px;
+}
+
+.certificationWriteWarningInner{
+    position: relative;
+    border-bottom: 1px solid rgb(219,219,219);
+}
+
+.certificationWriteWarningInner > div > ul > li{
+    list-style: none;
+    font-size: 12px;
+    margin-bottom: 3px;
+    border-bottom: 1px solid rgb(219,219,219);
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #ABABAB;
+}
+.certificationWriteWarningInner > div > ul{
+    padding: 0;
+    margin: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.certificationWriteWarningInner > div:first-child{
+    font-size: 12px;
+    color: rgb(250, 100, 98);
+    opacity: 0.8;
+    margin: 14px 0px 14px 10px;
+    font-weight:700;
+    width: 94%;
+}
+
+.certificationWriteWarningInner > span{
+    cursor:pointer;
+    position: absolute;
+    right: 8px;
+    top: 0px;
+}
+
+.warningDropDown{
+    max-height: 100px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width:100%;
+    height: 0px;
+    transition:height ease-out 0.5s 0s;
+}
+
+.warningDropDown::-webkit-scrollbar {
+    display: none;
+}
+
+.detailProjectContent{
+    width: 0;
+    height: 64vh;
+    transition:width ease-out 0.4s 0s;
+    animation-direction: reverse;
+    overflow: auto;
+}
+
+.detailProjectContent::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.modalLight{
+    position:absolute;
+    width: 830px;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    z-index: 1;
+    display: none;
+}
+
+.detailProjectContentTitle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgb(219,219,219);
+}
+
+.detailProjectContentTitle > div{
+    font-weight:bold;
+    font-size: 20px;
+}
+
+.detailProjectContentList{
+    display: grid;
+    grid-template-columns: repeat(3, 0fr);
+    grid-gap: 25px 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 35px;
+}
+
+.detailProjectContentList > div {
+    width: 100px;
+    height: 100px;
+    outline: 1px solid rgb(219,219,219);
+    position: relative;
+    cursor:pointer;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+}
+
+.detailProjectContentList > div.on {
+    outline: 2px solid rgb(250,100,98);
+}
+
+.detailProjectContentList > div > span{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.6);
+    display: none;
+    position: absolute;
+}
+
+.detailProjectContentList > div > img{
+    width: 90px;
+    height: 90px;
+}
+
+.whiteBackground{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: white;
+    z-index: 2;
+    display: none;
+}
+
+.projectAlert{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0,0,0,0.8);
+    display: none;
+    position:absolute;
+    color: white;
+    opacity: 0;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+}
+
+.innerImagePageButtons1{
+    text-align:center;
+    position:relative;
+    bottom: 6.5%;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.innerImagePageButtons1 > div {
+    width:18px;
+    height:18px;
+    gap: 5px;
+    background-color:rgba(255,255,255,.5);
+    border-radius:50%;
+    cursor:pointer;
+    border: 1px solid rgb(219,219,219);
+}
+
+.innerImagePageButtons1 > div.active{
+    background-color:rgba(0,0,0,0.5);
+}
+
+
+/*=========================================*/
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 933px) {
+    div.certificationWriteModal{
+        width: 95%  !important;
+        height: 90vh !important;
+    }
+
+    div.certificationInner {
+        height: 90vh;
+        flex-direction: column;
+        overflow: auto;
+    }
+    div.certificationInner{
+
+    }
+    div.certificationImageWrapper{
+        height: 30vh;
+    }
+
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}

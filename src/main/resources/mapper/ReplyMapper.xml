@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.review.ReplyMapper">
+    <insert id="insert">
+        INSERT INTO TBL_REPLY
+        (REPLY_NUMBER, REVIEW_NUMBER, USER_NUMBER, NICKNAME, CONTENT)
+        VALUES
+        (SEQ_REPLY.NEXTVAL, #{reviewNumber},  #{userNumber},
+        (SELECT NICKNAME FROM TBL_USER WHERE USER_NUMBER = #{userNumber}),
+        #{content})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_REPLY WHERE REPLY_NUMBER = #{replyNumber} AND USER_NUMBER = #{userNumber}
+    </delete>
+
+
+    <select id="getList" resultType="replyVO">
+         <![CDATA[
+        SELECT REPLY_NUMBER, REVIEW_NUMBER, USER_NUMBER, NICKNAME, CONTENT, REGISTER_DATE
+        FROM
+            (
+
+                SELECT /*+ INDEX_DESC(TBL_REPLY SYS_C007740) */
+
+                ROWNUM RN, REPLY_NUMBER, REVIEW_NUMBER, USER_NUMBER, NICKNAME, CONTENT, REGISTER_DATE
+                FROM TBL_REPLY
+                WHERE REVIEW_NUMBER = #{reviewNumber} AND ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
+            )
+        WHERE RN > (#{criteria.pageNum} - 1) * #{criteria.amount}
+        ]]>
+    </select>
+
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(REPLY_NUMBER) FROM TBL_REPLY WHERE REVIEW_NUMBER = #{reviewNumber}
+    </select>
+
+    <update id="updateNickname">
+        UPDATE TBL_REPLY
+        SET NICKNAME = #{nickname}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+
+</mapper>

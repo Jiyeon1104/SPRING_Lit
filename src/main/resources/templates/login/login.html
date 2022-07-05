@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/login/login.css">
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+
+</head>
+
+<body style="background: #EFEFEF;">
+
+    <header th:insert="~{/header :: header}"></header>
+
+    <div style="width: 100%;height: 100%;">
+        <div style="width: 100%;height: 100%;">
+
+            <main class="main" role="main">
+
+                <div class="artic"  style="display:flex;">
+                    <div class="imageWrap" style="width: 575px; height: 500px; background-color: black">
+                        <div class="loginImage">
+                            <img src="/images/login/lit1.jpg" style="width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                    <div class="board">
+                        <div class="possion">
+                            <div class="logo">
+                                <div aria-disabled="false" role="button" tabindex="0" style="cursor: pointer;">
+                                    <img alt="lit" class="logoImage" src="/images/admin/logo.png">
+                                </div>
+                            </div>
+                            <div class="mid">
+                                <form class="loginFormStyel" action="/user/loginOk" id="loginForm" method="post">
+                                    <div class="underLoginForm">
+                                        <div class="firstDiv">
+                                            <div class="lainDiv"><label class="labelText">
+                                                    <input placeholder="이메일을 입력하세요" maxlength="75" id="email"
+                                                        name="email" type="text" class="inputstyle"></label>
+                                                <div class="divFornot"></div>
+                                            </div>
+                                        </div>
+                                        <div class="firstDiv">
+                                            <div class="lainDiv"><label class="labelText">
+                                                    <input placeholder="비밀번호" name="password" type="password" id="pwVal"
+                                                        class="inputstyle"></label>
+                                                <div class="divFornot"></div>
+                                            </div>
+                                        </div>
+                                        <div class="divButtom">
+                                            <button class="buttonforjoin jonbuttoncolor" id="login_btn"
+                                                type="submit">로그인</button>
+                                        </div>
+                                        <div class="underKakao">
+                                            <div class="inline"></div>
+                                            <div class="inlineText">또는</div>
+                                            <div class="inline"></div>
+                                        </div>
+                                        <div class="loginForKakao">
+                                            <button class="kakaoLoginButton" type="button">
+                                                <a href="https://kauth.kakao.com/oauth/authorize?client_id=897e8c9a1ba87330015c613fa2fad246&redirect_uri=
+http://localhost:12000/login&response_type=code">
+                                                    <span class="kakaoLogo"><img src="/images/admin/kakaoIcon.png"></span>
+                                                <span class="kakaoText">카카오톡으로 로그인</span>
+                                                </a></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="possionJoin">
+                            <div class="underjoinBoard">
+                                <p class="pText">계정이 없으신가요? <a data-testid="sign-up-link" href="/user/join" tabindex="0"
+                                        style="text-decoration: none;">
+                                        <span class="forJoin">가입하기</span></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer th:insert="~{/footer :: footer}"></footer>
+</body>
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/login/login.js"></script>
+<script th:inline="javascript">
+    let cancel = [[${loginStatus}]];
+
+    if(cancel == false){
+        alert("로그인 또는 비밀번호가 잘 못 되었습니다.");
+    }
+</script>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.project.ParticipationMapper">
+    <insert id="insert">
+        INSERT INTO TBL_PARTICIPATION
+        (PROJECT_NUMBER, USER_NUMBER, STATUS, REGISTER_DATE)
+        VALUES(#{projectNumber}, #{userNumber}, 1, SYSDATE)
+    </insert>
+
+    <update id="update">
+        UPDATE TBL_PARTICIPATION
+        SET STATUS = #{result}
+        WHERE PROJECT_NUMBER = #{projectNumber} AND USER_NUMBER = #{userNumber}
+    </update>
+
+    <select id="challengeTotal" resultType="long">
+        SELECT COUNT(*) FROM TBL_PARTICIPATION WHERE PROJECT_NUMBER = #{projectNumber}
+    </select>
+
+    <select id="select" resultType="participationVO">
+        SELECT NVL(STATUS, 0) AS STATUS
+        FROM TBL_PARTICIPATION RIGHT OUTER JOIN DUAL
+        ON PROJECT_NUMBER = #{projectNumber}
+        AND USER_NUMBER = #{userNumber}
+    </select>
+</mapper>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div th:fragment="certificationWrite">
+<div class="certificationWriteBackground" >
+<!--    <form class="registerForm" action="/board/register" enctype="multipart/form-data">-->
+    <button class="modalCloseButton" type="button" onclick="certificationWriteModalHide()">
+        <svg aria-label="닫기" class="fg7vo5n6 lrzqjn8y" color="#ffffff" fill="#ffffff" height="18" role="img"
+             viewBox="0 0 48 48" width="18">
+            <title>닫기</title>
+            <path clip-rule="evenodd"
+                  d="M41.8 9.8L27.5 24l14.2 14.2c.6.6.6 1.5 0 2.1l-1.4 1.4c-.6.6-1.5.6-2.1 0L24 27.5 9.8 41.8c-.6.6-1.5.6-2.1 0l-1.4-1.4c-.6-.6-.6-1.5 0-2.1L20.5 24 6.2 9.8c-.6-.6-.6-1.5 0-2.1l1.4-1.4c.6-.6 1.5-.6 2.1 0L24 20.5 38.3 6.2c.6-.6 1.5-.6 2.1 0l1.4 1.4c.6.6.6 1.6 0 2.2z"
+                  fill-rule="evenodd"></path>
+        </svg>
+    </button>
+
+    <div class="certificationWriteModalContainer">
+        <div class="certificationWriteModal">
+
+            <div class="certificationHeader">
+                <div class="certificationBackButton" style="display:none;">
+                    <button class="firstButton" type="button" style="display:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                             class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                        </svg>
+                    </button>
+                    <button class="backButton" type="button" style="display:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                             class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                        </svg>
+                    </button>
+                    <button class="backBackButton" type="button" style="display:none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                             class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="certificationHeaderLabel">
+                    <strong>사진 업로드</strong>
+                </div>
+                <dvi class="certificationNextButton">
+                    <button class="nextButton" type="button" style="display:none">다음</button>
+                    <button class="nextNextButton" type="button" style="display:none;">다음</button>
+                    <button class="completeButton" type="submit"  style="display:none;">작성완료</button>
+                </dvi>
+            </div>
+
+            <div class="modalLight">
+            </div>
+
+            <div class="certificationInner">
+
+                <div class="fileUploadAreaWrapper">
+                    <div class="fileUploadArea">
+                    </div>
+                    <div class="fileUploadIcon">
+                        <svg aria-label="이미지나 동영상과 같은 미디어를 나타내는 아이콘" class="uploadLoge" color="#262626" fill=""
+                             height="100" role="img" viewBox="0 0 97.6 77.3" width="100">
+                            <path
+                                    d="M16.3 24h.3c2.8-.2 4.9-2.6 4.8-5.4-.2-2.8-2.6-4.9-5.4-4.8s-4.9 2.6-4.8 5.4c.1 2.7 2.4 4.8 5.1 4.8zm-2.4-7.2c.5-.6 1.3-1 2.1-1h.2c1.7 0 3.1 1.4 3.1 3.1 0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-.8.3-1.5.8-2.1z"
+                                    fill="currentColor"></path>
+                            <path
+                                    d="M84.7 18.4L58 16.9l-.2-3c-.3-5.7-5.2-10.1-11-9.8L12.9 6c-5.7.3-10.1 5.3-9.8 11L5 51v.8c.7 5.2 5.1 9.1 10.3 9.1h.6l21.7-1.2v.6c-.3 5.7 4 10.7 9.8 11l34 2h.6c5.5 0 10.1-4.3 10.4-9.8l2-34c.4-5.8-4-10.7-9.7-11.1zM7.2 10.8C8.7 9.1 10.8 8.1 13 8l34-1.9c4.6-.3 8.6 3.3 8.9 7.9l.2 2.8-5.3-.3c-5.7-.3-10.7 4-11 9.8l-.6 9.5-9.5 10.7c-.2.3-.6.4-1 .5-.4 0-.7-.1-1-.4l-7.8-7c-1.4-1.3-3.5-1.1-4.8.3L7 49 5.2 17c-.2-2.3.6-4.5 2-6.2zm8.7 48c-4.3.2-8.1-2.8-8.8-7.1l9.4-10.5c.2-.3.6-.4 1-.5.4 0 .7.1 1 .4l7.8 7c.7.6 1.6.9 2.5.9.9 0 1.7-.5 2.3-1.1l7.8-8.8-1.1 18.6-21.9 1.1zm76.5-29.5l-2 34c-.3 4.6-4.3 8.2-8.9 7.9l-34-2c-4.6-.3-8.2-4.3-7.9-8.9l2-34c.3-4.4 3.9-7.9 8.4-7.9h.5l34 2c4.7.3 8.2 4.3 7.9 8.9z"
+                                    fill="currentColor"></path>
+                            <path
+                                    d="M78.2 41.6L61.3 30.5c-2.1-1.4-4.9-.8-6.2 1.3-.4.7-.7 1.4-.7 2.2l-1.2 20.1c-.1 2.5 1.7 4.6 4.2 4.8h.3c.7 0 1.4-.2 2-.5l18-9c2.2-1.1 3.1-3.8 2-6-.4-.7-.9-1.3-1.5-1.8zm-1.4 6l-18 9c-.4.2-.8.3-1.3.3-.4 0-.9-.2-1.2-.4-.7-.5-1.2-1.3-1.1-2.2l1.2-20.1c.1-.9.6-1.7 1.4-2.1.8-.4 1.7-.3 2.5.1L77 43.3c1.2.8 1.5 2.3.7 3.4-.2.4-.5.7-.9.9z"
+                                    fill="currentColor"></path>
+                        </svg>
+                        <svg aria-label="이미지나 동영상과 같은 미디어를 나타내는 아이콘" class="uploadError" color="#262626" fill="#262626"
+                             height="96" role="img" viewBox="0 0 96 96" width="96" style="display:none;">
+                            <path
+                                    d="M48 0c26.5 0 48 21.5 48 48S74.5 96 48 96 0 74.5 0 48 21.5 0 48 0zm0 2C22.6 2 2 22.6 2 48s20.6 46 46 46 46-20.6 46-46S73.4 2 48 2zm0 57.8c3.4 0 6.1 2.7 6.1 6.1 0 3.4-2.7 6.1-6.1 6.1s-6.1-2.7-6.1-6.1c0-3.3 2.7-6.1 6.1-6.1zm0 2c-2.3 0-4.1 1.8-4.1 4.1S45.7 70 48 70s4.1-1.8 4.1-4.1c0-2.2-1.8-4.1-4.1-4.1zM48 23c3.5 0 6.4 2.8 6.1 6.2l-1.6 22.5c-.2 2.3-2.2 4-4.5 4-2.4 0-4.4-1.7-4.5-4l-1.6-22.5c-.3-3.4 2.6-6.2 6.1-6.2zm0 2c-2.4 0-4.3 1.9-4.1 4l1.6 22.5c.1 1.2 1.2 2.1 2.5 2.1s2.4-.9 2.5-2.1L52.1 29c.2-2.1-1.7-4-4.1-4z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div class="fileUploadLabel">사진을 여기에 끌어다 놓으세요</div>
+                    <div class="fileClickInput">
+                        <label id="fileClickInputLabel" for="fileClickInput">컴퓨터에서 선택</label>
+                        <input id="fileClickInput" accept="image/jpg, image/jpeg, image/png" type="file" required="true" multiple="true"
+                               hidden="true">
+                    </div>
+                </div>
+
+
+                <div class="certificationImageWrapper" style="display:none">
+                    <div class="certificationImages">
+                        <ul class="certificationImageInner">
+                        </ul>
+                        <div class="innerImagePageButtons1">
+                        </div>
+                    </div>
+                    <div class="previewButton">
+                        <button type="button">
+                            <svg aria-label="미디어 갤러리 열기" class="btnIcon" color="white" fill="white" height="16"
+                                 role="img" viewBox="0 0 24 24" width="16">
+                                <path
+                                        d="M19 15V5a4.004 4.004 0 00-4-4H5a4.004 4.004 0 00-4 4v10a4.004 4.004 0 004 4h10a4.004 4.004 0 004-4zM3 15V5a2.002 2.002 0 012-2h10a2.002 2.002 0 012 2v10a2.002 2.002 0 01-2 2H5a2.002 2.002 0 01-2-2zm18.862-8.773A.501.501 0 0021 6.57v8.431a6 6 0 01-6 6H6.58a.504.504 0 00-.35.863A3.944 3.944 0 009 23h6a8 8 0 008-8V9a3.95 3.95 0 00-1.138-2.773z"
+                                        fill-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="fileUploadPreview">
+                    </div>
+                </div>
+
+                <div class="projectAlert">챌린지를 선택해주세요!</div>
+                <div class="detailProjectContent">
+                    <div class="whiteBackground"></div>
+                    <div class="detailProjectContentTitle">
+                        <div>인증 할 챌린지 선택</div>
+                    </div>
+
+
+                    <div class="detailProjectContentList">
+
+                    </div>
+
+                </div>
+
+                <div class="certificationContent" style="display:none;">
+                    <div class="certificationContentHeader">
+                        <div class="certificationContHeaderWrapper">
+                            <div class="ceritficationContentProfileImageWrapper" id="writerImage">
+
+                            </div>
+                            <div class="certificationUserId">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificationContentArea">
+                        <textarea placeholder="문구 입력..." id="reviewContent"></textarea>
+                        <div class="certificationContentButtons">
+                            <div>
+                                <div style="display:none;">400자 까지 작성 가능합니다!</div>
+                                <div><button type="button"><span>0</span>/400</button></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificationContentFooterButtonsWrapper">
+                        <div class="certificationContentFooterButtons">
+                            <div>챌린지 정보</div>
+                            <span class="typeDownButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                    </svg>
+                                </span>
+                            <span class="typeUpButton" style="display:none;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                              d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+                                    </svg>
+                                </span>
+                        </div>
+                        <div class="projectInfoDropDown">
+                            <div class="projectInfoDropDownContentWrapper">
+                                <div class="projectInfoDropDownContent">
+                                    Title<span class="title"></span>
+                                </div>
+                                <div class="projectInfoDropDownContent">
+                                    Content<span class="content"></span>
+                                </div>
+                                <div class="projectInfoDropDownContent">
+                                    Writer<span class="writer"></span>
+                                </div>
+                                <div class="projectInfoDropDownContent">
+                                    StartDate<span class="startDate"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="certificationWriteWarning">
+                            <div class="certificationWriteWarningInner">
+                                <div class="certificationWriteWarningTitle">
+                                    다음과 같은 게시글은 신고의 대상이 될 수 있습니다.
+                                </div>
+                                <span class="warningDownButton">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                  d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </span>
+                                <span class="warningUpButton" style="display:none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-chevron-up" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                  d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z" />
+                                        </svg>
+                                    </span>
+                                <div class="warningDropDown">
+                                    <ul>
+                                        <li>- 혐오 발언</li>
+                                        <li>- 폭력성</li>
+                                        <li>- 불법 판매</li>
+                                        <li>- 지적 재산권 침해</li>
+                                        <li>- 스팸</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="closeArea" onclick="certificationWriteModalHide()"></div>
+<!--    </form>-->
+</div>
+
+<div class="deleteBackground">
+    <div class="deleteModalContainer">
+        <div class="deleteModal">
+            <div class="deleteModalHead">
+                <div>게시물을 삭제하시겠어요?</div>
+                <div>지금 나가면 작성 내용이 저장되지 않습니다</div>
+            </div>
+            <div class="deleteModalContent">
+                <div class="deleteModalButtons">
+                    <div><button class="deleteModalButton" type="button" value="y">삭제</button></div>
+                    <div><button class="deleteModalButton" type="button" value="n">취소</button></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="deleteImageBackground">
+    <div class="deleteImageModalContainer">
+        <div class="deleteImageModal">
+            <div class="deleteImageModalHead">
+                <div>사진을 삭제하시겠어요?</div>
+                <div>업로드한 사진이 삭제됩니다</div>
+            </div>
+            <div class="deleteImageModalContent">
+                <div class="deleteImageModalButtons">
+                    <div><button class="deleteImageModalButton" type="button" value="y">삭제</button></div>
+                    <div><button class="deleteImageModalButton" type="button" value="n">취소</button></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<button class="certificationWriteButton" onclick="certificationWriteModalShow()">인증글 작성하기</button>
+<input type="hidden" id="userNumber" value="">
+
+</body>
+
+
+<script defer src="/assets/js/certification/certificationWrite.js"></script>
+<script defer src="/assets/js/certification/certificationWriteAjax.js"></script>
+<script defer src="/assets/js/certification/fileLoad.js"></script>
+<script defer th:inline="javascript">
+    let filesList
+    let arFile = Array.from($("input[type='file']")[0].files);
+    let $uploadResult = $(".ceritficationContentProfileImageWrapper")
+    // 벨류 또는 아이디 값
+    let $userNumber = $("#userNumber").val();
+    let $projectNumber
+
+    // 사진 업로드 패스에 저장
+    $("input[type='file']").on("change", function(e){
+        let formData =   new FormData();
+        let inputFile = $("input[id='fileClickInput']");
+        let files = inputFile[0].files;
+
+        for(let i=0; i<files.length; i++){
+            formData.append("uploadFiles", files[i]);
+        }
+        Array.from($(this)[0].files).forEach(file => arFile.push(file));
+        const dataTransfer = new DataTransfer();
+        arFile.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $.ajax({
+            url: "/litUp/uploadFile",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(files){
+                filesList=files;
+            }
+        });
+    });
+
+
+    //리뷰 작성 버튼
+    $('.certificationNextButton > button.completeButton').on("click",function () {
+        let reviewContent = $("textarea#reviewContent").val();
+        reviewWriteService.reviewRegister({
+            userNumber:62, projectNumber:$projectNumber, content:reviewContent, reviewFileList:filesList
+        },function (result) {
+                certificationWriteBackground.style.display = 'none';
+                certificationWriteButton.style.display = 'block';
+
+                $('.certificationImages ul li:first-child').addClass('active');
+                $('.certificationImages ul li:first-child').siblings('.active').removeClass('active');
+                $('.certificationImages div div:first-child').addClass("active");
+                $('.certificationImages div div:first-child').siblings('.active').removeClass('active');
+                $('.certificationContentArea > textarea').val('');
+                $('.certificationImageInner').empty();
+                $('.innerImagePageButtons').empty();
+                $fileUploadPreview.empty();
+                $('#fileClickInput').val("");
+                $('body').css("overflow", "auto");
+
+                $.each($detailProjects, function () {
+                    $(this).removeClass("on");
+                });
+
+                $detailProjectContent.css("width", "0");
+                $certificationWriteModal.css("width", "35%");
+                $whiteBackground.css("display", "block");
+                $certificationNextButton.css("display", "none");
+                $certificationHeaderLabel.text('사진 업로드');
+                $certificationContent.css("display", "none");
+                $detailProjectContent.css("display", "none");
+                $certificationNextNextButton.css("display", "none");
+                $certificationBackButton.css("display", "none");
+                $certificationBackBackButton.css("display", "none");
+                $certificationCompleteButton.css("display", "none");
+                $certificationImageWrapper.css("display", "none");
+                $fileUploadAreaWrapper.css("display", "block");
+                $certificationFirstButton.css("display", "none");
+                $fileUploadPreview.css("display", "none");
+                $previewButton.find('button').css("backgroundColor", '#373737');
+                $('.btnIcon').attr("fill", "white");
+                $previewButton.val('0');
+                $deleteBackground.css("display", "none");
+            },
+            function (a,b,c) {console.log("error")})
+    })
+
+    // 출력할 사진 리스트 받아오기기
+        $(".nextNextButton").on("click",function () {
+            $.getJSON("/litUp/profilePic", {userNumber: 62}, function(pic){showUserPic(pic);})
+        })
+
+        $(".nextButton").on("click",function () {
+             $.getJSON("/litUp/getMyProjectList", {userNumber: 62}, function(pic){showMyProject(pic);})
+        })
+
+
+    // 프로젝트 리스트 출력
+    function showMyProject(pic) {
+        let str ="";
+        $.each(pic, function (i, file) {
+            str += "<div class='projectPic' id='"+file.projectNumber +"'>"
+            str += "<span></span>"
+            str += "<img src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str += "</div>"
+        });
+
+        $(".detailProjectContentList").html(str);
+    }
+
+    // 프로필 사진 출력
+    function showUserPic(file){
+        let str ="";
+            str += "<div class=\"certificationContentProfileImage\">"
+            str += "<img style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str += "</div>"
+
+        $uploadResult.html(str);
+    }
+
+
+</script>
+
+</html>

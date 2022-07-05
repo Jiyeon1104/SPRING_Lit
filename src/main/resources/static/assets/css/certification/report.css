@@ -1,0 +1,81 @@
+
+.reportBackground{
+    margin:0;
+    padding:0;
+    background-color: rgba(0,0,0,0.6);
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size : cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+}
+
+.reportModalContainer{
+    min-height: 100%;
+}
+
+.reportModal{
+    background-color:  white;
+    width: 26%;
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-height: 60%;
+    max-height: 60%;
+    border-radius: 10px;
+    padding: 5px;
+    z-index: 11;
+    overflow: hidden;
+}
+
+.reportButtons{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 462px;
+}
+
+.reportModalCloseButton{
+    position: absolute;
+    right: 5px;
+    top: 1.5%;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    cursor:pointer;
+    border: none;
+    font-size: 1.5em;
+    z-index: 1;
+}
+
+.reportModalHead{
+    width: 95%;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid rgb(219,219,219);
+
+}
+
+.reportReason{
+    width: 100%;
+    padding: 20px 0px 20px 3px;
+    border-bottom: 1px solid rgb(219,219,219);
+}
+
+.reportButton{
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(219,219,219);
+    text-align: left;
+}
+
+.reportButton:hover{
+    background-color: rgb(219,219,219);
+}

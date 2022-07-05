@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mypage</title>
+
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/mypage/mypage.css"/>
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+    <link rel="stylesheet" href="/assets/css/certification/certificationDetail.css">
+    <link rel="stylesheet" href="/assets/css/certification/report.css">
+    <style>
+        a{
+            color: black;
+        }
+        a:link{
+            color: black;
+        }
+        a:visited{
+            color: black;
+        }
+        div.photoContents {
+            height: 100%;
+        }
+
+        div.photoContents > div {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        div.photoContents figure {
+
+            width: 33.3%;
+            height: 250px;
+            padding: 10px;
+            margin: 0;
+        }
+
+        div.photoContents figure a {
+            display: block;
+            height: 100%;
+            overflow: hidden;
+        }
+        div.photoContents figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s ease;
+            transform-origin: center center;
+        }
+        div.photoContents img:hover {
+            transform: scale(1.1);
+            transform-origin: center center;
+        }
+
+        div.editProfileInner.on a{
+            list-style: none;
+            color: #ffffff;
+        }
+        div.editProfileInner a{
+            padding: 5px 25px;
+            border-radius: 5px;
+        }
+        div.editProfileInner.on{
+            background: rgb(250, 100, 98);
+        }
+
+
+    </style>
+</head>
+
+<body>
+<header th:insert="~{/header :: header}"></header>
+<div th:insert="~{/certification/certificationDetail :: certificationDetail}"></div>
+<main class="mypageMain">
+    <div class="mainInner">
+        <div class="mypageHeader">
+            <div class="profile1">
+                <div class="profile2">
+                    <div class="profile3">
+                        <button class="profileButton">
+                            <img class="profileImg"
+                                 th:src="'/user/display?fileName='+ ${userFileList.uploadPath} + '/' + ${userFileList.uuid} + '_' + ${userFileList.name}"
+                                 onerror="this.src='/images/main/sprofile_ex.jpg'">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <section class="mypageSection">
+<!--                <div class="sectionH2">-->
+<!--                    <h2 th:text="${nickname}"></h2>-->
+<!--                    &lt;!&ndash; <div class="medalImg" onclick="medalModal()" id="medalImg"></div> &ndash;&gt;-->
+<!--                    &lt;!&ndash; <img class="medalImg" src="/src/main/resources/static/images/mypage/medal1.png" onclick="medalModal()" id="medalImg"> &ndash;&gt;-->
+<!--                    <img class="medalImg" src="/images/mypage/medal1.png" id="medalImg">-->
+<!--                    &lt;!&ndash;========================================================&ndash;&gt;-->
+<!--                    <div class="editProfile" th:if="${userPageNumber} == ${userNumber}">-->
+<!--                        <div class="editProfileInner">-->
+<!--                            <a href="/user/editInfo" class="profileA">프로필 편집</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="followingBtn" class="editProfile" th:if="${userPageNumber} != ${userNumber}">-->
+<!--                        &lt;!&ndash;========================================================&ndash;&gt;-->
+<!--                        <div class="editProfileInner" th:if="${followingCheck} == 0">-->
+<!--                            <a th:href="${userPageNumber}">팔로잉</a>-->
+<!--                        </div>-->
+<!--                        <div class="editProfileInner on" th:if="${followingCheck} == 1">-->
+<!--                            <a href="javascript:void(0)">팔로잉</a>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;========================================================&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;========================================================&ndash;&gt;-->
+
+<!--                </div>-->
+                <!--========================================================================================-->
+                <div class="sectionH2" th:if="${userPageNumber} == ${userNumber}">
+                    <h2 th:text="${nickname}"></h2>
+                    <img class="medalImg" src="/images/mypage/medal1.png" id="medalImg">
+                    <div class="editProfile">
+                        <div class="editProfileInner">
+                            <a href="/user/editInfo" class="profileA">프로필 편집</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sectionH2" th:if="${userPageNumber} != ${userNumber}">
+                    <h2 th:text="${nickname}"></h2>
+                    <img class="medalImg" src="/images/mypage/medal1.png">
+
+                    <div id="followingBtn" class="editProfile" >
+                        <!-------------------------------------------------------------->
+                        <div class="editProfileInner" th:if="${followingCheck} == 0">
+                            <a th:href="${userPageNumber}">팔로잉</a>
+                        </div>
+                        <div class="editProfileInner on" th:if="${followingCheck} == 1">
+                            <a href="javascript:void(0)">팔로잉</a>
+                        </div>
+                        <!-------------------------------------------------------------->
+                    </div>
+                </div>
+                <!--========================================================================================-->
+                <ul class="mypageUl">
+                    <li class="mypageLi">
+                        <div class="divInfo">게시물
+                            <div class="spanInfo" th:text="${reviewCnt}"></div>
+                        </div>
+                    </li>
+                    <li class="mypageLi">
+                        <div class="divInfo" style="cursor:pointer" onclick="followerModal()">팔로워
+                            <div id="followerCount" class="spanInfo" th:text="${followerCnt}"></div>
+                        </div>
+                    </li>
+                    <li class="mypageLi">
+                        <div class="divInfo" onclick="followeringModal()">팔로우
+                            <div id="followCount" class="spanInfo" th:text="${followingCnt}"></div>
+                        </div>
+                    </li>
+                </ul>
+                <div>
+                    <span th:text="${content}"></span>
+                    <!--                        <span><strong>J</strong><br>-->
+                    <!--                            @lesyeuxdenini<br>youtu.be/erYPvNbc_mc</span>-->
+                    <br>
+                </div>
+            </section>
+        </div>
+        <div class="litChange">
+            <div>
+                <a class="lits1On" id="lits1">
+                    <div><img class="litSvg" id="lit1Img" src="/images/mypage/menu.png">
+                        <span class="litSpan">Lit up</span>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a class="lits2Off" id="lits2">
+                    <div><img class="litSvg" id="lit2Img" src="/images/mypage/fire.png">
+                        <span class="litSpan">Lits</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- 프로젝트 시작 -->
+        <div class="photoContents">
+            <div class ="a">
+                <!-- 사진 리스트 -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 팔로워 -->
+<div class="follower">
+    <div class="followerModalWrapper">
+        <div class="followerModal">
+            <div class="followerHeader">
+                <div>
+                    <strong>팔로워</strong>
+                </div>
+                <div>
+                    <button class="followerCancel" onclick="followerModalClose()">
+                        <div class="fbtn__x">
+                            <img src="/images/mypage/close.png" alt="">
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="followerTwo">
+                <ul class="followerTwoUl" th:each="follower:${modalFollower}">
+                    <div class="followerTwoWrapper">
+                        <li class="followerTwoLi">
+                            <div class="follower1">
+                                <div class="follower2">
+                                    <div class="follower3">
+                                        <div class="follower4" aria-disabled="true" role="button" tabindex="-1">
+                                            <a class="followerAa" href="" role="link" tabindex="0"
+                                               style="width: 30px; height: 30px;" th:if="${follower.userFileList} != null">
+                                                <img class="followerImgg" crossorigin="anonymous" draggable="false"
+                                                     th:src="'/lit/display?fileName='+ ${follower.userFileList.uploadPath} +'/'+ ${follower.userFileList.uuid} + '_' + ${follower.userFileList.name}"
+                                                >
+                                            </a>
+                                            <a class="followerAa" href="" role="link" tabindex="0"
+                                                   style="width: 30px; height: 30px;" th:if="${follower.userFileList} == null">
+                                                <img class="followerImgg" crossorigin="anonymous" draggable="false" src="/images/main/profile_ex.png" >
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="follower5">
+                                        <div class="follower6" th:object="${follower}">
+                                                <span class="followerSpann">
+                                                    <a style=" text-decoration-line: none;"
+                                                       href="" role="link" tabindex="0">
+                                                        <input type="hidden" th:value="*{userNumber}" class="removeFollower"/>
+                                                        <span class="follower7" th:text="*{nickname}"></span>
+                                                    </a>
+                                                </span>
+                                            <div class="follower8" th:text="*{content}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="follower9">
+                                        <button class="followerBtnn" type="button">삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <div class="_aanq"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 팔로우 -->
+<div class="followering">
+    <div class="followerModalWrapper">
+        <div class="followerModal">
+            <div class="followerHeader">
+                <div>
+                    <strong>팔로잉</strong>
+                </div>
+                <div>
+                    <button class="followerCancel" onclick="followeringModalClose()">
+                        <div class="fbtn__x">
+                            <img src="/images/mypage/close.png" alt="">
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="followerTwo">
+                <ul class="followerTwoUl" th:each="following:${modalFollowing}">
+                    <div class="followerTwoWrapper">
+                        <li class="followerTwoLi">
+                            <div class="follower1">
+                                <div class="follower2">
+                                    <div class="follower3">
+                                        <div class="follower4" aria-disabled="true" role="button" tabindex="-1">
+                                            <a class="followerAa" href="" role="link" tabindex="0"
+                                               style="width: 30px; height: 30px;"
+                                               th:if="${following.userFileList} != null">
+                                                <img class="followerImgg" crossorigin="anonymous" draggable="false"
+                                                     th:src="'/lit/display?fileName='+ ${following.userFileList.uploadPath} +'/'+ ${following.userFileList.uuid} + '_' + ${following.userFileList.name}"
+                                                >
+                                            </a>
+                                            <a class="followerAa" href="" role="link" tabindex="0"
+                                               style="width: 30px; height: 30px;"
+                                               th:if="${following.userFileList} == null">
+                                                <img class="followerImgg" crossorigin="anonymous" draggable="false" src="/images/main/profile_ex.png">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="follower5">
+                                        <div class="follower6" th:object="${following}">
+                                                <span class="followerSpann">
+                                                    <a style=" text-decoration-line: none;"
+                                                       href="" role="link" tabindex="0">
+                                                        <span class="follower7" th:text="*{nickname}"></span>
+                                                        <input type="hidden" th:value="*{userNumber}" class="changeFollowing"/>
+                                                    </a>
+                                                </span>
+                                            <div class="follower8" th:text="*{content}"></div>
+                                        </div>
+                                    </div>
+                                    <div class="follower9">
+
+                                        <button class="followingBtnn" type="button" style="display: block;"
+                                                 >팔로잉
+                                        </button>
+                                        <button class="followBtnn" type="button" style="display: none;"
+                                             >팔로우
+                                        </button>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <div class="_aanq"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 메달 -->
+<div class="medal-background">
+    <div class="medal-wrap">
+        <div class="medal-title">
+            <div>
+                <h2>보유 메달</h2>
+            </div>
+            <div class="btn__x">
+                <img
+                        src="/images/mypage/close.png"
+                        alt=""
+                />
+            </div>
+        </div>
+        <div class="medal-selected">
+            <!-- 대표메달 -->
+            <!-- DB에서 가져와서 꽂는게 맞는거 같은데 프론트 작업에서는 DB구현이 안됐으므로-->
+            <!-- 현재 내 아이디 옆에 있는 메달을 가져와서 띄워줬음 -->
+            <div class="medal-selected_title">
+                <h3>나의 대표 메달</h3>
+                <span>획득한 메달이</span>
+                <span id="medal-selected_number"></span>
+                <span>개 있어요.</span>
+            </div>
+            <div class="medal-selected_medal">
+                <!-- 메달 이미지 js로 넣음 -->
+                <!-- 메달 없으면 자물쇄 넣거나 가입시 기본 메달 줘서 설정하기 -->
+                <img src="" alt="">
+            </div>
+            <div class="medal-selected_info">
+                <h3></h3>
+            </div>
+            <div class="medal-selected_detail">
+                <span></span>
+                <div class="medal-selected_bar">
+                    <div class="bar-rate">
+                    </div>
+                    <div class="rate"></div>
+                </div>
+            </div>
+        </div>
+        <div class="medal-selected_button">
+            <button>나의 대표 메달로 사용하기</button>
+        </div>
+        <div class="medal-content">
+            <!-- 모달창이 mypage안에 존재해서 페이지 이동하면 바로 데이터 가져와야함 -->
+            <!-- 추후에 따로 분리되면 다른 방식으로 가져와야함 -->
+            <!-- 메달 db에서 가져와서 medal-icon-row 1개당 medal-icon-col 3개씩 반복 돌리기 -->
+            <!-- 내가 보유한 메달인지 확인하여 src값 변경하기 -->
+            <!-- 보유하지 않은 메달의 이미지 이름은 반드시 padlock.png 이어야함(mypage.js의 이벤트 확인)-->
+            <!-- 아니면 별도의 값을 주어서 구분하면됨 -->
+            <!-- 아래는 프론트 예시-->
+            <div class="medal-icon-row">
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="회원가입 환영!" data-bar="1/1">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="첫 lit 생성하기" data-bar="1/1">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="첫 lit up 작성하기" data-bar="1/1">
+                </div>
+            </div>
+
+            <div class="medal-icon-row">
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="메달 10개 모으기" data-bar="10/10">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="전체 카테고리 litUp 100회 성공!" data-bar="100/100">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="lits 10회 생성하기 성공!" data-bar="5/5">
+                </div>
+            </div>
+
+            <div class="medal-icon-row">
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="생활 카테고리 5회 인증하기" data-bar="10/10">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="운동 카테고리 5회 인증하기" data-bar="5/5">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="정서 카테고리 5회 인증하기" data-bar="10/10">
+                </div>
+            </div>
+
+            <div class="medal-icon-row">
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="취미 카테고리 5회 인증하기" data-bar="5/5">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="예술 카테고리 5회 인증하기" data-bar="10/10">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="댓글 1000번 달성하기" data-bar="10/10">
+                </div>
+            </div>
+            <div class="medal-icon-row">
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="좋아요 1000번 달성하기" data-bar="100/100">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="팔로잉 100명이상 만들기" data-bar="100/100">
+                </div>
+                <div class="medal-icon-col">
+                    <img src="/images/mypage/padlock.png" data-detail="팔로워 100만명이상 만들기" data-bar="100/100">
+                </div>
+            </div>
+
+
+            <!-- 예시 종료 -->
+        </div>
+    </div>
+</div>
+<!--
+<div class="medal">
+    <div class="followerModalWrapper">
+        <div class="medalModal">
+            <div class="followerHeader">
+                <div>
+                    <strong style="color: white;">메달 인벤토리</strong>
+                </div>
+                <div>
+                    <button class="followerCancel" onclick="medalModalClose()" style="color: white;">
+                        X
+                    </button>
+                    <div style="padding: 10px 10px; margin-top: 30px;">
+                        <img alt="" class="medalImgg"  onclick="representMedal(this)" src="/src/main/resources/static/images/mypage/medal (1).png" id="medal1">
+                        <img alt="" class="medalImgg" onclick="representMedal(this)" src="/src/main/resources/static/images/mypage/medal (2).png" id="medal2">
+                        <img alt="" class="medalImgg" onclick="representMedal(this)" src="/src/main/resources/static/images/mypage/medal (3).png" id="medal3">
+                        <img alt="" class="medalImgg" onclick="representMedal(this)" src="/src/main/resources/static/images/mypage/medal1.png" id="medal4">
+                        <img alt="" class="medalImgg" onclick="representMedal(this)" src="/src/main/resources/static/images/mypage/gold-medal1.png" id="medal5">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+
+
+
+<!--<footer th:insert="~{/footer :: footer}"></footer>-->
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script th:inline="javascript">
+    let mypageUser = [[${userNumber}]]; // 팔로워 모달에서 삭제할때 사용 (팔로잉 넘버)
+    let userPageNumber = [[${userPageNumber}]]; // 다른 마이페이지 접속시 사용
+</script>
+<script src="/assets/js/mypage/mypage.js"></script>
+<script src="/assets/js/mypage/mypageAjax.js"></script>
+<script defer src="/assets/js/certification/certificationDetail.js"></script>
+<script defer src="/assets/js/certification/report.js"></script>
+<script defer src="/assets/js/certification/certificationDetailAjax.js"></script>
+<script th:inline="javascript">
+
+    $("#followingBtn").on("click", "div > a", function(e){
+        e.preventDefault();
+        let followingNumber = mypageUser;  // 팔로윙 나의 번호
+        let followerNumber = $(this).attr("href");  // 팔로워 상대 번호
+
+        let followingDatas = {
+            followingNumber:followingNumber,
+            followerNumber:followerNumber
+        }
+
+        $.ajax({
+            url: "/user/follow",
+            type: "post",
+            data: JSON.stringify(followingDatas),
+            contentType: "application/json",
+            success: function (result) {
+                // 전송완료시
+                alert(" 팔로잉");
+                let num = Number( $("#followerCount").text() ) + 1;
+                $("#followerCount").text(num);
+                $(".editProfileInner").addClass("on");
+
+
+            }, error: function (xhr, textStatus, errorThrown) {
+                console.log('통신 실패');
+                console.log(xhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+            }
+        });
+
+
+    });
+</script>
+<script th:inline="javascript">
+    let $followerRemoveBtn = $('.followerBtnn');
+
+    let $followerUser = $('#removeFollower').eq(0).val(); // 팔로워 모달에서 삭제할때 사용 (팔로워 넘버)
+
+    let file;
+    const replyDiv = $(".reply_area");
+    let pageNum = 1;
+    // cretificationDetail에서 모달 버튼 매개변수로 넘어옴
+    let $reviewNumber;
+    // session에서 받아야함
+
+
+    //모달 - 팔로워 삭제
+    $followerRemoveBtn.on("click", function () {
+        let deleteNumber = $(this).closest(".follower2").find("input.removeFollower").val()
+
+        $(this).parent().parent().parent().parent().parent().parent().remove();
+        myPageAjaxService.removeFollower(deleteNumber, mypageUser, function (result) {
+            let num = Number( $("#followerCount").text() ) - 1;
+            $("#followerCount").text(num);
+        });
+    });
+
+    $(".followingBtnn").on("click",function () {
+        let deleteNumber = $(this).closest(".follower2").find("input.changeFollowing").val()
+        $(this).css("display","none")
+        $(this).siblings("button").css("display","block")
+        myPageAjaxService.removeFollower(mypageUser, deleteNumber, function (result) {
+            let num = Number( $("#followCount").text() ) - 1;
+            $("#followCount").text(num);
+        })
+    })
+
+    $(".followBtnn").on("click",function () {
+        let insertNumber = $(this).closest(".follower2").find("input.changeFollowing").val()
+        $(this).css("display","none")
+        $(this).siblings("button").css("display","block")
+        myPageAjaxService.insertFollowing({followingNumber:insertNumber, followerNumber:mypageUser },function (result) {
+            let num = Number( $("#followCount").text() ) + 1;
+            $("#followCount").text(num);
+        })
+    })
+
+
+
+    $(".a").on("click","figure.reviewView",function () {
+        $reviewNumber=$(this).attr("id")
+        $fileWriter = $(this).children("input").attr("id")
+
+        projectDetailModalShow($reviewNumber, userNumber)
+        $.getJSON("/litUp/profilePic", {userNumber: $fileWriter}, function(pic){showMainUserPic(pic);}).fail(
+            function () {
+                let pic = {userNumber:$fileWriter, uploadPath:"noPic" }
+                showMainUserPic(pic);
+            }
+        );
+        $.getJSON("/litUp/reviewPic", {reviewNumber: $reviewNumber}, function(pic){showReviewPic(pic);})
+    })
+
+    // 댓글 목록 불러오기
+    function showList(page){
+        reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function(total, list){
+                let str = "";
+
+                if(list == null || list.length == 0) {
+                    replyDiv.html("");
+                    return;
+                }
+
+                $.each(list, function(i, reply){
+                    ////////// getJSON -> AJAX 동기식으로 변경해서 file에 pic 담을 것
+                    $.ajax({
+                        url:"/litUp/profilePic",
+                        type: "get",
+                        data:{userNumber:reply.userNumber},
+                        async:false,
+                        success:function (pic) {
+                            file = pic;
+                        }
+                    });
+
+                    str += '<div class="detailContentWriteContainer">';
+                    str += '<div class="detailContentWriteWrapper">';
+                    str += '<div class="detailContentProfileImage">';
+                    str += '<div class="detailContentProfileImageInner">';
+                    if (file != null && file != "") {
+                        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'></a>";
+                    } else {
+                        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                    }
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeed">';
+                    str += '<div class="detailContentWrite">';
+                    str += '<div class="detailContentWriteName">'
+                    str +=  reply.nickname;
+                    str += '</div>';
+                    str += '<div class="detailContentWriteComment">';
+                    str +=  reply.content;
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeedBottom">';
+                    str += '<div class="detailContentRegisterDate">';
+                    str +=  reviewDetailService.getReplyDate(reply.registerDate);
+                    str += '</div>';
+                    str += '<div class="detailContentCommentDelete">';
+                    str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+
+                });
+                replyDiv.html(str.trim());
+                showReplyPage(total);
+            },function (a,b,c){console.log("error");}
+        );
+
+    };
+
+    //댓글 추가 보기
+    function showAppendList(page) {
+
+        reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function (total, list) {
+
+                $(".appendReply div").html("");
+                let str = "";
+
+                $.each(list, function (i, reply) {
+                    $.ajax({
+                        url:"/litUp/profilePic",
+                        type: "get",
+                        data:{userNumber:reply.userNumber},
+                        async:false,
+                        success:function (pic) {
+                            file = pic;
+                            console.log(file);
+                        }
+                    })
+                    str += '<div class="detailContentWriteContainer">';
+                    str += '<div class="detailContentWriteWrapper">';
+                    str += '<div class="detailContentProfileImage">';
+
+                    str += '<div class="detailContentProfileImageInner">';
+                    str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'>";
+                    if (file != null && file != "") {
+                        str +="<img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>";
+                    } else {
+                        str += "<img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                    }
+                    str += '</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeed">';
+                    str += '<div class="detailContentWrite">';
+                    str += '<div class="detailContentWriteName">'
+                    str += reply.nickname;
+                    str += '</div>';
+                    str += '<div class="detailContentWriteComment">';
+                    str += reply.content;
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeedBottom">';
+                    str += '<div class="detailContentRegisterDate">';
+                    str += reviewDetailService.getReplyDate(reply.registerDate);
+                    str += '</div>';
+                    str += '<div class="detailContentCommentDelete">';
+                    str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+
+                });
+
+                replyDiv.append(str.trim());
+                showReplyPage(total);
+            }, function (a, b, c) {
+                console.log("error");
+            }
+        )};
+
+
+    // 신고하기
+    $(".reportButton").on("click", function () {
+        let $reason = $(this).attr("value");
+
+        reviewDetailService.addReport({
+                userNumber: userNumber, reviewNumber: $reviewNumber, reason: $reason
+            },
+            function (result) {
+                reportModalClose();
+                alert("신고 되었습니다.");
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            }
+        );
+    })
+
+    // 댓글쓰기
+    $(".commentButton").on("click", function () {
+        let $commentValue = $(".detailContentFooterCommentInputArea").val();
+        reviewDetailService.addReply({
+                reviewNumber: $reviewNumber, userNumber: userNumber, content: $commentValue
+            },
+            function (result) {
+                $(".detailContentFooterCommentInputArea").val("");
+                pageNum = 1;
+                showList(1);
+                $(".detailContentFeed").scrollTop(0);
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            }
+        );
+    })
+
+    // 좋아요
+    $(".detailContentLikeButton").on("click", function () {
+        reviewDetailService.addLike({reviewNumber: $reviewNumber, userNumber: userNumber},
+            function (result) {
+                $("#likeCount").html(result);
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            })
+    })
+
+
+    // 좋아요 해제
+    $(".detailContentLikeCancel").on("click", function () {
+        reviewDetailService.removeLike({userNumber: userNumber, reviewNumber: $reviewNumber},
+            function (result) {
+                $("#likeCount").html(result);
+            },
+            function (a, b, c) {
+                console.log(a, b, c)
+            })
+    })
+
+    //댓글 append
+    $(".appendReply div").on("click", function (e) {
+        e.preventDefault();
+        pageNum = pageNum + 1;
+        showAppendList(pageNum);
+
+    })
+
+    //댓글 삭제
+    $(".reply_area").on("click", "div.detailContentCommentDelete a.remove", function (e) {
+        e.preventDefault();
+        let $replyNumber = $(this).attr("class").split(/\s+/);
+        // 유저넘버임
+        reviewDetailService.removeReply($replyNumber[1], userNumber, function (result) {
+            if(result) {
+                pageNum = 1;
+                showList(pageNum);
+            }else{
+                alert("본인 게시물만 삭제 가능합니다.");
+            }
+        })
+    })
+
+    // 클릭시 노출페이지 조절
+    function showReplyPage(total) {
+        let realEnd = Math.ceil(total / 10.0);
+        const $paging = $(".appendReply div");
+
+
+        let next = pageNum < realEnd;
+        let str = "<svg aria-label=\"댓글 더 읽어들이기\" class=\"_ab6-\" color=\"#262626\" fill=\"#262626\" height=\"24\" role=\"img\" viewBox=\"0 0 24 24\" " +
+            "width=\"24\"><circle cx=\"12.001\" cy=\"12.005\" fill=\"none\" r=\"10.5\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"></circle>" +
+            "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"7.001\" x2=\"17.001\" y1=\"12.005\" y2=\"12.005\"></line>" +
+            "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"12.001\" x2=\"12.001\" y1=\"7.005\" y2=\"17.005\"></line></svg>";
+
+        if (next) {
+            $paging.html(str);
+        }
+    }
+
+
+    myPageAjaxService.getMyProfileImg(userPageNumber, function (pic) {
+        showMyProfileImg(pic);
+    })
+
+
+    function showMyProfileImg(file) {
+        let str ="";
+        str += "<img class=\"profileImg\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/" + file.uuid + "_"  + file.name + "'>"
+        $("button.profileButton").html(str);
+    }
+
+    // 프로필 사진 출력
+    function showMainUserPic(file){
+        let str ="";
+        let str2 ="";
+
+        console.log("===========================" + file);
+        if(file.uploadPath != "noPic" ){
+            str += "<div class=\"detailContentProfileImageInner\">"
+            str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str += "</a></div>"
+
+            str2 +="<div class=\"detailContentProfileImageInner\">"
+            str2 +="<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str2 +="</a></div>"
+        }else{
+            str += "<div class=\"detailContentProfileImageInner\">"
+            str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" src='/images/main/profile_ex.png' style='width: 100%'>"
+            str += "</a></div>"
+
+            str2 +="<div class=\"detailContentProfileImageInner\">"
+            str2 +="<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" src='/images/main/profile_ex.png' style='width: 100%'>"
+            str2 +="</a></div>"
+        }
+
+
+
+        $("#userFileBottom").html(str);
+        $("div.top").html(str2);
+    }
+
+    function showReviewPic(pic) {
+        let str ="";
+        let strBtn ="";
+        $.each(pic,function (i, file) {
+            str += "<li id=a" + i + "><img class=\"innerImage\" src='/litUp/display?fileName=" + file.uploadPath  + "/" + file.uuid + "_"  + file.name + "' /></li>"
+            strBtn +="<div id=b"+ i +"></div>"
+        })
+        $(".innerImageSlides").html(str);
+        $(".innerImagePageButtons").html(strBtn);
+        $("li#a0").addClass("active");
+        $("div#b0").addClass("active");
+    }
+
+</script>
+</html>
+
+

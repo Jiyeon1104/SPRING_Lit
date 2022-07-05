@@ -1,0 +1,184 @@
+@charset "UTF-8";
+@import url("variables.css");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.main,
+.wrapper,
+.inner,
+.content,
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-size: xx-large;
+}
+
+a {
+  text-decoration: none;
+  color: var(--side-black);
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.sec1 {
+  height: 100%;
+  justify-content: center;
+}
+/* ================================== */
+
+/* ================= radio box ================= */
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: url("/images/admin/bg_radio.png");
+  background-size: 20px 20px;
+  margin-right: 5px;
+}
+
+input[type="radio"]:checked {
+  background: url("/images/admin/bg_radio_checked.png");
+  background-size: 20px 20px;
+}
+
+/* ================= check box ================= */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid var(--border-gray);
+}
+
+input[type="checkbox"]:checked {
+  -webkit-appearance: none;
+  border: 0;
+  background: url("/images/admin/bg_checkbox_checked.png");
+}
+
+/* ================= a태그 버튼으로 사용 =================*/
+/* div>.abtn */
+.a-btn {
+  display: block;
+  text-align: center;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  line-height: 26px;
+  border: 1px solid var(--border-gray);
+  color: var(--side-black);
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.a-btn:hover {
+  background-color: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+
+.a-btn__selected {
+  background-color: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+
+/* =================자주 사용하는 속성 만들어두고 필요할때 사용================= */
+
+.flex {
+  display: flex;
+}
+
+.flex__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wh-100 {
+  width: 100%;
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.list-wrapper_min-h {
+  min-height: 540px;
+}
+
+.border__gray {
+  border: 1px solid var(--border-gray);
+}
+
+.background__red {
+  background-color: var(--red);
+}
+.background__red-none {
+  background-color: var(--red-none);
+}
+.background__gray {
+  background-color: var(--background-gray);
+}
+
+/* btn은 위의 색상과 함께 사용 */
+.btn {
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ====== 사이드바 사용 관련 ====== */
+.wrapper {
+  padding-left: 300px;
+}
+.sec1 {
+  margin: 0;
+  padding: 0;
+}
+.side-bar {
+  position: fixed;
+  height: 100%;
+  z-index: 201;
+  left: 0;
+  top: 0;
+}
+
+/* ======================= */
+/*정렬버튼 관련*/
+.order_btn{
+  position: relative;
+}
+.order_btn:hover{
+  cursor : pointer;
+  background-color: #c9c9c9;
+}
+.order_btn::before{
+  content: "";
+  background-image: url('/images/admin/sort-arrow.png');
+  background-size: 15px;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background-repeat: no-repeat;
+  right: 8px;
+  margin-top: 6px;
+}

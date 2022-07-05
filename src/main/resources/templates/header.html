@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lit_MAIN</title>
+    <link rel="stylesheet" href="/assets/css/header.css"/>
+
+
+</head>
+<body th:fragment="header">
+<div th:insert="~{/certification/certificationWrite :: certificationWrite}"></div>
+<main class="_main">
+    <nav class="_nav_wrapper">
+        <div class="_nav_div"></div>
+        <div>
+            <div class="_header_wrapper" style="border-bottom: 1px solid rgb(219, 219, 219);">
+                <div class="_header_content">
+                    <!-- #########로고########## -->
+                    <div class="_logo_wrapper"><a href="/main" role="link" tabindex="0">
+                        <div class="_logo_box">
+                            <div class="_logo"><img src="/images/main/Lit-logo.jpg"></div>
+                        </div>
+                    </a></div>
+                    <!-- #########검색########## -->
+<!--                    <div class="_search_wrapper" style="padding-right: 84px;">-->
+<!--                        <input class="_search_input" aria-label="입력 검색" autocapitalize="none" type="text" value="">-->
+<!--                        <div class="_search_cancle" aria-disabled="false" aria-label="검색란 지우기" tabindex="0"-->
+<!--                             style="cursor: pointer;">x-->
+<!--                        </div>-->
+<!--                        <div class="_search_box" role="button" tabindex="0"-->
+<!--                             style="padding-top: 1px; border-radius: 8px;">-->
+<!--                            <div class="_search_small_box">-->
+<!--                                <div class="_search_icon" style="padding-top: 1.5px; ">-->
+<!--                                    <svg aria-label="검색" class="_ab6-" color="#8e8e8e" fill="#8e8e8e" height="16"-->
+<!--                                         role="img" viewBox="0 0 24 24" width="16">-->
+<!--                                        <path d="M19 10.5A8.5 8.5 0 1110.5 2a8.5 8.5 0 018.5 8.5z" fill="none"-->
+<!--                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                              stroke-width="2"></path>-->
+<!--                                        <line fill="none" stroke="currentColor" stroke-linecap="round"-->
+<!--                                              stroke-linejoin="round" stroke-width="2" x1="16.511" x2="22" y1="16.511"-->
+<!--                                              y2="22"></line>-->
+<!--                                    </svg>-->
+<!--                                </div>-->
+<!--                                <span class="_search_span" style="padding-left: 13px;">검색</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="_search_line"></div>-->
+<!--                    </div>-->
+                    <!-- #########아이콘########## -->
+                    <div class="_icon_wrapper" style="padding-right: 10px;">
+                        <div class="_icon_box">
+                            <!-- #########홈버튼########## -->
+                            <div class="_icon_each">
+                                <div class="_icon_home"><a href="/main" role="link" tabindex="0">
+                                    <svg aria-label="홈" class="_ab6-" color="#262626" fill="#262626" height="24"
+                                         role="img" viewBox="0 0 24 24" width="24">
+                                        <path
+                                                d="M9.005 16.545a2.997 2.997 0 012.997-2.997h0A2.997 2.997 0 0115 16.545V22h7V11.543L12 2 2 11.543V22h7.005z"
+                                                fill="none" stroke="currentColor" stroke-linejoin="round"
+                                                stroke-width="2"></path>
+                                    </svg>
+                                </a>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <!-- #########다이렉트 메세지########## -->
+                            <div class="_icon_each"><a class="_icon_message" aria-label="Direct 메시지" href="/message/message"
+                                                       role="link" tabindex="0">
+                                <img src="/images/main/email.png"></a>
+                                <div></div>
+                            </div>
+                            <!-- #########새프로젝트 생성########## -->
+                            <div class="_icon_each">
+                                <div class="_icon_new_wrapper">
+                                    <button class="_icon_button" type="button" onclick="certificationWriteModalShow()">
+                                        <div class="_icon_new_box">
+                                            <svg aria-label="새로운 게시물" class="_ab6-" color="#262626" fill="#262626"
+                                                 height="24" role="img" viewBox="0 0 24 24" width="24">
+                                                <path
+                                                        d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552z"
+                                                        fill="none" stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2"></path>
+                                                <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="2" x1="6.545" x2="17.455"
+                                                      y1="12.001" y2="12.001"></line>
+                                                <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="2" x1="12.003" x2="12.003"
+                                                      y1="6.545" y2="17.455"></line>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                    <div class="_aa1s" style="margin-left: -140px;"></div>
+                                </div>
+                            </div>
+                            <!-- #########첼린지 생성########## -->
+                            <div class="_icon_each"><a href="/lit/write" role="link" tabindex="0" class="lit-write__link">
+                                <img src="/images/main/write.png" alt="img\write.png" style="height:80%; width:100%">
+                            </a></div>
+                            <!-- #########활동 피드########## -->
+                            <div class="_icon_each">
+                                <div class="_icon_activity_box"><a class="_icon_activity" disabled="">
+                                    <svg aria-label="활동 피드" class="_ab6-" color="#262626" fill="#262626"
+                                         height="24" role="img" viewBox="0 0 24 24" width="24" id="fidOff">
+                                        <path
+                                                d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z">
+                                        </path>
+                                    </svg>
+                                    <svg aria-label="활동 피드" class="_ab6-" color="#262626" fill="#262626" height="24"
+                                         role="img" viewBox="0 0 48 48" width="24" style="display: none" id="fidOn">
+                                        <path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path>
+                                    </svg>
+                                </a>
+                                </div>
+                                <div class="_aa1s" style="margin-left: -423px;">
+                                    <div class="_aa73" role="none" style=""></div>
+                                    <div aria-hidden="true" class="_aa5z" style="display: none">
+                                        <div class="_aa60" style="left: 427px;"></div>
+                                        <div class="_aa61">
+                                            <div class="_aajc">
+                                                <div style="display: flex; justify-content: space-evenly;"></div>
+                                                <div style="height: 362px; overflow: auto;">
+                                                    <div id="alertList">
+
+                                                    </div>
+                                                    <div style="flex-direction: column; padding-bottom: 40px; padding-top: 0px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- #########프로필########## -->
+                            <div class="_icon_each">
+                                <div class="_icon_profile">
+                                    <div></div>
+                                    <span class="_icon_profile_span" role="link" tabindex="0"
+                                          style="width: 24px; height: 24px;">
+                                            <img class="_aa8j" src="/" onerror="this.src='/images/main/profile_ex.png'">
+                                        <!-- <img alt="img\profile_ex.png"
+                                            class="_aa8j" crossorigin="anonymous" draggable="false" src="img\profile_ex.png"> -->
+                                        <!-- 백엔드 src에 타임리프 이용해서 사용자 프로필 이미지 작성 필요-->
+                                        </span>
+                                </div>
+                                <div class="_aa1s" style="margin-left: -180px;">
+                                    <div class="_dropdown_wrapper" style="display:none;">
+                                        <div class="_rbtri" style="left: 184px;"></div>
+                                        <div class="_dropdown_manu">
+                                            <a class="_dropdown_a mypage__link" href="/">
+                                                <div class="_dropdown_profile" style="padding:0px 20px;">
+                                                    <div class="_dropdown_profile_img">
+                                                        <svg aria-label="프로필" class="_ab6-" color="#262626"
+                                                             fill="#262626" height="16" role="img"
+                                                             viewBox="0 0 24 24" width="16">
+                                                            <circle cx="12.004" cy="12.004" fill="none" r="10.5"
+                                                                    stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-miterlimit="10" stroke-width="2">
+                                                            </circle>
+                                                            <path
+                                                                    d="M18.793 20.014a6.08 6.08 0 00-1.778-2.447 3.991 3.991 0 00-2.386-.791H9.38a3.994 3.994 0 00-2.386.791 6.09 6.09 0 00-1.779 2.447"
+                                                                    fill="none" stroke="currentColor"
+                                                                    stroke-linecap="round" stroke-miterlimit="10"
+                                                                    stroke-width="2"></path>
+                                                            <circle cx="12.006" cy="9.718" fill="none" r="4.109"
+                                                                    stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-miterlimit="10" stroke-width="2">
+                                                            </circle>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="dropdown_profile_write"
+                                                         style="padding-left: 10px; padding-top: 2px;">
+                                                        <div class="dropdown_profile_write_content"
+                                                             style="height:28px; width: 170px;">프로필
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a class="_dropdown_a _setting profile-setting__link" href="/">
+                                                <div class="_dropdown_setting" style="padding: 0px 20px; ">
+                                                    <div class="_dropdown_setting_img">
+                                                        <svg aria-label="설정" class="_ab6-" color="#262626"
+                                                             fill="#262626" height="16" role="img"
+                                                             viewBox="0 0 24 24" width="16">
+                                                            <circle cx="12" cy="12" fill="none" r="8.635"
+                                                                    stroke="currentColor" stroke-linecap="round"
+                                                                    stroke-linejoin="round" stroke-width="2">
+                                                            </circle>
+                                                            <path
+                                                                    d="M14.232 3.656a1.269 1.269 0 01-.796-.66L12.93 2h-1.86l-.505.996a1.269 1.269 0 01-.796.66m-.001 16.688a1.269 1.269 0 01.796.66l.505.996h1.862l.505-.996a1.269 1.269 0 01.796-.66M3.656 9.768a1.269 1.269 0 01-.66.796L2 11.07v1.862l.996.505a1.269 1.269 0 01.66.796m16.688-.001a1.269 1.269 0 01.66-.796L22 12.93v-1.86l-.996-.505a1.269 1.269 0 01-.66-.796M7.678 4.522a1.269 1.269 0 01-1.03.096l-1.06-.348L4.27 5.587l.348 1.062a1.269 1.269 0 01-.096 1.03m11.8 11.799a1.269 1.269 0 011.03-.096l1.06.348 1.318-1.317-.348-1.062a1.269 1.269 0 01.096-1.03m-14.956.001a1.269 1.269 0 01.096 1.03l-.348 1.06 1.317 1.318 1.062-.348a1.269 1.269 0 011.03.096m11.799-11.8a1.269 1.269 0 01-.096-1.03l.348-1.06-1.317-1.318-1.062.348a1.269 1.269 0 01-1.03-.096"
+                                                                    fill="none" stroke="currentColor"
+                                                                    stroke-linejoin="round" stroke-width="2"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="_dropdown_setting_write"
+                                                         style="padding-left: 10px;">
+                                                        <div class="_dropdown_setting_write_content"
+                                                             style="height:28px; width: 170px;">설정
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <hr class="_dropdown_line">
+                                            <div class="login_inOrOut">
+<!--                                            <a href="/user/logout">-->
+<!--                                                <div class="_dropdown_loginout">-->
+<!--                                                    <div class="_dropdown_loginout_content">로그아웃</div>-->
+<!--                                                </div>-->
+<!--                                            </a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</main>
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/header.js"></script>
+<script defer src="/assets/js/certification/certificationWrite.js"></script>
+<script defer src="/assets/js/certification/certificationWriteAjax.js"></script>
+<script defer src="/assets/js/certification/fileLoad.js"></script>
+<script th:inline="javascript">
+    let userNumber = [[${session.userNumber}]];
+    let token = [[${session.token}]];
+
+    $(".mypage__link").on("click", function(e){
+        e.preventDefault();
+        location.href = "/user/mypage";
+    });
+
+    $(".profile-setting__link").on("click", function(e){
+        e.preventDefault();
+        location.href = "/user/editInfo?userNumber=" + userNumber;
+    })
+
+    $(".lit-write__link").on("click", function(e){
+        e.preventDefault();
+        location.href = "/lit/write?userNumber=" + userNumber;
+    })
+
+    let filesList
+    let arFileReview = Array.from($("input[type='file']")[0].files);
+    let $uploadResult = $(".ceritficationContentProfileImageWrapper")
+    // 벨류 또는 아이디 값
+    let $projectNumber
+
+    // 사진 업로드 패스에 저장
+    $("input[type='file']").on("change", function(e){
+        let formData =   new FormData();
+        let inputFile = $("input[id='fileClickInput']");
+        let files = inputFile[0].files;
+
+        for(let i=0; i<files.length; i++){
+            formData.append("uploadFiles", files[i]);
+        }
+        Array.from($(this)[0].files).forEach(file => arFileReview.push(file));
+        const dataTransfer = new DataTransfer();
+        arFileReview.forEach(file => dataTransfer.items.add(file));
+        $(this)[0].files = dataTransfer.files;
+
+        $.ajax({
+            url: "/litUp/uploadFile",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(files){
+                filesList=files;
+            }
+        });
+    });
+
+
+    //리뷰 작성 버튼
+    $('.certificationNextButton > button.completeButton').on("click",function () {
+        let reviewContent = $("textarea#reviewContent").val();
+        reviewWriteService.reviewRegister({
+                userNumber:userNumber, projectNumber:$projectNumber, content:reviewContent, reviewFileList:filesList
+            },function (result) {
+                certificationWriteBackground.style.display = 'none';
+                // certificationWriteButton.style.display = 'block';
+
+                $('.certificationImages ul li:first-child').addClass('active');
+                $('.certificationImages ul li:first-child').siblings('.active').removeClass('active');
+                $('.certificationImages div div:first-child').addClass("active");
+                $('.certificationImages div div:first-child').siblings('.active').removeClass('active');
+                $('.certificationContentArea > textarea').val('');
+                $('.certificationImageInner').empty();
+                $('.innerImagePageButtons').empty();
+                $fileUploadPreview.empty();
+                $('#fileClickInput').val("");
+                $('body').css("overflow", "auto");
+
+                $.each($detailProjects, function () {
+                    $(this).removeClass("on");
+                });
+
+                $detailProjectContent.css("width", "0");
+                $certificationWriteModal.css("width", "35%");
+                $whiteBackground.css("display", "block");
+                $certificationNextButton.css("display", "none");
+                $certificationHeaderLabel.text('사진 업로드');
+                $certificationContent.css("display", "none");
+                $detailProjectContent.css("display", "none");
+                $certificationNextNextButton.css("display", "none");
+                $certificationBackButton.css("display", "none");
+                $certificationBackBackButton.css("display", "none");
+                $certificationCompleteButton.css("display", "none");
+                $certificationImageWrapper.css("display", "none");
+                $fileUploadAreaWrapper.css("display", "block");
+                $certificationFirstButton.css("display", "none");
+                $fileUploadPreview.css("display", "none");
+                $previewButton.find('button').css("backgroundColor", '#373737');
+                $('.btnIcon').attr("fill", "white");
+                $previewButton.val('0');
+                $deleteBackground.css("display", "none");
+            },
+            function (a,b,c) {console.log("error")})
+    })
+
+    // 프로필 사진 출력
+    function showWriterUserPic(file){
+        let str ="";
+
+        str += "<div class=\"certificationContentProfileImage\">"
+        str += "<img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+        str += "</div>"
+
+        $("#writerImage").html(str);
+    }
+
+    // 프로젝트 리스트 출력
+    function showMyProject(pic) {
+        let str ="";
+        $.each(pic, function (i, file) {
+            str += "<div class='projectPic' id='"+file.projectNumber +"'>"
+            str += "<span></span>"
+            str += "<img  src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+            str += "</div>"
+        });
+        $(".detailProjectContentList").html(str);
+    }
+
+    // 출력할 사진 리스트 받아오기기
+    $("button.nextNextButton").on("click",function () {
+        $.getJSON("/litUp/profilePic", {userNumber: userNumber}, function(pic){
+            showWriterUserPic(pic);}).fail(
+            function () {
+                let str ="";
+                    str += "<div class=\"certificationContentProfileImage\">"
+                    str += "<img class=\"detailProfileImage\" src='/images/main/sprofile_ex.jpg'>"
+                    str += "</div>"
+                $("#writerImage").html(str);
+            }
+        );
+    })
+
+    $(".nextButton").on("click",function () {
+        $.getJSON("/litUp/getMyProjectList", {userNumber: userNumber}, function(pic){showMyProject(pic);})
+    })
+
+
+    checkLoginLogout(userNumber, token);
+
+    function getMyProfileImg_header(userNumber,callback){
+        $.getJSON("/litUp/profilePic" , {userNumber: userNumber}, function(pic){
+            if(callback){callback(pic);}
+        });
+    }
+
+    function showMyProfileImg_header(file) {
+        let str ="";
+        str += "<img class=\"profileImg\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%; height:100%' src='/litUp/display?fileName=" + file.uploadPath + "/" + file.uuid + "_"  + file.name + "'>"
+        $("span._icon_profile_span").html(str);
+    }
+
+    getMyProfileImg_header(userNumber, function (pic) {
+        showMyProfileImg_header(pic);
+    })
+
+</script>
+</body>
+
+
+
+

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/login/join.css">
+    <link rel="stylesheet" href="/assets/css/default.css"/>
+    <link rel="stylesheet" href="/assets/css/header.css"/>
+    <link rel="stylesheet" href="/assets/css/footer.css"/>
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+
+</head>
+
+
+<body style="background-color: #efefef;">
+<header th:insert="~{/header :: header}"></header>
+<div style="width: 100%;height: 100%;">
+    <div style="width: 100%;height: 100%;">
+        <main class="main" role="main">
+            <div class="underMain" style="min-height: 100%;">
+                <div class="boarder">
+                    <div class="possion">
+                        <div class="logo">
+                            <div aria-disabled="false" role="button" tabindex="0" style="cursor: pointer;">
+                                <img alt="lit" class="logoImage" src="/images/admin/logo.png">
+                            </div>
+                        </div>
+                        <div class="mid">
+                            <form class="joinFor" action="/user/join" method="post" id="joinForm">
+                                <h2 class="joinForText">친구들의 사진과 동영상을 보려면 가입하세요.</h2>
+                                <div class="kakaoMargin">
+                                    <button class="kakaoButton y3zKF L3NKy" type="button">
+                                        <a href="https://kauth.kakao.com/oauth/authorize?client_id=897e8c9a1ba87330015c613fa2fad246&redirect_uri=
+http://localhost:12000/login&response_type=code">
+                                        <span class="kakaoButtomText"></span>카카오톡으로 로그인
+                                        </a></button>
+                                </div>
+                                <div class="underKakao" style="display:flex;">
+                                    <div class="inline"></div>
+                                    <div class="inlineText">또는</div>
+                                    <div class="inline"></div>
+                                </div>
+                                <div class="firstDiv">
+                                    <div class="lainDiv">
+                                        <label class="labelText">
+                                            <input placeholder="이메일 주소를 입력하세요" name="email" type="text"
+                                                   class="inputstyle" id="email"></label>
+                                        <div class="checkIconMargin">
+                                            <span class="iconCheck" id="emailCk"></span>
+                                        </div>
+                                        <div class="divFornot"></div>
+                                    </div>
+                                </div>
+                                <div class="checkEmail"></div>
+                                <div class="firstDiv">
+                                    <div class="lainDiv">
+                                        <label class="labelText">
+                                            <input placeholder="성명" name="name" type="text" class="inputstyle"
+                                                   id="userName"></label>
+                                        <div class="checkIconMargin">
+                                            <span class="iconCheck" id="uNameCk"></span>
+                                        </div>
+                                        <div class="divFornot"></div>
+                                    </div>
+                                </div>
+
+                                <div class="firstDiv">
+                                    <div class="lainDiv">
+                                        <label class="labelText">
+                                            <input placeholder="사용자 이름" maxlength="30" name="nickname" type="text"
+                                                   class="inputstyle" id="nickName"></label>
+                                        <div class="checkIconMargin">
+                                            <span class="iconCheck" id="nNameCk"></span>
+                                        </div>
+                                        <div class="divFornot"></div>
+                                    </div>
+                                </div>
+                                <div class="checkNickname"></div>
+                                <div class="firstDiv">
+                                    <div class="lainDiv"><label class="labelText">
+                                        <input placeholder="비밀번호" name="password" type="password"
+                                               class="inputstyle" id="pwVal"></label>
+                                        <div class="checkIconMargin">
+                                            <span class="iconCheck" id="pwCk"></span>
+                                        </div>
+                                        <div class="divFornot"></div>
+                                    </div>
+                                </div>
+
+                                <div class="inInput" id="passwordOn">
+                                    <button class="onBtn" type="button"></button>
+                                </div>
+
+                                <p class="forExample">서비스를 이용하는 사람이 회원님의 연락처 정보를 Lit에 업로드했을 수도 있습니다.</p>
+
+                                <div>
+                                    <div class="divButtom">
+                                        <button class="buttonforjoin jonbuttoncolor" type="submit"
+                                                id="login_btn">가입
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="forLogin">
+                        <p class="loginMargin">계정이 있으신가요? <a data-testid="log-in-link"
+                                                             href="/user/login" tabindex="0"
+                                                             style="color: rgb(250, 100, 98); text-decoration: none;">로그인</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+
+<footer th:insert="~{/footer :: footer}"></footer>
+</body>
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/login/join.js"></script>
+<script src="/assets/js/login/joinAjax.js"></script>
+<script th:inline="javascript">
+    let $emailInput = $('#email');
+    let $nicknameInput = $('#nickName');
+    let filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+    $emailInput.on("focusin", function () {
+
+    }).on("keyup", function () {
+        let $email = $('#email').val();
+
+        if(filter.test($email)) {
+            if ($email != "") {
+                joinAjaxService.checkEmail($email, function (result) {
+                    console.log(result);
+                    if (result) {
+                        $(".checkEmail").show();
+                        $(".checkEmail").html("사용 가능한 이메일입니다.");
+                        $(".checkEmail").css("color", "black");
+                    } else {
+                        $(".checkEmail").show();
+                        $(".checkEmail").html("사용 불가능한 이메일입니다.");
+                        $(".checkEmail").css("color", "red");
+                    }
+                });
+            }
+        } else{
+            $(".checkEmail").hide();
+        }
+    });
+
+    $nicknameInput.on("focusin", function () {
+
+    }).on("keyup", function () {
+
+        let $nickname = $('#nickName').val();
+
+            if ($nickname != "") {
+                joinAjaxService.checkNickname($nickname, function (result) {
+                    console.log(result);
+                    if (result) {
+                        $(".checkNickname").show();
+                        $(".checkNickname").html("사용 가능한 닉네임입니다.");
+                        $(".checkNickname").css("color", "black");
+                    } else {
+                        $(".checkNickname").show();
+                        $(".checkNickname").html("사용 불가능한 닉네임입니다.");
+                        $(".checkNickname").css("color", "red");
+                    }
+                });
+            }
+        else{
+            $(".checkNickname").hide();
+        }
+    });
+
+
+</script>
+
+</html>

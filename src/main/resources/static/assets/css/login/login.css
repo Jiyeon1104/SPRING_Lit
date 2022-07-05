@@ -1,0 +1,434 @@
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translate(0%, -100%);
+}
+.main {
+    background-color: #EFEFEF;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-ordinal-group: 5;
+    order: 4;
+    position: relative;
+    transform: translate(-50%, -50%);
+    top: 38vh;
+    left: 50%;
+    width: 100%;
+}
+
+.artic {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 32px auto 0;
+    max-width: 935px;
+    padding-bottom: 32px;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.board{
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-pack: center;
+    justify-content: center;
+    max-width: 350px;
+    width: 100%;
+}
+
+.possion{
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+    height: 405px;
+}
+
+.logo {
+    margin-top: 36px;
+    margin-bottom: 12px;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: center;
+    align-content: stretch;
+    display: flex;
+}
+
+.logoImage{
+    object-fit: contain;
+    width: 110px;
+}
+
+.mid {
+    margin-bottom: 10px;
+    max-width: 350px;
+    width: 100%;
+}
+
+.loginFormStyel{
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+}
+
+.underLoginForm {
+    margin-top: 24px;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    align-content: stretch;
+    display: flex;
+}
+
+.firstDiv {
+    margin: 0 40px 6px;
+}
+
+.lainDiv {
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-appearance: none;
+    background: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #262626;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    font-size: 14px;
+    position: relative;
+    width: 100%;
+}
+
+
+.labelText{
+    display: flex;
+    -webkit-box-flex: 1;
+    flex: 1 0 0;
+    height: 36px;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    position: relative;
+}
+
+.inputstyle {
+    background: #fafafa;
+    border: 0;
+    -webkit-box-flex: 1;
+    flex: 1 0 auto;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 9px 0 7px 8px;
+    text-overflow: ellipsis;
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+.divFornot {
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    height: 100%;
+    padding-right: 8px;
+    vertical-align: middle;
+}
+
+.divButtom {
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    align-content: stretch;
+    display: flex;
+}
+
+.buttonforjoin {
+    color: #fff;
+    position: relative;
+    appearance: none;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    user-select: none;
+    width: auto;
+}
+
+.jonbuttoncolor {
+    border-radius: 4px;
+    background-color: rgba(255, 69, 67, 0.3);
+    pointer-events: none;
+}
+
+.formEvent {
+    border-radius: 4px;
+    background-color: rgb(250, 100, 98);
+}
+
+.underKakao {
+    margin: 10px 40px 18px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    display: flex;
+}
+
+.inline{
+    background-color: #dbdbdb;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 1px;
+    position: relative;
+    top: 0.45em;
+}
+
+.inlineText {
+    color: #8e8e8e;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 15px;
+    margin: 0 18px;
+    text-transform: uppercase;
+}
+
+.loginForKakao {
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    align-content: stretch;
+    display: flex;
+}
+
+.kakaoLoginButton {
+    color: #0095f6;
+    position: relative;
+    appearance: none;
+    background: 0 0;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    user-select: none;
+    width: auto;
+}
+
+.kakaoLogo {
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    top: 3px;
+    background-repeat: no-repeat;
+    background-position: -414px -259px;
+    height: 16px;
+    width: 16px;
+    background-image: url(/images/kakaoIcon.png);
+}
+
+.kakaoText {
+    color: #222301;
+}
+
+.forgetPW{
+    color: #00376b;
+    color: rgba(0,55,107,1);
+    font-size: 12px;
+    line-height: 16px;
+    margin-top: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.underjoinBoard {
+    display: block;
+    color: #8e8e8e;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    margin: -3px 0 -4px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+.pText {
+    color: #262626;
+    font-size: 14px;
+    margin: 15px;
+    text-align: center;
+}
+
+.forJoin {
+    display: inline!important;
+    margin: 0!important;
+    color: rgb(250, 100, 98);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    text-decoration: none;
+}
+
+.possionJoin{
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgba(255,255,255,1);
+    border: 1px solid rgba(219,219,219,1);
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+}
+
+.loginImage{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.loginImage > img{
+    width: 100%;
+    heigth: 100%;
+}
+
+
+/*=========================================*/
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 975px) {
+    .imageWrap{
+        display: none;
+    }
+    .board{
+        width: 930px;
+        padding: 0 20px;
+        max-width: none;
+    }
+    .possion{
+        display: flex;
+        flex-direction: column;
+    }
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}

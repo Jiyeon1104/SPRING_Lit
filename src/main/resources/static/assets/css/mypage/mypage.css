@@ -1,0 +1,1153 @@
+body {
+  margin: 0;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transform: translate(0%, -100%);
+}
+
+.mypageMain {
+  height: 100%;
+  align-items: stretch;
+  border: 0 solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  flex-grow: 1;
+  order: 4;
+}
+
+.mainInner {
+  padding: 30px 20px 0;
+  box-sizing: content-box;
+  flex-grow: 1;
+  margin: 0px auto 0px;
+  min-width: 950px;
+  max-width: 950px;
+  background-color: rgba(255,255,255,1);
+}
+
+.mypageHeader {
+  margin-bottom: 44px;
+  flex-direction: row;
+  display: flex;
+}
+
+.profile1 {
+  flex-basis: 0px;
+  flex-grow: 1;
+  margin-right: 30px;
+}
+
+.profile2 {
+  height: calc(148px + 2px);
+  width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile3 {
+  background-color: rgb(250, 250, 250);
+  border-radius: 50%;
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.profileButton {
+  border: 0;
+  cursor: pointer;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+.profileImg {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.mypageSection {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  flex-grow: 2;
+  flex-basis: 30px;
+}
+
+.sectionH2 {
+  margin-bottom: 20px;
+  align-items: center;
+  flex-direction: row;
+  flex-shrink: 1;
+  min-width: 0;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.editProfile {
+  margin-left: 30px;
+}
+
+.editProfileInner {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  background-color: transparent;
+  border: 1px solid rgb(219, 219, 219);
+  color: rgb(38, 38, 38);
+  border-radius: 4px;
+}
+
+.profileA {
+  background-color: transparent;
+  outline: 1px solid rgb(219, 219, 219);
+  color: rgb(38, 38, 38);
+  border-radius: 4px;
+  position: relative;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  padding: 5px 9px;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: inherit;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.mypageUl {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.mypageLi {
+  margin-left: 0;
+  font-size: 16px;
+  margin-right: 40px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.litChange {
+  align-items: center;
+  border-top: 1px solid rgb(219, 219, 219);
+  color: #8e8e8e;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* lit up, lits 글자 크기 */
+.litChange > div{
+  font-size: 16px;
+}
+
+.litUp {
+  margin-right: 60px;
+  align-items: center;
+  color: rgb(38, 38, 38);
+  cursor: pointer;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.lits1On {
+  margin-right: 100px;
+  align-items: center;
+  color: rgb(255 87 87);
+  cursor: pointer;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  text-transform: uppercase;
+  display: flex;
+  border-top: 2px solid rgb(255,87,87);
+  margin-top: -1px;
+  font-weight: bolder;
+}
+
+.lits1Off {
+  margin-right: 100px;
+  align-items: center;
+  color: rgb(142, 142, 142);
+  cursor: pointer;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  text-transform: uppercase;
+  display: flex;
+}
+
+.lits2Off {
+  margin-left: 100px;
+  align-items: center;
+  color: rgb(142, 142, 142);
+  cursor: pointer;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  text-transform: uppercase;
+  display: flex;
+}
+
+.lits2On {
+  margin-left: 100px;
+  align-items: center;
+  color: rgb(255 87 87);
+  cursor: pointer;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  text-transform: uppercase;
+  display: flex;
+  border-top: 2px solid rgb(255,87,87);
+  margin-top: -1px;
+  font-weight: bolder;
+}
+
+.litSpan {
+  margin-left: 6px;
+}
+
+.articleClass {
+  flex-grow: 1;
+  align-items: stretch;
+  border: 0 solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.content1 {
+  flex-direction: column;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.content2 {
+  margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.content2 > div > span {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.6);
+  position: absolute;
+  display: none;
+  color: rgba(255,255,255,0.8);
+  font-weight: bold;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.content3 {
+  flex: 1 0 0%;
+  margin-right: 28px;
+}
+
+.photoContent {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.content3 {
+  flex: 1 0 0%;
+  margin-right: 28px;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.content4 {
+  background-color: rgb(239, 239, 239);
+  display: block;
+  width: 100%;
+}
+
+.aContent {
+  text-decoration: none;
+}
+
+.content5 {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.contentImage {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-user-select: none;
+  width: 100%;
+  object-fit: cover;
+}
+
+.content6 {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.content2_1 {
+  flex: 1 0 0%;
+  margin-right: 28px;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.content2_a {
+  text-decoration: none;
+  color: rgb(0, 55, 107);
+}
+
+.content2_2 {
+  background-color: rgb(239, 239, 239);
+  display: block;
+  width: 100%;
+}
+
+.content2_3 {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.contentImage2 {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-user-select: none;
+  width: 100%;
+  object-fit: cover;
+}
+
+.content2_4 {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.content3_1 {
+  flex: 1 0 0%;
+  margin-right: 0;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.content3_a {
+  text-decoration: none;
+  color: rgb(0, 55, 107);
+}
+
+.content3_2 {
+  background-color: rgb(239, 239, 239);
+  display: block;
+  width: 100%;
+}
+
+.content3_3 {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.contentImage3 {
+  object-fit: cover;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-user-select: none;
+  width: 100%;
+}
+
+.content3_4 {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.divInfo {
+  display: flex;
+}
+
+.spanInfo {
+  color: #000000;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.svgLit {
+  display: block;
+  position: relative;
+  color: rgb(38, 38, 38);
+  fill: rgb(38, 38, 38);
+  height: 12px;
+  width: 12px;
+}
+
+.litSvg {
+  position: relative;
+  height: 12px;
+  width: 12px;
+}
+
+.medalImg {
+  height: 30px;
+  width: 30px;
+  margin-left: 5px;
+}
+
+.follower {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0%;
+  background-size: cover;
+  overflow: hidden;
+  display: none;
+}
+
+.followering {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0%;
+  background-size: cover;
+  overflow: hidden;
+  display: none;
+}
+
+.medal {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 150vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0%;
+  background-size: cover;
+  overflow: hidden;
+  display: none;
+}
+
+.followerModal {
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  border-radius: 15px;
+  position: absolute;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.medalModal {
+  width: 400px;
+  min-height: 200px;
+  background-color: rgb(70, 70, 70);
+  border-radius: 15px;
+  position: absolute;
+  left: 50%;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+}
+
+.followerCancel {
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  position: absolute;
+  right: 5px;
+  top: 12px;
+}
+
+.followerHeader {
+  width: 100%;
+  flex: 0 0 auto;
+  justify-content: center;
+  position: relative;
+  padding: 15px 0px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+  flex-direction: row;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.followerModalWrapper {
+  /* position: relative;
+    top: 100px;
+    vh -> 화면 기준
+    */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.followerDiv {
+}
+
+.followerName {
+  flex-direction: row;
+}
+
+.name1 {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+}
+
+.name2 {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+}
+
+.followerImg {
+  display: block;
+  height: fit-content;
+  width: fit-content;
+  position: relative;
+}
+
+.followerImg2 {
+  align-items: center;
+  align-self: center;
+  display: block;
+  flex: none;
+  justify-content: center;
+  position: relative;
+  margin: 4px 13px 4px 4px;
+}
+
+.followerImgA {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: rgb(250, 250, 250);
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: block;
+  flex: 0 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.followerImgImg::after {
+  border-radius: 50%;
+  bottom: 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.followerImgImg {
+}
+
+.canvas {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 40px;
+  height: 40px;
+}
+
+/* mypage2 */
+
+.followerTwo {
+  border-radius: 12px;
+  display: block;
+  flex: 1 1;
+  min-height: 200px;
+  overflow-y: scroll;
+  max-height: 350px;
+}
+
+.followerTwo::-webkit-scrollbar{
+  display:none;
+}
+
+.followerTwoUl {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  list-style: none;
+  margin: 5px 0px;
+}
+
+.followerTwoWrapper {
+  border: 0;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+.followerTwoLi {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+}
+
+.follower1 {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.follower2 {
+  align-items: center;
+  display: flex;
+  flex: 1 1 100px;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.follower3 {
+  display: block;
+  height: fit-content;
+  width: fit-content;
+}
+
+.follower4 {
+  align-items: center;
+  align-self: center;
+  display: block;
+  flex: none;
+  justify-content: center;
+  position: relative;
+  margin: 4px;
+  margin-right: 13px;
+}
+
+.followerCanvass {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 40px;
+  height: 40px;
+}
+
+.followerAa {
+  width: 30px;
+  height: 30px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: rgb(250, 250, 250);
+  border-radius: 50%;
+  box-sizing: border-box;
+  display: block;
+  flex: 0 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.followerImgg {
+  width: 30px;
+  height: 30px;
+}
+
+.medalImgg {
+  width: 60px;
+  height: 60px;
+  margin: 3px;
+}
+
+.followerImgg::after {
+  border-radius: 50%;
+  bottom: 0;
+  content: "";
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.follower5 {
+  flex: 1 1 70px;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 70px;
+}
+
+.follower6 {
+  align-content: center;
+  flex-direction: row;
+}
+
+.followerSpann {
+  position: relative;
+  display: inline;
+}
+
+.follower7 {
+  display: inline !important;
+  margin: 0 !important;
+  color: rgb(38, 38, 38);
+  font-weight: 600;
+}
+
+.follower8 {
+  color: rgb(142, 142, 142);
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.follower9 {
+  flex: 0 0 auto;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.followingBtnn,
+.followerBtnn {
+  background-color: transparent;
+  border: 1px solid rgb(219, 219, 219);
+  color: rgb(38, 38, 38);
+  border-radius: 4px;
+  position: relative;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 9px;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: inherit;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+.followBtnn {
+  background-color: rgb(255, 87, 87);
+  border: 1px solid rgb(219, 219, 219);
+  color: rgb(255, 255, 255);
+  border-radius: 4px;
+  position: relative;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 9px;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: inherit;
+  -webkit-user-select: none;
+  width: auto;
+}
+
+/* ================= medal modal ===================== */
+.medal-background,
+.medal-background * {
+  margin: 0;
+  padding: 0;
+}
+.medal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  display: none;
+}
+
+.medal-wrap {
+  width: 500px;
+  height: 660px;
+  background-color: white;
+  border-radius: 3%;
+  position: relative;
+  overflow: scroll;
+}
+
+.medal-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.medal-selected {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.medal-selected_medal > img {
+  height: 180px;
+  margin: 10px 0;
+}
+
+.medal-selected_title {
+  text-align: center;
+  margin: 15px 0;
+}
+.medal-selected_title > h3 {
+  margin: 10px 0;
+}
+.medal-selected_title > span {
+  font-size: 18px;
+}
+#medal-selected_number {
+  color: rgb(255, 69, 67);
+  font-weight: bold;
+  letter-spacing: -4px;
+}
+
+.medal-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 12px 0 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.medal-content::before {
+  content: "";
+  position: absolute;
+  left: 5%;
+  top: 0;
+  height: 1px;
+  width: 90%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.medal-content {
+  padding: 40px 20px;
+  margin-top: 20px;
+  position: relative;
+}
+.medal-icon-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.medal-icon-col {
+  width: 120px;
+  height: 120px;
+  border: 10px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medal-icon-col:hover {
+  border: 10px solid rgba(0, 0, 0, 0.2);
+}
+
+.medal__check,
+.medal-icon-row > .medal__unlock:hover {
+  border: 10px solid rgba(255, 69, 67, 0.7);
+}
+
+.medal-icon-col > img {
+  width: 95px;
+}
+
+.display-toggle {
+  display: flex;
+}
+
+.btn__x {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
+.btn__x > img {
+  width: 18px;
+}
+
+.fbtn__x > img {
+  width: 15px;
+}
+
+.medal-selected_info {
+  margin-top: 10px;
+}
+.medal-selected_detail {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.medal-selected_bar {
+  margin-top: 10px;
+  width: 200px;
+  height: 13px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+}
+.bar-rate {
+  width: 0%;
+  height: 100%;
+  background-color: rgba(255, 69, 67, 0.7);
+  border: 1px solid rgba(255, 69, 67, 0.7);
+  border-collapse: collapse;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+.rate {
+  position: absolute;
+  font-size: small;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-bottom: 2px;
+  top: -2px;
+  left: 50%;
+  transform: translate(-50, -50);
+}
+
+.medal-selected_button {
+  margin: 20px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.medal-selected_button > button {
+  width: 90%;
+  height: 50px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.medal-selected_button > button:hover {
+  background-color: rgba(255, 69, 67, 0.7);
+  color: white;
+}
+
+/*=========================================*/
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 933px) {
+  div.mainInner{
+    width: 100%;
+    padding: 10px 0;
+    min-width: 100%;
+  }
+  div.mypageSection{
+    padding: 0 10px;
+  }
+
+  div.photoContents > div >figure{
+  box-sizing: border-box;
+  width: 50%;
+  height: 320px;
+}
+  .profile1 {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+  }
+  .litChange > div {
+    font-size: 1rem;
+  }
+  div.sectionH2{
+    justify-content: space-between;
+  }
+  div.editProfile{
+    margin: 0;
+    flex-grow: 1;
+    padding-left: 60px;
+  }
+  div.mypageHeader{
+    flex-direction: column;
+  }
+
+  div.mypageUl{
+    flex-wrap: wrap;
+  }
+
+div.mypageLi{
+  width: 100%;
+  margin: 10px 0;
+  font-size: 1.3rem;
+}
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}
+
+
+/*마우스 오버*/
+.over-box_a{
+  position: relative;
+}
+
+.over-box_div{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.4);
+  width: 100%;
+  height: 100%;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.over-box_content1{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 15px 15px;
+}
+
+.over-box_img{
+  width: 20px !important;
+  height: 20px !important;
+}

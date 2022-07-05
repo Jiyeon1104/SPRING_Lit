@@ -1,0 +1,556 @@
+/* 프로젝트 쓰기  ==================================== */
+
+.sec3 {}
+
+.sec3>form {
+  width: 625px;
+  margin: auto;
+  border: 1px solid #e5e5e5;
+  padding: 10px 0;
+}
+
+.sec3>form>div {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.sec3 .imgData {
+  justify-content: center;
+  flex-direction: column;
+  width: 250px;
+  /* height: 250px; */
+  margin: auto;
+}
+
+.sec3 .imgData>label {
+  display: block;
+  height: 250px;
+  margin-bottom: 10px;
+}
+
+.sec3 .imgData>p {
+  margin-bottom: 10px;
+}
+
+.sec3 .imgData>input[type="file"] {
+  display: none;
+}
+
+.sec3 textarea {
+  width: 100%;
+  padding: 10px;
+  resize: none;
+}
+
+.sec3 input[type="text"] {
+  padding: 0 10px;
+}
+
+label[for="btnImage"]>span>div:nth-child(1) {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  display: block;
+  content: "";
+  width: 60%;
+  height: 10px;
+  background: #e5e5e5;
+  border-radius: 10px;
+}
+
+label[for="btnImage"]>span::after {
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(90deg);
+  top: 50%;
+  left: 50%;
+  display: block;
+  content: "";
+  width: 60%;
+  height: 10px;
+  background: #e5e5e5;
+  border-radius: 10px;
+}
+
+label[for="btnImage"]>span {
+  position: relative;
+  display: block;
+  height: 100%;
+  border: 5px solid #e5e5e5;
+  border-radius: 15%;
+}
+
+label[for="btnImage"]>img {
+  display: none;
+}
+
+.dataWrite {
+  display: flex;
+}
+
+.dataWrite>div:nth-child(1) {
+  width: calc((100% - 250px)/2);
+  text-align: right;
+  padding: 2px 15px 0 0;
+}
+
+.dataWrite>div:nth-child(2) {
+  width: 250px;
+}
+
+.dataWrite::after {
+  content: "";
+  display: block;
+  width: calc((100% - 250px)/2);
+}
+
+.dataWrite span.titel {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.textStyle1>textarea {
+  height: 130px;
+}
+
+.textStyle2>textarea {
+  height: 130px;
+}
+
+.dataWrite input[type='text'] {
+  width: 250px;
+  height: 35px;
+}
+
+.startDayBox {
+  background: #e5e5e5;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.startDayBox input[type="radio"] {
+  display: none;
+}
+
+.startDayBox {
+  width: 70%;
+}
+
+.startDayBox>div {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.startDayBox label {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.startDayBox label::before {
+  width: 15px;
+  height: 15px;
+  background: red;
+  margin-right: 10px;
+  content: "";
+  display: inline-block;
+}
+
+.selecBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.selecBox>div {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.selecBox>div:nth-child(2n) label {}
+
+input[type="radio"] {
+  border: 1px solid #666666;
+  background: #666666;
+  display: none;
+}
+
+input[type="radio"]+label {
+  display: flex;
+  font-size: 0.8rem;
+}
+
+input[type="radio"]+label::before {
+  border: 1px solid #e5e5e5;
+  height: 18px;
+  width: 18px;
+  text-align: center;
+  content: "";
+  margin-right: 10px;
+}
+
+input[type="radio"]:checked+label::before {
+  content: "\2714";
+  font-size: 13px;
+  background: rgb(255, 69, 67);
+  color: #ffffff;
+
+}
+
+.submitSection {
+  width: 250px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitSection input {
+  width: 75px;
+  padding: 5px 0;
+  background: rgba(255, 69, 67, 0.7);
+  color: #ffffff;
+  border: 1px solid rgba(255, 69, 67, 0.3);
+}
+
+.submitSection input:hover {
+  background: rgb(250, 100, 98);
+  border: 1px solid rgba(255, 69, 67, 0.3);
+}
+
+.submitSection input:active {
+  background: rgb(255, 69, 67);
+
+}
+
+/* ============================================= */
+
+section {
+  width: 935px;
+  padding: 0 20px;
+  margin: auto;
+  /* transition: 1s ease; */
+  /* border: 1px solid #666666; */
+}
+
+.sec4 {
+  padding: 60px 0;
+}
+
+form[name="projectForm"] {
+  height: 100%;
+}
+
+form[name="projectForm"]>div {
+  border: 1px solid #e5e5e5;
+  height: 80vh;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.topmenu {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 24px;
+  font-size: 0.9rem;
+}
+
+.topmenu>div {
+  display: none;
+}
+
+.topmenu>div:nth-child(2) {
+  display: block;
+  text-align: center;
+  flex-grow: 1;
+  font-weight: 600;
+}
+
+.topmenu>div.on {
+  display: block;
+}
+
+.formData {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.formData>div {
+  width: 30%;
+}
+
+.formData>.imgData {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.imgData>div {
+  margin: 10px 0;
+}
+
+.imgData>div:nth-child(2) {
+  font-size: 1.3rem;
+}
+
+.imgData label[for="btnImage"] {
+  display: block;
+  width: 150px;
+  padding: 5px;
+  background: #fa6462;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+input[id="btnImage"] {
+  display: none;
+}
+
+div.imgView {
+  height: 100%;
+  background-size: cover;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  flex-grow: 1;
+}
+
+.imgView {
+  display: none;
+}
+
+.formData>.projectData {
+  border-left: 1px solid #e5e5e5;
+  overflow: auto;
+  padding: 10px 0;
+  display: none;
+}
+
+/* ===================================== */
+.formData>.projectData.on {
+  /* display: block; */
+}
+
+.topmenu>div {
+  /* display: block; */
+}
+
+
+.topmenu>div>a:link{
+  font-color: rgb(250,87,87);
+  font-weight: 900;
+}
+
+/* ===================================== */
+.projectData>div,
+.projectData>label {
+  margin: 10px 0;
+  padding: 5px 17px;
+}
+
+.projectData>div:nth-child(1) {
+  display: flex;
+}
+
+div.miniPoto {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+div.miniPoto>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+div.titel {
+  border-top: 1px solid #e5e5e5;
+}
+
+div.titel>a {
+  list-style: none;
+}
+
+label.togle {
+  display: block;
+  width: 100%;
+  border-top: 1px solid #e5e5e5;
+}
+
+label.togle+div {
+  display: none;
+}
+
+label.togle+div>input {
+  width: 100%;
+  border-style: none;
+  outline: none;
+}
+
+label.togle+div>input:focus {
+  border-style: none;
+  outline: none;
+}
+
+label.togle+div>textarea {
+  resize: none;
+  width: 100%;
+  border-style: none;
+  outline: none;
+  min-height: 180px;
+}
+
+.textareaBox>p {
+  font-size: .8rem;
+  color: #cccccc;
+  text-align: end;
+}
+
+
+/*==================================*/
+a{
+  color: black;
+}
+
+.projectData::-webkit-scrollbar {
+  display: none;
+}
+label.togle{
+  position: relative;
+  padding-left: 30px;
+  font-size: 0.8rem;
+}
+label.togle::before{
+  content: "";
+  background-image: url("/images/admin/menu-arrow__black.png");
+  background-size: 14px;
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background-repeat: no-repeat;
+  left: 8px;
+  margin-top: 5px;
+  transition: 0.3s ease-in-out;
+}
+
+label.rotate::before{
+  transform: rotate(180deg);
+}
+
+#nickName{
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-left: 5px;
+  padding: 2px 0px;
+}
+
+
+/*=========================================*/
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 933px) {
+  section {
+    width: 100%;
+  }
+  .formData>div{
+    width: 100%;
+    min-height: 30vh;
+  }
+  .formData>.imgData{
+    width: 100%;
+  }
+  .formData{
+    flex-direction: column;
+  }
+  form[name="projectForm"]>div{
+    height: 100%;
+  }
+
+  input[type="radio"]+label {
+    font-size: 1.5rem;
+    align-items: center;
+  }
+
+  label.togle+div>input {
+    font-size: 1.5rem;
+  }
+  label.togle+div>textarea{
+    font-size: 1.5rem;
+  }
+
+
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}

@@ -1,0 +1,461 @@
+main{
+    background-color: rgb(250,250,250);
+    margin-top: 36px;
+}
+
+body{
+    margin: 0px;
+    overflow: hidden;
+}
+
+header{
+    height: 60px
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translate(0%, -100%);
+    height: 60px
+}
+
+label{
+    font-weight: bold;
+    font-size: 16px;
+    color: #262626;
+    line-height: 18px;
+    margin-top: 6px;
+    padding-left: 34px;
+}
+
+._label_wrapper{
+    flex-basis: 355px;
+    flex-direction: row;
+    padding-right: 60px;
+    color: #262626;
+    flex-grow: 1;
+    font-size: 16px;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 28px;
+    padding-right: 28px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+._changepw_main_wrapper{
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(219,219,219);
+    border-radius: 3px;
+    margin: auto;
+    max-width: 935px;
+    height: 594px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+}
+
+._changepw_content{
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(219,219,219);
+    border-radius: 3px;
+    margin: 100px auto 0;
+    max-width: 935px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+}
+
+._withdrawlPassword{
+    padding-right: 140px;
+}
+
+._input_wrapper{
+    flex-basis: 355px;
+    flex-direction: row;
+    padding-right: 70px;
+}
+
+._input_wrapper input{
+    border: 1px solid rgba(219,219,219,1);
+    border-radius: 6px;
+    color: rgba(38,38,38,1);
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 0;
+    overflow: visible;
+    padding: 4px 12px;
+    background: rgba(250,250,250,1);
+}
+
+.detail{
+    justify-content: flex-start;
+    margin-bottom: 16px;
+}
+
+._navbar{
+    flex-basis: 236px;
+}
+
+.flexclass{
+    display: flex;
+    width:100%;
+}
+
+._withdrawl_profile{
+    justify-content: flex-start;
+    margin: 32px 0 0;
+    flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    display: flex;
+    padding-bottom: 17px;
+}
+
+._profile_icon{
+    margin: 15px 20px 0 124px;
+    height: 50px;
+    width: 50px;
+}
+
+._profile_wrapper{
+    background-color: rgb(250,250,250);
+    border-radius: 50%;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    border: 1px solid rgb(214,214,214);
+}
+
+._profile_wrapper ::after{
+    border: 1px solid rgba(0,0,0,.0975);
+    border-radius: 50%;
+    bottom: 0;
+    content: '';
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+._profile_nickname{
+    -webkit-box-flex: 0;
+    flex: 0 1 auto;
+    margin-right: 20px;
+    overflow-x: hidden;
+}
+
+._nickname{
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 17px;
+}
+
+._withdrawl_wrapper{
+    flex: 1 1 400px;
+    min-width: 50px;
+    -webkit-box-flex: 1;
+    padding-bottom: 326px;
+    margin-left: 10px;
+}
+
+._withdrawl_form{
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+    margin-top: 22px;
+}
+
+
+.sxIVS {
+    padding-left: 32px;
+    padding-right: 32px;
+    text-align: right;
+}
+
+.sxIVS {
+    box-sizing: border-box;
+    color: #262626;
+    flex: 1 0 240px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    margin-top: 6px;
+}
+
+.ada5V {
+    flex-basis: 355px;
+    flex-direction: row;
+    padding-right: 39px;
+    color: #262626;
+    font-size: 16px;
+    justify-content: flex-start;
+}
+
+.buttonStyle {
+    border-radius: 4px;
+    background-color: rgba(255, 69, 67, 0.3);
+    pointer-events: none;
+    color: rgba(255,255,255,1);
+    position: relative;
+    appearance: none;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    user-select: none;
+    width: 100px;
+    line-height: 20px;
+}
+
+.buttonOn{
+    border-radius: 4px;
+    background-color: rgb(250, 100, 98);
+    color: rgba(255,255,255,1);
+    position: relative;
+    appearance: none;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5px 9px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: inherit;
+    user-select: none;
+    width: auto;
+    line-height: 20px;
+}
+
+.mainUl{
+    border-right: 1px solid rgb(219,219,219);
+    display: flex;
+    flex-basis: 220px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+    -webkit-box-pack: justify;
+    list-style: none;
+    justify-content: flex-start;
+    padding: 0;
+}
+
+.mainLi{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.mainA{
+    color: rgb(38,38,38);
+    text-decoration: none;
+    border-left-color: rgb(38,38,38);
+    font-weight: 600;
+    border-left: 2px solid transparent;
+    display: block;
+    font-size: 16px;
+    height: inherit;
+    line-height: 20px;
+    padding: 16px 16px 16px 30px;
+    width: calc(100% - 48px);
+
+}
+
+._checkArea1 {
+    font-size: 13px;
+    margin-top: -12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    margin-left: 60px;
+}
+
+.info1ArticleImg{
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    cursor: auto;
+}
+
+
+/*=========================================*/
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 933px) {
+    body{
+        height: 100% !important;
+    }
+    main{
+        margin: 0;
+    }
+    main.main{
+        margin: 0;
+    }
+    ul.mainUl{
+        flex-direction: row;
+        flex-basis: 0;
+        justify-content: space-around;
+        margin: 0;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    div._changepw_main_wrapper{
+        flex-direction: column;
+        min-height: 80vh;
+    }
+
+    div.mainWrapper{
+        max-width: 100%;
+        width: 100%;
+        flex-direction:column;
+    }
+    div._profile_icon{
+        margin: 0;
+        width: 30%;
+    }
+    div._profile_wrapper{
+        height: 50px;
+        width: 50px;
+        margin: auto;
+    }
+    div._label_wrapper{
+        width: 30%;
+        flex-basis: 30%;
+        margin: 0;
+        padding: 10px 0;
+    }
+    div._input_wrapper{
+        width: 70%;
+        flex-basis: 70%;
+        margin: 0;
+        padding: 0;
+    }
+    aside.sxIVS{
+        display: none;
+    }
+    div.ada5{
+        flex-basis: 100%;
+        padding: 0;
+    }
+    .buttonStyle{
+        margin: 0 auto;
+    }
+
+    div.buttonStyle{
+        margin: auto;
+    }
+
+    div._profile_icon{
+        width: 30%;
+        margin: 0;
+        padding: 0;
+    }
+    div._profile_nickname{
+        width: 70%;
+        margin: 0;
+        padding: 0;
+    }
+
+    div._withdrawl_wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    ._label_wrapper > label{
+        padding: 0;
+    }
+
+    div._input_wrapper input {
+        width: 90%;
+        padding-right: 0 !important;
+    }
+
+
+
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}

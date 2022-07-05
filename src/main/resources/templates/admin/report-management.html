@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>인증글 관리</title>
+    <link
+      rel="stylesheet"
+      href="/assets/css/admin/report-management.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/css/admin/side-bar.css"
+    />
+    <!-- date picker css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+      integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/css/admin/date-picker.css"
+    />
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/certification/certificationDetail.css">
+    <link rel="stylesheet" href="/assets/css/certification/report.css">
+    <!-- date picker css -->
+  </head>
+  <body>
+    <!--<header></header>-->
+    <div class="main">
+      <div th:insert="~{/certification/certificationDetail :: certificationDetail}"></div>
+      <input type="text" class="order" hidden>
+      <input type="text" class="desc" hidden>
+      <div class="wrapper">
+        <div class="inner">
+          <section class="sec1 flex">
+            <div th:insert="~{/admin/side-bar :: side-bar}" class="side-bar"></div>
+            <div class="content">
+              <div class="inner__content">
+                <div>
+                  <h1>신고 관리</h1>
+                </div>
+                <div class="flex">
+                  <!-- search-wrapper 시작 -->
+                  <div class="search-wrapper border__gray">
+                    <!-- search-form -->
+                    <form accept="" id="search-form" name="search-form">
+                      <table class="search-table border__gray">
+                        <tbody>
+                          <tr>
+                            <th class="background__gray">신고 기간</th>
+                            <td class="flex col__period">
+                              <div>
+                                <!-- 기간 버튼 백엔드 작업 시 href 속성 값 사용 -->
+                                <!-- 선택된 버튼은  a-btn__selected 클래스가 추가됨-->
+                                <ul class="flex">
+                                  <li>
+                                    <div class="period-button-wrap">
+                                      <a class="a-btn a-btn__selected" href=""
+                                        ><span>전체</span></a
+                                      >
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="period-button-wrap">
+                                      <a class="a-btn" href="0"
+                                        ><span>오늘</span></a
+                                      >
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="period-button-wrap">
+                                      <a class="a-btn" href="3"
+                                        ><span>3일</span></a
+                                      >
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="period-button-wrap">
+                                      <a class="a-btn" href="7"
+                                        ><span>7일</span></a
+                                      >
+                                    </div>
+                                  </li>
+                                  <li>
+                                    <div class="period-button-wrap">
+                                      <a class="a-btn" href="30"
+                                        ><span>1개월</span></a
+                                      >
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                              <!-- 기간 달력 input -->
+                              <div class="calendar-wrap flex">
+                                <div>
+                                  <input
+                                    type="text"
+                                    class="datepicker"
+                                    name="startDate"
+                                    readonly
+                                  />
+                                </div>
+                                <div class="calendar-icon-wrap">
+                                  <img
+                                    src="/images/admin/calendar.png"
+                                  />
+                                </div>
+                                <div><span>~</span></div>
+                                <div>
+                                  <input
+                                    type="text"
+                                    class="datepicker"
+                                    name="endDate"
+                                    readonly
+                                  />
+                                </div>
+                                <div class="calendar-icon-wrap">
+                                  <img
+                                    src="/images/admin/calendar.png"
+                                  />
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="background__gray">카테고리 선택</th>
+                            <td class="flex">
+                              <div>
+                                <!-- 임시 name, value -->
+                                <select
+                                  name="category"
+                                  id="category-select"
+                                >
+                                  <option value="">전체목록</option>
+                                  <option value="life">생활</option>
+                                  <option value="exercise">운동</option>
+                                  <option value="hobby">취미</option>
+                                  <option value="art">예술</option>
+                                  <option value="heart">정서</option>
+                                  <option value="eating">식습관</option>
+                                  <option value="study">공부</option>
+                                  <!-- 카테고리 설정 -->
+                                </select>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th class="background__gray">신고글 검색</th>
+                            <td class="flex">
+                              <div>
+                                <select name="type" id="search-select">
+                                  <option value="report_number">신고 번호</option>
+                                  <option value="email">신고 회원</option>
+                                  <option value="review_number">글 번호</option>
+<!--                                  검색 조건 추가되어야 할 듯-->
+                                </select>
+                              </div>
+                              <div>
+                                <!-- name 설정하여 사용 -->
+                                <input id="search-input" type="text" name="keyword" />
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="button-wrapper">
+                        <button
+                          type="button"
+                          class="search-button btn background__red"
+                        >
+                          검색
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="chart-wrapper">
+                    <div class="chart-box">
+                      <canvas
+                        id="chart__report"
+                        style="width: 29vw; height: 25vh"
+                      ></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                <!--------------------- list-wrapper 시작 ----------------->
+                <div class="list-wrapper border__gray list-wrapper_min-h">
+                  <div>
+                    <div class="list-info">
+                      <div>신고 목록</div>
+                      <div>
+                        <div>
+                          <!-- db조회 결과 숫자로 넣기 -->
+                          [오늘 신고된 글 <span th:text="${total}"></span>건] 검색결과
+                          <span class="searchResult">0</span>건
+                        </div>
+                        <div class="flex">
+                          <div class="button-box">
+                            <button type="button" class="cancel-btn">
+                              <img
+                                src="/images/admin/back.png"
+                                alt=""
+                              />
+                              신고 취소
+                            </button>
+                          </div>
+                          <div class="button-box">
+                            <button type="button" class="delete-btn">
+                              <img
+                                src="/images/admin/x-icon.png"
+                                alt=""
+                              />
+                              글 삭제
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="list-box border__gray">
+                      <!-- list-form -->
+                      <form action="" name="list-form">
+                        <table class="list-table">
+                          <tbody class="list-tbody">
+                            <tr class="table-head">
+                              <th>
+                                <input type="checkbox" class="check-all" />
+                              </th>
+                              <th class="order_btn" name="report_number">신고 번호</th>
+                              <th class="order_btn" name="report_email">신고한 회원</th>
+                              <th class="order_btn" name="reason">신고 사유</th>
+                              <th class="order_btn" name="report_register_date">신고 일자</th>
+                              <th class="order_btn" name="review_number">글 번호</th>
+                              <th class="order_btn" name="review_email">작성자</th>
+                              <th class="order_btn" name="review_register_date">작성일</th>
+                              <th class="order_btn" name="category">카테고리</th>
+                              <th>인증글</th>
+                            </tr>
+                            <!-- 리스트 불러와서 반복문으로 페이지당 10개씩 -->
+
+                          </tbody>
+                        </table>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- 리스트의 페이징 처리 -->
+                  <div class="paging-wrapper">
+                    <div class="paging-block">
+                      <ul>
+                        <!-- <li>&lt;</li> -->
+                        <li>1</li>
+                        <!-- <li>&gt;</li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/assets/js/admin/report-management.js"></script>
+  <script src="/assets/js/admin/side-bar.js"></script>
+  <script src="/assets/js/admin/admin-common.js"></script>
+  <script src="/assets/js/admin/adminAjax.js"></script>
+  <!-- date picker script -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+    integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <!-- chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+  <script defer src="/assets/js/certification/certificationDetail.js"></script>
+  <script defer src="/assets/js/certification/report.js"></script>
+  <script defer src="/assets/js/certification/certificationDetailAjax.js"></script>
+  <script th:inline="javascript">
+    let file;
+    const replyDiv = $(".reply_area");
+    let pageNum_modal = 1;
+    // cretificationDetail에서 모달 버튼 매개변수로 넘어옴
+    let $reviewNumber;
+    // session에서 받아야함
+
+    $(".list-tbody").on("click",".a-btn",function (e) {
+      $reviewNumber = $(this).closest(".project-view").siblings(".review-number").text()
+      $fileWriter = $(this).closest(".project-view").siblings(".review-user-email").attr("id")
+
+      projectDetailModalShow($reviewNumber, 0)
+      $.getJSON("/litUp/profilePic", {userNumber: $fileWriter}, function(pic){showMainUserPic(pic);}).fail(
+              function () {
+                let pic = {userNumber:$fileWriter, uploadPath:"noPic" }
+                showMainUserPic(pic);
+              }
+      );
+      $.getJSON("/litUp/reviewPic", {reviewNumber: $reviewNumber}, function(pic){showReviewPic(pic);})
+    })
+
+    // 댓글 목록 불러오기
+    function showList(page){
+      reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function(total, list){
+                let str = "";
+
+                if(list == null || list.length == 0) {
+                  replyDiv.html("");
+                  return;
+                }
+
+                $.each(list, function(i, reply){
+                  ////////// getJSON -> AJAX 동기식으로 변경해서 file에 pic 담을 것
+                  $.ajax({
+                    url:"/litUp/profilePic",
+                    type: "get",
+                    data:{userNumber:reply.userNumber},
+                    async:false,
+                    success:function (pic) {
+                      file = pic;
+                    }
+                  });
+
+                  str += '<div class="detailContentWriteContainer">';
+                  str += '<div class="detailContentWriteWrapper">';
+                  str += '<div class="detailContentProfileImage">';
+                  str += '<div class="detailContentProfileImageInner">';
+                  if (file != null && file != "") {
+                    str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'></a>";
+                  } else {
+                    str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                  }
+                  str += '</div>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '<div class="detailContentWriteFeed">';
+                  str += '<div class="detailContentWrite">';
+                  str += '<div class="detailContentWriteName">'
+                  str +=  reply.nickname;
+                  str += '</div>';
+                  str += '<div class="detailContentWriteComment">';
+                  str +=  reply.content;
+                  str += '</div>';
+                  str += '</div>';
+                  str += '<div class="detailContentWriteFeedBottom">';
+                  str += '<div class="detailContentRegisterDate">';
+                  str +=  reviewDetailService.getReplyDate(reply.registerDate);
+                  str += '</div>';
+                  str += '<div class="detailContentCommentDelete">';
+                  str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '</div>';
+
+                });
+                replyDiv.html(str.trim());
+                showReplyPage(total);
+              },function (a,b,c){console.log("error");}
+      );
+
+    };
+
+    //댓글 추가 보기
+    function showAppendList(page) {
+
+      reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function (total, list) {
+
+                $(".appendReply div").html("");
+                let str = "";
+
+                $.each(list, function (i, reply) {
+                  $.ajax({
+                    url:"/litUp/profilePic",
+                    type: "get",
+                    data:{userNumber:reply.userNumber},
+                    async:false,
+                    success:function (pic) {
+                      file = pic;
+                      console.log(file);
+                    }
+                  })
+                  str += '<div class="detailContentWriteContainer">';
+                  str += '<div class="detailContentWriteWrapper">';
+                  str += '<div class="detailContentProfileImage">';
+                  str += '<div class="detailContentProfileImageInner">';
+                  str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'>";
+                  if (file != null && file != "") {
+                    str +="<img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>";
+                  } else {
+                    str += "<img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                  }
+                  str += '</a>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '<div class="detailContentWriteFeed">';
+                  str += '<div class="detailContentWrite">';
+                  str += '<div class="detailContentWriteName">'
+                  str += reply.nickname;
+                  str += '</div>';
+                  str += '<div class="detailContentWriteComment">';
+                  str += reply.content;
+                  str += '</div>';
+                  str += '</div>';
+                  str += '<div class="detailContentWriteFeedBottom">';
+                  str += '<div class="detailContentRegisterDate">';
+                  str += reviewDetailService.getReplyDate(reply.registerDate);
+                  str += '</div>';
+                  str += '<div class="detailContentCommentDelete">';
+                  str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '</div>';
+                  str += '</div>';
+
+                });
+
+                replyDiv.append(str.trim());
+                showReplyPage(total);
+              }, function (a, b, c) {
+                console.log("error");
+              }
+      )};
+
+
+    // 신고하기
+    $(".reportButton").on("click", function () {
+      let $reason = $(this).attr("value");
+
+      reviewDetailService.addReport({
+                userNumber: userNumber, reviewNumber: $reviewNumber, reason: $reason
+              },
+              function (result) {
+                reportModalClose();
+                alert("신고 되었습니다.");
+              },
+              function (a, b, c) {
+                console.log(a, b, c)
+              }
+      );
+    })
+
+    // 댓글쓰기
+    $(".commentButton").on("click", function () {
+      let $commentValue = $(".detailContentFooterCommentInputArea").val();
+      reviewDetailService.addReply({
+                reviewNumber: $reviewNumber, userNumber: userNumber, content: $commentValue
+              },
+              function (result) {
+                $(".detailContentFooterCommentInputArea").val("");
+                pageNum = 1;
+                showList(1);
+                $(".detailContentFeed").scrollTop(0);
+              },
+              function (a, b, c) {
+                console.log(a, b, c)
+              }
+      );
+    })
+
+    // 좋아요
+    $(".detailContentLikeButton").on("click", function () {
+      reviewDetailService.addLike({reviewNumber: $reviewNumber, userNumber: userNumber},
+              function (result) {
+                $("#likeCount").html(result);
+              },
+              function (a, b, c) {
+                console.log(a, b, c)
+              })
+    })
+
+
+    // 좋아요 해제
+    $(".detailContentLikeCancel").on("click", function () {
+      reviewDetailService.removeLike({userNumber: userNumber, reviewNumber: $reviewNumber},
+              function (result) {
+                $("#likeCount").html(result);
+              },
+              function (a, b, c) {
+                console.log(a, b, c)
+              })
+    })
+
+    //댓글 append
+    $(".appendReply div").on("click", function (e) {
+      e.preventDefault();
+      pageNum = pageNum + 1;
+      showAppendList(pageNum);
+
+    })
+
+    //댓글 삭제
+    $(".reply_area").on("click", "div.detailContentCommentDelete a.remove", function (e) {
+      e.preventDefault();
+      let $replyNumber = $(this).attr("class").split(/\s+/);
+      // 유저넘버임
+      reviewDetailService.removeReply($replyNumber[1], userNumber, function (result) {
+        if(result) {
+          pageNum = 1;
+          showList(pageNum);
+        }else{
+          alert("본인 게시물만 삭제 가능합니다.");
+        }
+      })
+    })
+
+    // 클릭시 노출페이지 조절
+    function showReplyPage(total) {
+      let realEnd = Math.ceil(total / 10.0);
+      const $paging = $(".appendReply div");
+
+
+      let next = pageNum < realEnd;
+      let str = "<svg aria-label=\"댓글 더 읽어들이기\" class=\"_ab6-\" color=\"#262626\" fill=\"#262626\" height=\"24\" role=\"img\" viewBox=\"0 0 24 24\" " +
+              "width=\"24\"><circle cx=\"12.001\" cy=\"12.005\" fill=\"none\" r=\"10.5\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"></circle>" +
+              "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"7.001\" x2=\"17.001\" y1=\"12.005\" y2=\"12.005\"></line>" +
+              "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"12.001\" x2=\"12.001\" y1=\"7.005\" y2=\"17.005\"></line></svg>";
+
+      if (next) {
+        $paging.html(str);
+      }
+    }
+
+
+    // 프로필 사진 출력
+    function showMainUserPic(file){
+      let str ="";
+      let str2 ="";
+
+      console.log("===========================" + file);
+      if(file.uploadPath != "noPic" ){
+        str += "<div class=\"detailContentProfileImageInner\">"
+        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+        str += "</a></div>"
+
+        str2 +="<div class=\"detailContentProfileImageInner\">"
+        str2 +="<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>"
+        str2 +="</a></div>"
+      }else{
+        str += "<div class=\"detailContentProfileImageInner\">"
+        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" src='/images/main/profile_ex.png' style='width: 100%'>"
+        str += "</a></div>"
+
+        str2 +="<div class=\"detailContentProfileImageInner\">"
+        str2 +="<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" src='/images/main/profile_ex.png' style='width: 100%'>"
+        str2 +="</a></div>"
+      }
+
+
+
+      $("#userFileBottom").html(str);
+      $("div.top").html(str2);
+    }
+
+    function showReviewPic(pic) {
+      let str ="";
+      let strBtn ="";
+      $.each(pic,function (i, file) {
+        str += "<li id=a" + i + "><img class=\"innerImage\" src='/litUp/display?fileName=" + file.uploadPath  + "/" + file.uuid + "_"  + file.name + "' /></li>"
+        strBtn +="<div id=b"+ i +"></div>"
+      })
+      $(".innerImageSlides").html(str);
+      $(".innerImagePageButtons").html(strBtn);
+      $("li#a0").addClass("active");
+      $("div#b0").addClass("active");
+    }
+
+
+  </script>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.user.achievement.AchievementMapper">
+    <insert id="insert">
+        INSERT INTO TBL_USER
+        (ACHIEVEMENT_NUMBER, USER_NUMBER, MEDAL)
+        VALUES(SEQ_ACHIEVEMENT.NEXTVAL, #{userNumber}, #{medal})
+    </insert>
+
+    <insert id="insertMedal">
+        INSERT INTO TBL_ACHIEVEMENT(ACHIEVEMENT_NUMBER, USER_NUMBER, MEDAL)
+        VALUES (SEQ_ACHIEVEMENT.NEXTVAL, #{userNumber}, #{medal})
+    </insert>
+
+    <select id="medal4Condition" resultType="_int">
+        SELECT COUNT(MEDAL)
+        FROM TBL_ACHIEVEMENT
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="medal5Condition" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER)
+        FROM TBL_REVIEW
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="medal6Condition" resultType="_int">
+        SELECT COUNT(PROJECT_NUMBER)
+        FROM TBL_PROJECT
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="medal5CntCondition" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER)
+        FROM TBL_REVIEW tr, TBL_PROJECT tp
+        WHERE tr.PROJECT_NUMBER = tp.PROJECT_NUMBER
+        AND tr.USER_NUMBER = #{userNumber} AND tp.CATEGORY = #{category}
+        GROUP BY CATEGORY
+    </select>
+
+    <select id="medalInsertBlock" resultType="_int">
+        SELECT COUNT(MEDAL)
+        FROM TBL_ACHIEVEMENT
+        WHERE USER_NUMBER = #{userNumber} AND MEDAL = #{medal}
+    </select>
+
+    <select id="medalAchievementRateCondition" resultType="_int">
+        SELECT COUNT(REGISTER_DATE) / (END_DATE - START_DATE) * 10
+        FROM
+            (
+               SELECT R.REGISTER_DATE, P.START_DATE, P.END_DATE
+               FROM TBL_REVIEW R JOIN TBL_PROJECT P
+               ON R.PROJECT_NUMBER = P.PROJECT_NUMBER AND USER_NUMBER = #{userNumber}
+               AND R.REGISTER_DATE BETWEEN P.START_DATE AND P.END_DATE
+               GROUP BY R.REGISTER_DATE, P.STARTDATE, P.ENDDATE
+            )
+    </select>
+
+    <select id="medal12Condition" resultType="_int">
+            SELECT COUNT(REPLY_NUMBER)
+            FROM TBL_REPLY
+            WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="medal13Condition" resultType="_int">
+            SELECT COUNT(REVIEW_NUMBER)
+            FROM TBL_LIKE
+            WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="medal14Condition" resultType="_int">
+            SELECT COUNT(FOLLOWING_NUMBER)
+            FROM TBL_FOLLOW
+            WHERE FOLLOWER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="medal15Condition" resultType="_int">
+            SELECT COUNT(FOLLOWER_NUMBER)
+            FROM TBL_FOLLOW
+            WHERE FOLLOWING_NUMBER = #{userNumber}
+    </select>
+
+
+</mapper>

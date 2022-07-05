@@ -1,0 +1,603 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    height : 100vh;
+    width : 100%;
+}
+
+.detailModalBackground{
+    margin:0;
+    padding:0;
+    background-color: rgba(0,0,0,0.6);
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-size : cover;
+    position: fixed;
+    z-index: 10;
+    top:0;
+}
+
+.detailModalContentContainer{
+    min-height: 100%;
+}
+
+.detailModalContent{
+    background-color:  white;
+    width: 70%;
+    position: absolute;
+    top: 50vh;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-height: 94%;
+    max-height: 680px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.modalCloseButton{
+    position: absolute;
+    right: 10px;
+    top: 1%;
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    cursor:pointer;
+    border: none;
+    font-size: 1.5em;
+    color: white;
+    z-index: 1;
+}
+
+.detailContentInnerWrapepr{
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+    position: fixed;
+}
+
+.detailContentInner{
+    width: 43%;
+    min-height: 100%;
+    z-index: 1;
+}
+
+.detailContentInnerImage{
+    width: 80%;
+    background-color: black;
+}
+
+.innerImageWrapper{
+    width: 100%;
+    min-height: 100%;
+    overflow:hidden;
+}
+
+.innerImage{
+    object-fit: cover;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 32.5%;
+    width: 55%;
+    min-height: 99.7%;
+    height: 100%;
+}
+
+.innerImageSlides {
+    margin: 0;
+}
+
+.innerImageSlides > li {
+    list-style: none;
+    opacity: 0;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    transition: opacity 0.3s;
+}
+
+.innerImageSlides > li.active{
+    opacity: 1;
+}
+
+.innerImagePageButtons{
+    text-align: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    bottom: 10px;
+    width: 17.2%;
+    left: 32.5%;
+}
+
+.innerImagePageButtons > div {
+    width:15px;
+    height:15px;
+    background-color:rgba(255,255,255,.5);
+    border-radius:50%;
+    display:inline-block;
+    cursor:pointer;
+    border: 1px solid rgb(219,219,219);
+}
+
+.innerImagePageButtons > div.active{
+    background-color:rgba(0,0,0,0.5);
+}
+
+.innerImageSideButtons > div{
+    position:absolute;
+    top:0;
+    left:0;
+    width:20%;
+    height:100%;
+    cursor:pointer;
+}
+
+.innerImageSideButtons > div:last-child{
+    left:45%;
+    right:0;
+    width: 20%;
+}
+
+.innerImageSideButtons > div > span{
+    position:absolute;
+    top:50%;
+    left:20px;
+    transform:translatey(-50%);
+    background-color:white;
+    opacity:0.5;
+    border-radius:50px;
+    font-size:25px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(219,219,219);
+}
+
+.innerImageSideButtons > div > span:hover{
+    opacity: 0.8;
+}
+
+.innerImageSideButtons > div > span:first-child{
+    width: 30px;
+    height: 24px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
+.innerImageSideButtons > div:last-child > span{
+    left:auto;
+    right:20px;
+}
+
+.detailContent{
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.detailContentProfileContainer{
+    border-bottom: 1px solid rgb(219,219,219);
+}
+
+.detailContentProfileWrapper{
+    overflow-x: hidden;
+    display: flex;
+    padding: 14px 16px 14px 16px;
+}
+
+.detailContentProfileButtonWrapper{
+    display: flex;
+    align-items: center;
+}
+
+.detailContentProfileButton,
+.detailContentDeleteButton{
+    border: none;
+    background: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    cursor: pointer;
+    font-family: sans-serif;
+}
+
+.detailContentProfile,
+.detailContentWriteContainer{
+    display: flex;
+    width: 100%;
+}
+
+.detailContentWriteContainer{
+    margin: 5px 0px;
+}
+
+.detailContentProfileNameWrapper,
+.detailContentProfileModalWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detailContentProfileName,
+.detailContentProfileModalId{
+    font-weight: bold;
+}
+
+.detailContentProfileIntro,
+.detailContentRegisterDate,
+.detailContentProfileModalName,
+.detailContentProfileModalIntro,
+.detailContentLike,
+.detailContentCommentIn,
+.detailContentCommentLook{
+    color:#BEC3C9;
+    font-size: 13px;
+}
+
+.detailContentCommentLook{
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.commentLine{
+    border-bottom: 1px solid rgb(219,219,219);
+    display: inline-block;
+    height: 0;
+    margin-right: 16px;
+    vertical-align: middle;
+    width: 24px;
+}
+
+.detailContentWriteFeedBottom > div{
+    margin-right: 5px;
+}
+
+.detailContentCommentDelete{
+    font-size: 13px;
+    color: rgb(250,100,98);
+    cursor: pointer;
+}
+
+.detailContentProfileImageWrapper{
+    display: flex;
+    align-items: center;
+    width: 50px;
+    padding-right: 5px;
+}
+
+.detailContentProfileImage{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.detailProfileImage{
+    object-fit: cover;
+    min-height: 100%;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+}
+
+.detailContentProfileImageInner, .detailContentProfileImageInne{
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid rgb(219,219,219);
+}
+
+.detailContentFeetWrapper{
+    position: relative;
+    min-height: 635px;
+}
+
+/*.detailContentFeed{*/
+/*    box-sizing: content-box;*/
+/*    flex-grow: 1;*/
+/*    min-height: 370px;*/
+/*    height: calc(100% - 15px);*/
+/*    left: 0;*/
+/*    overflow-y: scroll;*/
+/*    padding: 16px;*/
+/*    position: absolute;*/
+/*    scrollbar-width: none;*/
+/*    width: calc(100% - 32px);*/
+/*}*/
+
+.detailContentFeed {
+    box-sizing: content-box;
+    flex-grow: 1;
+    height: calc(100% - -150px);
+    left: 0;
+    overflow-y: scroll;
+    padding: 16px;
+    position: absolute;
+    scrollbar-width: none;
+    width: calc(100% - 32px);
+    height: 650px;
+    overflow: auto;
+}
+
+.detailContentFeed::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.detailContentFooter{
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    min-height:198px;
+    max-height:250px;
+    width: 34.9%;
+    z-index: 1;
+    background-color: white;
+    border-top:1px solid rgb(219,219,219);
+}
+
+.detailContentWriteWrapper{
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 16px;
+    margin-right: 15px;
+}
+
+.detailContentWriteFeed{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 85%;
+}
+
+.detailContentWrite{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    font-size: 14px;
+    flex-direction: column;
+}
+
+.detailContentWriteName{
+    height: 30px;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.detailContentWriteComment{
+    /*height: 30px;*/
+    word-break: break-word;
+    min-width: 130px;
+}
+
+.detailContentWriteFeedBottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.content_area{
+    min-height: 80px;
+}
+
+.reply_area{
+    min-height: 80px;
+}
+
+.detailContentFooterButtonsWrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailContentFooterButtons{
+    display: flex;
+    min-height: 24px;
+    max-height: 24px;
+    padding : 12px 15px;
+}
+
+.detailContentFooterButton{
+    width: 28px;
+    height: 28px;
+    margin-right: 16px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.detailContentLikeButton,
+.detailContentLikeCancel{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes heart {
+    from{
+        transform:scale(1.0, 1.0);
+    }to{
+         transform:scale(1.3, 1.2);
+     }
+}
+
+.detailContentLikeCancel{
+    animation-name: heart;
+    animation-duration: 0.2s;
+}
+
+.detailContentLikeButton:hover{
+    opacity: 0.5;
+}
+
+.detailContentFooterWrites{
+    min-height: 120px;
+    max-height: 120px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.detailContentFooterWirtesInner{
+    display: flex;
+    width: 95%;
+    margin-left: 15px;
+    min-height: 24px;
+    max-height: 24px;
+}
+
+.detailContentFooterComment{
+    border-top:1px solid rgb(219,219,219);
+    min-height: 45px;
+    max-height: 45px;
+}
+
+.detailContentFooterWirtesInnerDate{
+    font-size: 12px;
+    margin-left: 17px;
+    width: 95%;
+    color:#BEC3C9;
+}
+
+.detailContentFooterCommentInner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.detailContentFooterCommentImo{
+    width: 8%;
+    min-height: 100%;
+    text-align: center;
+}
+.detailContentFooterCommentImoIcon{
+    width: 30px;
+    height: 30px;
+}
+
+
+.detailContentFooterCommentInput{
+    width:80%;
+    font-size: 14px;
+    height:32px;
+}
+.detailContentFooterCommentButton{
+    width: 8%;
+}
+
+.detailContentFooterCommentButton > button{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    cursor:pointer;
+    color: rgb(250,100,98);
+    font-weight: bold;
+    font-size: 15px;
+    border:none;
+    background-color: transparent;
+}
+
+.detailContentFooterCommentButton > button:disabled{
+    color: rgb(250,100,98);
+    opacity: 0.5;
+}
+
+.detailContentFooterCommentImoIconImage{
+    min-height: 100%;
+}
+
+.detailContentFooterCommentInputArea{
+    height: 28px !important;
+    resize: none;
+    width: 98%;
+    border: none;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.detailContentFooterCommentInputArea:focus{
+    outline: none;
+}
+
+.detailContentFooterCommentInputArea::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.detailContentFooterWirtesInner > div > span{
+    font-weight: bold;
+}
+
+.detailContentFooterWirtesInner > div:first-child{
+    font-size: 20px;
+    line-height: 18px;
+}
+
+.detailContentFooterWirtesInner > div:last-child{
+    font-size: 14px;
+}
+
+.profileModal{
+    background-color: white;
+    width: 390px;
+    min-height: 190px;
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 3px 3px 3px rgba(219,219,219,0.7);
+    border-color: rgb(219,219,219);
+    z-index: 2;
+}
+
+.detailContentProfileModalIntro{
+    margin-top: 10px;
+}
+
+.detailContentProfileModalContent{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 90px;
+}
+
+.profileModalContent{
+    text-align: center;
+}
+
+.closeArea{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.reportCloseArea{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

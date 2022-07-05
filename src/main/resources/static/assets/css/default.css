@@ -1,0 +1,22 @@
+/*메뉴 설정*/
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+body{
+  /* font-family: 'Dongle', sans-serif; */
+  /* font-family: 'Yeon Sung', cursive; */
+  /* font-family: 'Jeju Hallasan', cursive; */
+  /*font-family: 'Hanna', sans-serif;*/
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+html{
+  font-size: 20px;
+}
+
+header{
+    height: 60px;
+}
+footer{
+    height: 60px;
+}

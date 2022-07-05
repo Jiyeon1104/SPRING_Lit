@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.review.LikeMapper">
+    <insert id="insert">
+        INSERT INTO TBL_LIKE
+        (REVIEW_NUMBER, USER_NUMBER)
+        VALUES(#{reviewNumber}, #{userNumber})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_LIKE WHERE USER_NUMBER = #{userNumber}
+        AND REVIEW_NUMBER = #{reviewNumber}
+    </delete>
+
+    <select id="getTotal" resultType="long">
+        SELECT COUNT(USER_NUMBER) FROM TBL_LIKE
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </select>
+
+    <select id="checkLike" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER) FROM TBL_LIKE
+        WHERE USER_NUMBER = #{userNumber} AND REVIEW_NUMBER = #{reviewNumber}
+    </select>
+
+</mapper>

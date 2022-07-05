@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.review.ReviewFileMapper">
+    <insert id="insert">
+        INSERT INTO TBL_REVIEW_FILE (UUID, UPLOAD_PATH, NAME, IMAGE, REVIEW_NUMBER, FILE_NUMBER)
+        VALUES (#{uuid}, #{uploadPath}, #{name}, #{image}, #{reviewNumber}, SEQ_REVIEWFILE.NEXTVAL)
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_REVIEW_FILE WHERE REVIEW_NUMBER = #{reviewNumber}
+    </delete>
+
+    <delete id="deleteOne">
+        DELETE FROM TBL_REVIEW_FILE WHERE REVIEW_NUMBER = #{reviewNumber}
+    </delete>
+
+    <select id="getImgs" resultType="reviewFileVO">
+        SELECT UUID, UPLOAD_PATH, NAME, IMAGE, REVIEW_NUMBER, FILE_NUMBER
+        FROM TBL_REVIEW_FILE
+        WHERE REVIEW_NUMBER = #{reviewNumber}
+    </select>
+
+
+    <select id="getOldFiles" resultType="reviewFileVO">
+        SELECT UUID, UPLOAD_PATH, NAME, IMAGE, REVIEW_NUMBER, FILE_NUMBER
+        FROM TBL_REVIEW_FILE
+        WHERE UPLOAD_PATH = TO_CHAR(SYSDATE - 1, 'YYYY/MM/DD')
+    </select>
+</mapper>

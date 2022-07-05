@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.message.MessageMapper">
+    <insert id="insert">
+        INSERT INTO TBL_MESSAGE
+        (MESSAGE_NUMBER, SEND_USER_NUMBER, RECEIVE_USER_NUMBER, ROOM_ID, CONTENT, MESSAGE_DATE)
+        VALUES(SEQ_MESSAGE.NEXTVAL, #{sendUserNumber}, #{receiveUserNumber}, #{roomId}, #{content}, #{messageDate})
+    </insert>
+
+    <select id="getList" resultType="messageVO">
+        SELECT MESSAGE_NUMBER, SEND_USER_NUMBER, RECEIVE_USER_NUMBER, ROOM_ID, CONTENT, MESSAGE_DATE
+        FROM TBL_MESSAGE
+        WHERE ROOM_ID = #{roomId}
+    </select>
+
+    <select id="getFollowerList" resultType="userVO">
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT
+        FROM TBL_FOLLOW f LEFT OUTER JOIN TBL_USER u
+        ON f.FOLLOWING_NUMBER = u.USER_NUMBER
+        WHERE f.FOLLOWER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="getReceiveUserNumber" resultType="long">
+        SELECT DISTINCT RECEIVE_USER_NUMBER
+        FROM TBL_MESSAGE
+        WHERE SEND_USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="getRecentMessage" resultType="map">
+        SELECT NICKNAME, CONTENT, RECEIVE_USER_NUMBER, ROOM_ID
+        FROM
+            (
+            SELECT u.NICKNAME, m.CONTENT, m.RECEIVE_USER_NUMBER, m.ROOM_ID
+            FROM TBL_USER u LEFT OUTER JOIN TBL_MESSAGE m
+            ON u.USER_NUMBER  = m.RECEIVE_USER_NUMBER
+            WHERE m.RECEIVE_USER_NUMBER = #{receiveUserNumber}
+            ORDER BY m.MESSAGE_DATE DESC
+            )
+        WHERE ROWNUM = 1
+    </select>
+
+    <select id="searchFollower" resultType="userVO">
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT
+        FROM
+        (
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT
+        FROM TBL_FOLLOW f LEFT OUTER JOIN TBL_USER u
+        ON f.FOLLOWER_NUMBER = u.USER_NUMBER
+        WHERE f.FOLLOWING_NUMBER = #{userNumber}
+        )
+        WHERE (NICKNAME LIKE '%'||#{keyword}||'%') OR (NAME LIKE '%'||#{keyword}||'%')
+    </select>
+
+<!--    <select id="getMessageList" resultType="string">-->
+<!--        SELECT CONTENT-->
+<!--        FROM TBL_MESSAGE-->
+<!--        WHERE SEND_USER_NUMBER = #{sendUserNumber} AND RECEIVE_USER_NUMBER = #{receiveUserNumber}-->
+<!--        ORDER BY MESSAGE_DATE DESC-->
+<!--    </select>-->
+
+    <select id="getMessageList" resultType="messageDTO">
+        <![CDATA[
+        SELECT CONTENT, TOTAL, SEND_USER_NUMBER, RECEIVE_USER_NUMBER, ROOM_ID
+        FROM
+        (
+            SELECT ROWNUM RN, CONTENT, TOTAL, SEND_USER_NUMBER, RECEIVE_USER_NUMBER, ROOM_ID
+            FROM
+            (
+                SELECT COUNT(CONTENT) OVER() AS TOTAL, CONTENT, SEND_USER_NUMBER, RECEIVE_USER_NUMBER, ROOM_ID
+                FROM TBL_MESSAGE
+                WHERE (SEND_USER_NUMBER = #{sendUserNumber} AND RECEIVE_USER_NUMBER = #{receiveUserNumber})
+                OR (SEND_USER_NUMBER = #{receiveUserNumber} AND RECEIVE_USER_NUMBER = #{sendUserNumber})
+                ORDER BY MESSAGE_DATE DESC
+            )
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE RN > (#{pageNum}-1) * #{amount}
+        ]]>
+    </select>
+
+    <insert id="newRoom">
+        INSERT INTO TBL_MESSAGE_ROOM
+        (ROOM_ID, SEND_USER_NUMBER, RECEIVE_USER_NUMBER)
+        VALUES(#{roomId}, #{sendUserNumber}, #{receiveUserNumber})
+    </insert>
+
+    <select id="findRoom" resultType="_int">
+        SELECT COUNT(ROOM_ID)
+        FROM TBL_MESSAGE_ROOM
+        WHERE SEND_USER_NUMBER = #{sendUserNumber} AND RECEIVE_USER_NUMBER = #{receiveUserNumber}
+        OR SEND_USER_NUMBER = #{receiveUserNumber} AND RECEIVE_USER_NUMBER = #{sendUserNumber}
+    </select>
+
+    <select id="getRoom" resultType="messageRoom">
+        SELECT ROOM_ID, SEND_USER_NUMBER, RECEIVE_USER_NUMBER
+        FROM TBL_MESSAGE_ROOM
+        WHERE SEND_USER_NUMBER = #{sendUserNumber} and RECEIVE_USER_NUMBER = #{receiveUserNumber}
+        OR SEND_USER_NUMBER = #{receiveUserNumber} AND RECEIVE_USER_NUMBER = #{sendUserNumber}
+    </select>
+
+    <select id="getSendUserNumber" resultType="long">
+        SELECT DISTINCT SEND_USER_NUMBER
+        FROM TBL_MESSAGE
+        WHERE RECEIVE_USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="getRecentReceiveMessage" resultType="map">
+        SELECT NICKNAME, CONTENT, SEND_USER_NUMBER, ROOM_ID
+        FROM
+            (
+            SELECT u.NICKNAME, m.CONTENT, m.SEND_USER_NUMBER, m.ROOM_ID
+            FROM TBL_USER u LEFT OUTER JOIN TBL_MESSAGE m
+            ON u.USER_NUMBER  = m.SEND_USER_NUMBER
+            WHERE m.SEND_USER_NUMBER = #{sendUserNumber}
+            ORDER BY m.MESSAGE_DATE DESC
+            )
+        WHERE ROWNUM = 1
+    </select>
+</mapper>

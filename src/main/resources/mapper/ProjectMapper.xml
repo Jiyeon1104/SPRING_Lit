@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.project.ProjectMapper">
+    <select id="getList" resultType="projectVO">
+        <![CDATA[
+        SELECT APPLY_COUNT, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION, START_DATE, END_DATE, STATUS
+        FROM (
+            SELECT APPLY_COUNT, ROWNUM rn, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION, START_DATE, END_DATE, STATUS
+            FROM (
+                SELECT COUNT(pr.PROJECT_NUMBER) APPLY_COUNT,
+                pr.PROJECT_NUMBER, pr.TITLE, pr.CATEGORY, pr.CONTENT, pr.AUTHENTICATION, pr.START_DATE, pr.END_DATE, pr.STATUS
+                FROM TBL_PROJECT pr
+                JOIN TBL_PARTICIPATION pa ON pr.PROJECT_NUMBER = pa.PROJECT_NUMBER
+                WHERE pr.STATUS = 1
+                ]]>
+        <if test="category != 'all'">
+            AND pr.CATEGORY = #{category}
+        </if>
+        <![CDATA[
+                GROUP BY pr.PROJECT_NUMBER, pr.TITLE, pr.CATEGORY, pr.CONTENT, pr.AUTHENTICATION, pr.START_DATE,
+                pr.END_DATE, pr.STATUS, pa.PROJECT_NUMBER
+                ]]>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test="order == 'popular'">
+                    ORDER BY APPLY_COUNT DESC
+                </when>
+                <when test="order == 'new'">
+                    ORDER BY START_DATE DESC
+                </when>
+            </choose>
+        </if>
+        <![CDATA[
+            )
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+        )
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+
+    </select>
+    <!--    ###############################동적 쿼리 쓸것-->
+    <insert id="insert">
+        <selectKey keyProperty="projectNumber" resultType="long" order="BEFORE">
+            SELECT SEQ_PROJECT.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_PROJECT
+        (PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION, START_DATE, END_DATE, USER_NUMBER)
+        VALUES(#{projectNumber}, #{title}, #{category}, #{content}, #{authentication}, #{startDate}, #{endDate},
+        #{userNumber})
+    </insert>
+
+    <select id="searchProject" resultType="projectDTO">
+        SELECT TOTAL, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, APPLY_COUNT,
+        AUTHENTICATION, TO_CHAR(START_DATE, 'yyyy-mm-dd') AS START_DATE, TO_CHAR(END_DATE, 'yyyy-mm-dd') AS END_DATE,
+        STATUS, USER_NUMBER,
+        EMAIL,
+        PARTICIPATION_COUNT
+        FROM(
+        SELECT ROWNUM RN, TOTAL, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, APPLY_COUNT,
+        AUTHENTICATION, START_DATE, END_DATE, STATUS, USER_NUMBER,
+        EMAIL,
+        PARTICIPATION_COUNT
+        FROM(
+        SELECT COUNT(p.PROJECT_NUMBER) OVER() AS TOTAL, p.PROJECT_NUMBER, p.TITLE, p.CATEGORY, p.CONTENT, p.APPLY_COUNT,
+        p.AUTHENTICATION, p.START_DATE, p.END_DATE, p.STATUS, p.USER_NUMBER,
+        u.EMAIL,
+        pt.PARTICIPATION_COUNT
+        FROM TBL_PROJECT p
+        LEFT OUTER JOIN (
+        SELECT PROJECT_NUMBER, COUNT(USER_NUMBER) AS PARTICIPATION_COUNT
+        FROM TBL_PARTICIPATION
+        GROUP BY PROJECT_NUMBER
+        ) pt
+        ON pt.PROJECT_NUMBER = p.PROJECT_NUMBER
+        LEFT OUTER JOIN TBL_USER u
+        ON u.USER_NUMBER = p.USER_NUMBER
+        WHERE
+        <choose>
+            <when test="type == 'email'">
+                u.${type}
+            </when>
+            <otherwise>
+                p.${type}
+            </otherwise>
+        </choose>
+        LIKE '%'||#{keyword}||'%'
+        <if test="category != null and category != ''">
+            AND p.CATEGORY = #{category}
+        </if>
+        <if test="startDate != null and startDate != ''">
+            <![CDATA[
+                           AND TO_CHAR(p.START_DATE, 'yyyy-mm-dd') >= #{startDate}
+                    ]]>
+        </if>
+        <if test="endDate != null and endDate != ''">
+            <![CDATA[
+                           AND TO_CHAR(p.END_DATE, 'yyyy-mm-dd') <= #{endDate}
+                    ]]>
+        </if>
+        <trim prefix="AND">
+            <choose>
+                <when test="status == 0 or status == 1 or status == 2">
+                    p.STATUS = #{status}
+                </when>
+                <when test="status == 3">
+                    (p.STATUS = 1 OR p.STATUS = 2)
+                </when>
+            </choose>
+        </trim>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test="desc == true">
+                    ORDER BY ${order} DESC
+                </when>
+                <otherwise>
+                    ORDER BY ${order}
+                </otherwise>
+            </choose>
+        </if>
+        )
+        <![CDATA[
+                WHERE ROWNUM <= #{pageNum} * #{amount}
+                ]]>
+        )
+        <![CDATA[
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="get" resultType="projectDTO">
+        SELECT PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION,
+        TO_CHAR(START_DATE, 'yyyy-mm-dd') START_DATE,
+        TO_CHAR(END_DATE, 'yyyy-mm-dd') END_DATE
+        FROM TBL_PROJECT WHERE PROJECT_NUMBER = #{projectNumber}
+    </select>
+
+    <select id="getForReview" resultType="projectDTO">
+        SELECT PJ.PROJECT_NUMBER, PJ.TITLE, PJ.CATEGORY, PJ.CONTENT, PJ.AUTHENTICATION, PJ.START_DATE, PJ.END_DATE, US.NICKNAME
+        FROM TBL_PROJECT PJ, TBL_USER US WHERE PJ.PROJECT_NUMBER = #{projectNumber} AND US.USER_NUMBER =#{userNumber}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_PROJECT WHERE PROJECT_NUMBER = #{projectNumber}
+    </delete>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(PROJECT_NUMBER) FROM TBL_PROJECT
+    </select>
+
+    <update id="changeStatus">
+        UPDATE TBL_PROJECT
+        SET STATUS = #{status}
+        WHERE PROJECT_NUMBER = #{projectNumber}
+    </update>
+
+    <select id="getTotalByStatus" resultType="_int">
+        SELECT COUNT(PROJECT_NUMBER) FROM TBL_PROJECT
+        WHERE STATUS = #{status}
+    </select>
+
+    <select id="getMainList" resultType="projectDTO">
+        SELECT TOTAL, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION,
+        APPLY_COUNT, USER_NUMBER, START_DATE, END_DATE, STATUS, REGISTER_DATE,
+        NVL(REVIEW_COUNT,0) AS REVIEW_COUNT
+        FROM(
+            SELECT ROWNUM RN, TOTAL, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION,
+            APPLY_COUNT, USER_NUMBER, START_DATE, END_DATE, STATUS, REGISTER_DATE,
+            REVIEW_COUNT
+            FROM(
+                SELECT COUNT(p.PROJECT_NUMBER) OVER() AS TOTAL, p.PROJECT_NUMBER, p.TITLE, p.CATEGORY, p.CONTENT, p.AUTHENTICATION,
+                p.APPLY_COUNT, p.USER_NUMBER, p.START_DATE, p.END_DATE, p.STATUS, p.REGISTER_DATE,
+                r.REVIEW_COUNT
+                FROM TBL_PROJECT p
+                LEFT OUTER JOIN (
+                    SELECT PROJECT_NUMBER, COUNT(REVIEW_NUMBER) AS REVIEW_COUNT
+                    FROM TBL_REVIEW
+                    GROUP BY PROJECT_NUMBER
+                ) r
+                ON p.PROJECT_NUMBER = r.PROJECT_NUMBER
+                WHERE STATUS = 1 --메인은 진행중인 것만 띄우기
+                <if test="category != null and category != ''">
+                    AND CATEGORY = #{category}
+                </if>
+                <if test="order != null and order != ''">
+                    <choose>
+                        <when test="order == 'popular'">
+                            ORDER BY APPLY_COUNT DESC
+                        </when>
+                        <when test="order == 'new'">
+                            ORDER BY REGISTER_DATE DESC
+                        </when>
+                    </choose>
+                </if>
+                )
+                <![CDATA[
+                        WHERE ROWNUM <= #{pageNum} * #{amount}
+                        ]]>
+        )
+        <![CDATA[
+    WHERE RN > (#{pageNum} - 1) * #{amount}
+    ]]>
+    </select>
+
+    <!-- 메달2 조건 관련   -->
+    <select id="getTotalByUserNumber" resultType="_int">
+        SELECT COUNT(PROJECT_NUMBER) FROM TBL_PROJECT
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <select id="getMyList" resultType="projectVO">
+        SELECT PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION, APPLY_COUNT, USER_NUMBER, START_DATE, END_DATE, REGISTER_DATE, STATUS
+        FROM(
+            SELECT ROWNUM RN, PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION, APPLY_COUNT, USER_NUMBER, START_DATE, END_DATE, REGISTER_DATE, STATUS
+            FROM(
+                SELECT PROJECT_NUMBER, TITLE, CATEGORY, CONTENT, AUTHENTICATION, APPLY_COUNT, USER_NUMBER, START_DATE, END_DATE, REGISTER_DATE, STATUS
+                FROM TBL_PROJECT
+                WHERE USER_NUMBER = #{userNumber}
+                ORDER BY REGISTER_DATE DESC
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{pageNum}*#{amount}
+        )
+        WHERE RN > (#{pageNum}-1)*#{amount}
+        ]]>
+    </select>
+
+    <update id="increaseApplyCnt">
+        UPDATE TBL_PROJECT
+        SET APPLY_COUNT = APPLY_COUNT + 1
+        WHERE PROJECT_NUMBER = #{projectNumber}
+    </update>
+
+</mapper>

@@ -1,0 +1,299 @@
+@charset "UTF-8";
+
+/*노멀라이즈 ===================================================================*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/*위상컨트롤*/
+.hidden {
+  display: none;
+}
+
+/**/
+.opacity00 {
+  opacity: 0;
+}
+
+.opacity05 {
+  opacity: 0.5;
+}
+
+.opacity10 {
+  opacity: 1;
+}
+
+/* 배경색 */
+/* 인스타 백그라운드 필요시 사용 */
+.bg{ 
+    /* background: rgb(219, 219, 219); */
+    background: #EFEFEF;
+}
+/* 대표색 */
+.bg01{ 
+    background: rgb(250, 100, 98);
+    background: #fa6462;
+}
+/* 이벤트 색 */
+.bg02{
+  background: rgb(255, 69, 67);
+  background: #ff4543;
+}
+/* 비활성화 */
+.bg03{
+  background: rgba(255, 69, 67, 0.3);
+}
+
+
+/* 폰트색 */
+/* 대표색 */
+.fontColor{
+  /* color: rgb(219, 219, 219); */
+  color: #EFEFEF;
+}
+.fontColor01{
+  color: rgb(250, 100, 98);
+}
+/* 이벤트 색 */
+.fontColor02{ 
+  color: rgb(255, 69, 67); 
+}
+/* 비활성화 */
+.fontColor03{ 
+  color: rgba(255, 69, 67, 0.3);
+}
+
+/* 컨탠츠 기본 넓이 */
+.baseWith{
+  width: 935px;
+  padding: 0 20px;
+}
+
+a{
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+}
+a:link{
+  color: #000000;
+  text-decoration: none;
+}
+a:visited{
+  color: #000000;
+  text-decoration: none;
+}
+a:hover{
+  color: #000000;
+  text-decoration: none;
+}
+/* 탑 풋 CSS*/
+/*header*/
+/*=================================================*/
+header {
+  height: 60px;
+}
+
+
+/*footer*/
+footer {
+  height: 60px;
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+
+/* 넓이 컨트롤러 */
+.col-all-1 {
+   width: 8.3333%;
+}
+
+.col-all-2 {
+   width: 16.6666%;
+}
+
+.col-all-3 {
+   width: 25%;
+}
+
+.col-all-4 {
+   width: 33.3333%;
+}
+
+.col-all-5 {
+   width: 41.6666%;
+}
+
+.col-all-6 {
+   width: 50%;
+}
+
+.col-all-7 {
+   width: 58.3333%;
+}
+
+.col-all-8 {
+   width: 66.6666%;
+}
+
+.col-all-9 {
+   width: 75%;
+}
+
+.col-all-10 {
+   width: 83.3333%;
+}
+
+.col-all-11 {
+   width: 91.6666%;
+}
+
+.col-all-12 {
+   width: 100%;
+}
+
+
+.grid {
+  display: grid;
+  width: 1300px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: repeat(12, 1fr);
+  grid-gap: 20px;
+
+  align-content:start;
+}
+
+.grid .col-1 {
+  grid-column-end: span 1;
+}
+.grid .row-1 {
+  grid-row-end: span 1;
+}
+.grid .col-2 {
+  grid-column-end: span 2;
+}
+.grid .row-2 {
+  grid-row-end: span 2;
+}
+.grid .col-3 {
+  grid-column-end: span 3;
+}
+.grid .row-3 {
+  grid-row-end: span 3;
+}
+.grid .col-4 {
+  grid-column-end: span 4;
+}
+.grid .row-4 {
+  grid-row-end: span 4;
+}
+.grid .col-5 {
+  grid-column-end: span 5;
+}
+.grid .row-5 {
+  grid-row-end: span 5;
+}
+.grid .col-6 {
+  grid-column-end: span 6;
+}
+.grid .row-6 {
+  grid-row-end: span 6;
+}
+.grid .col-7 {
+  grid-column-end: span 7;
+}
+.grid .row-7 {
+  grid-row-end: span 7;
+}
+.grid .col-8 {
+  grid-column-end: span 8;
+}
+.grid .row-8 {
+  grid-row-end: span 8;
+}
+.grid .col-9 {
+  grid-column-end: span 9;
+}
+.grid .row-9 {
+  grid-row-end: span 9;
+}
+.grid .col-10 {
+  grid-column-end: span 10;
+}
+.grid .row-10 {
+  grid-row-end: span 10;
+}
+.grid .col-11 {
+  grid-column-end: span 11;
+}
+.grid .row-11 {
+  grid-row-end: span 11;
+}
+.grid .col-full,
+.grid .col-12 {
+  grid-column: 1 / -1;
+}
+
+
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}

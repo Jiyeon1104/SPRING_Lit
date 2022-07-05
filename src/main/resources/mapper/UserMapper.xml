@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.user.UserMapper">
+    <insert id="insert">
+        <selectKey keyProperty="userNumber" resultType="long" order="BEFORE">
+            SELECT SEQ_USER.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_USER
+        (USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD )
+        VALUES(#{userNumber}, #{email}, #{name}, #{nickname}, #{password})
+    </insert>
+
+    <insert id="kakaoInsert">
+        <selectKey keyProperty="userNumber" resultType="long" order="BEFORE">
+            SELECT SEQ_USER.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO TBL_USER
+        (USER_NUMBER, EMAIL, NAME)
+        VALUES(#{userNumber}, #{email}, #{name})
+    </insert>
+
+    <select id="kakaoRead" resultType="long">
+        SELECT USER_NUMBER
+        FROM TBL_USER
+        WHERE EMAIL = #{email}
+    </select>
+
+    <update id="kakaoUpdate">
+        UPDATE TBL_USER
+        SET NICKNAME = #{nickname}, PASSWORD = #{password}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <select id="emailCheck" resultType="_int">
+        SELECT COUNT(EMAIL) FROM TBL_USER
+        WHERE EMAIL = #{email}
+    </select>
+
+    <select id="nicknameCheck" resultType="_int">
+        SELECT COUNT(NICKNAME) FROM TBL_USER
+        WHERE NICKNAME = #{nickname}
+    </select>
+
+    <select id="login" resultType="userVO">
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT FROM TBL_USER
+        WHERE EMAIL = #{email} AND PASSWORD = #{password}
+    </select>
+
+    <select id="adminLogin" resultType="_int">
+        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+        WHERE EMAIL = #{email} AND PASSWORD = #{password}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM TBL_USER WHERE USER_NUMBER = #{userNumber}
+    </delete>
+
+    <select id="getUser" resultType="userVO">
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT FROM TBL_USER
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+
+    <update id="update">
+        UPDATE TBL_USER
+        SET NAME = #{name}, NICKNAME = #{nickname},
+            CONTENT = #{content}, EMAIL = #{email}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <update id="updatePw">
+        UPDATE TBL_USER
+        SET PASSWORD = #{newPassword}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <update id="updateMedal">
+        UPDATE TBL_USER
+        SET ACHIEVEMENT_NUMBER = #{achievementNumber}
+        WHERE USER_NUMBER = #{userNumber}
+    </update>
+
+    <select id="mypageReviewCnt" resultType="_int">
+        SELECT COUNT(REVIEW_NUMBER)
+        FROM TBL_REVIEW
+        WHERE USER_NUMBER =
+                            (
+                            SELECT USER_NUMBER
+                            FROM TBL_USER
+                            WHERE USER_NUMBER = #{userNumber}
+                            )
+    </select>
+
+    <select id="followerCnt" resultType="_int">
+        SELECT COUNT(FOLLOWER_NUMBER)
+        FROM TBL_FOLLOW
+        WHERE FOLLOWING_NUMBER =
+                            (
+                                SELECT USER_NUMBER
+                                FROM TBL_USER
+                                WHERE USER_NUMBER = #{userNumber}
+                            )
+    </select>
+
+    <select id="followingCnt" resultType="_int">
+        SELECT COUNT(FOLLOWING_NUMBER)
+        FROM TBL_FOLLOW
+        WHERE FOLLOWER_NUMBER =
+                            (
+                                SELECT USER_NUMBER
+                                FROM TBL_USER
+                                WHERE USER_NUMBER = #{userNumber}
+                            )
+    </select>
+
+    <select id="getFollowerList" resultType="userVO">
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT
+        FROM TBL_FOLLOW f LEFT OUTER JOIN TBL_USER u
+        ON f.FOLLOWER_NUMBER = u.USER_NUMBER
+        WHERE f.FOLLOWING_NUMBER = #{userNumber}
+    </select>
+
+    <select id="getFollowingList" resultType="userVO">
+        SELECT USER_NUMBER, EMAIL, NAME, NICKNAME, PASSWORD, CONTENT
+        FROM TBL_FOLLOW f LEFT OUTER JOIN TBL_USER u
+        ON f.FOLLOWING_NUMBER = u.USER_NUMBER
+        WHERE f.FOLLOWER_NUMBER = #{userNumber}
+    </select>
+
+    <delete id="deleteFollower">
+        DELETE FROM TBL_FOLLOW
+        WHERE FOLLOWER_NUMBER = #{followerNumber} AND FOLLOWING_NUMBER = #{followingNumber}
+    </delete>
+
+    <select id="userSearch" resultType="userDTO">
+        SELECT TOTAL, USER_NUMBER, EMAIL, NAME, NICKNAME, CONTENT, KAKAO, TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') AS REGISTER_DATE
+        FROM(
+            SELECT ROWNUM RN, TOTAL, USER_NUMBER, EMAIL, NAME, NICKNAME, CONTENT, KAKAO, REGISTER_DATE
+            FROM(
+
+                SELECT COUNT(USER_NUMBER) OVER() AS TOTAL, USER_NUMBER, EMAIL, NAME, NICKNAME, CONTENT, KAKAO, REGISTER_DATE
+                FROM TBL_USER
+                WHERE ${type} LIKE '%'||#{keyword}||'%'
+                <trim prefix="AND">
+                    <choose>
+                        <when test="kakao == '1'.toString()">
+                            KAKAO IS NOT NULL
+                        </when>
+                        <when test="kakao == '2'.toString()">
+                            KAKAO IS NULL
+                        </when>
+                    </choose>
+                </trim>
+                <trim prefix="AND">
+                    <if test="startDate != null and startDate != ''">
+                        <![CDATA[
+                            TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') >= #{startDate}
+                            ]]>
+                    </if>
+                </trim>
+                <trim prefix="AND">
+                    <if test="endDate != null and endDate != ''">
+                        <![CDATA[
+                            TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') <= #{endDate}
+                            ]]>
+                    </if>
+                </trim>
+                <if test="order != null and order != ''">
+                    <choose>
+                        <when test="desc == true">
+                            ORDER BY ${order} DESC
+                        </when>
+                        <otherwise>
+                            ORDER BY ${order}
+                        </otherwise>
+                    </choose>
+                </if>
+            )
+            <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+        )
+        <![CDATA[
+        WHERE RN > (#{pageNum} - 1) * #{amount}
+        ]]>
+    </select>
+
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(USER_NUMBER) FROM TBL_USER
+    </select>
+
+    <select id="getUserChart" resultType="long">
+        SELECT COUNT(USER_NUMBER)
+        FROM TBL_USER
+        WHERE TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') = #{date}
+    </select>
+
+    <select id="oldPasswordCheck" resultType="_int">
+        SELECT COUNT(PASSWORD) FROM TBL_USER
+        WHERE PASSWORD = #{password} AND USER_NUMBER = #{userNumber}
+    </select>
+
+    <!--************************************************************************************************************-->
+    <!--**********************************************MEDAL 메달****************************************************-->
+    <!--************************************************************************************************************-->
+
+    <select id="selectAchievementByUserNumber" resultType="string">
+        SELECT MEDAL FROM TBL_ACHIEVEMENT
+        WHERE USER_NUMBER = #{userNumber}
+    </select>
+</mapper>

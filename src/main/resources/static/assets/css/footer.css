@@ -1,0 +1,25 @@
+
+._footer_wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-top: 1px solid rgb(219, 219, 219);
+    background-color: rgb(250, 250, 250);
+    align-items: center;
+}
+    
+
+
+._footer_textarea{
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(142, 142, 142);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  
+}
+
+
+._footer_textarea div{
+    margin: 5px;
+} 

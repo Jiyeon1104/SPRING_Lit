@@ -1,0 +1,308 @@
+section{
+  width: 935px;
+  padding: 0 20px;
+  margin: auto;
+  /* transition: 1s ease; */
+  /* border: 1px solid #666666; */
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+label.btn{
+  cursor: pointer;
+}
+
+figure{
+  cursor: pointer;
+}
+
+.mainWrap{
+  padding: 20px 0;
+}
+
+.sec1{
+  display: flex;
+  gap: 50px;
+}
+.sec1 div{
+  /* border: 1px solid #e5e5e5; */
+}
+.sec1 > div{
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+
+.sec1 .projectImg{
+  flex-grow: 1;
+}
+.sec1 .projectInfoWrap{
+  flex-grow: 2;
+  flex-direction: column;
+}
+
+.sec1 .projectImg > a{
+  /*margin: auto;*/
+  margin: 20px auto;
+  border-radius: 100%;
+  overflow: hidden;
+  display: block;
+  width: 200px;
+  height: 200px;
+}
+
+.projectInfoWrap > div{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.infoKey{
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.infoKey.infoTitel{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+label.btn{
+  display: block;
+  padding: 10px 0;
+  width: 250px;
+  border-radius: 5px;
+  text-align: center;
+  background: rgb(250, 100, 98);
+  color: #EFEFEF;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+label.btn.end{
+  background: #e5e5e5;
+  color: #000000;
+}
+label[for='btn1']:hover{
+  background: rgb(255, 69, 67);
+  color: #FFFFFF;
+  letter-spacing: 1px;
+}
+
+.projectInfoWrap > div:first-child > p{
+  display: flex;
+  gap: 30px;
+}
+
+.projectInfoWrap > div:first-child > p:nth-child(2){
+  font-size: 0.9rem;
+}
+
+.projectInfoWrap span{
+  font-size: 0.95rem;
+}
+
+.projectInfoWrap > div:first-child > p > span:nth-child(2),
+.projectInfoWrap > div:first-child > p > span:nth-child(4){
+  font-weight: bold;
+}
+
+
+
+/* 이미지 리스트==================================== */
+.sec2{
+  border-top: 1px solid #e5e5e5;
+}
+
+.sec2 > div{
+  padding: 20px 0;
+  width: 100%;
+  /*column-count: 3;*/
+  /*column-gap: 5px;*/
+  /* transition: 1s ease; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sec2 > div > figure {
+  width: 33.33%;
+  height: 230px;
+  padding: 5px;
+  margin-bottom: 3px;
+  /*box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);*/
+}
+figure >a {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+figure img:hover{
+  transform: scale(1.1);
+  transform-origin: center center;
+  transition: 0.5s ease;
+}
+/* 모달창==================================== */
+aside.modalWindow{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #00000070;
+  z-index: 90;
+}
+.modalWrap{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalWrap > div{
+  width: 90%;
+  height: 90vh;
+  padding: 20px;
+  background: #ffffff;
+}
+
+/* ------------------------- */
+section {
+  /*border-left: 1px solid #e5e5e5;*/
+  /*border-right: 1px solid #e5e5e5;*/
+  padding-top: 15px;
+}
+
+.sec1>div {
+  padding-top: 10px;
+}
+
+.mainWrap {
+  padding: 0;
+}
+
+.sec2 {
+  border-top: none;
+}
+
+.sec2>div {
+  border-top: 1px solid #e5e5e5;
+}
+
+/*grid control------------------------------------*/
+
+  /* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 935px) {
+  section{
+    width: 100%;
+    padding: 0;
+  }
+  .sec1{
+    flex-wrap: wrap;
+  }
+  .sec2 > div{
+    column-count: 3;
+  }
+  .sec1 .projectImg{
+    justify-content: center;
+  }
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+@media (max-width: 767px) {
+  .sec2 > div{
+    column-count: 2;
+  }
+  .sec2 > div > figure {
+    width: 50%;
+  }
+
+  .sec1 > div{
+    flex-wrap: wrap;
+  }
+  
+  .sec1 .projectImg{
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .sec1 .projectInfoWrap{
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction:row;
+  }
+
+  .projectInfoWrap > div:nth-child(-n+2){
+    width: 50%;
+  }
+  .projectInfoWrap > div:nth-child(n+3){
+    width: 100%;
+  }
+
+  label.btn {
+    padding: 15px 0;
+    width: 100%;
+  }
+
+}
+
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}

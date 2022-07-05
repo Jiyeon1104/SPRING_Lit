@@ -1,0 +1,551 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+div {
+    /* border: 1px solid black; */
+}
+
+main {
+    background: rgb(250, 250, 250);
+
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translate(0%, -100%);
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+a:visited {
+    color: black;
+}
+
+._main_wrapper {
+    width: 935px;
+    padding: 0 20px;
+    margin: auto;
+    min-height: 85vh;
+}
+
+._selector_wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    height: 40px;
+    font-size: 15px;
+
+}
+
+._selector {
+    line-height: 40px;
+}
+
+._top_home {
+    flex-basis: 10%;
+}
+
+._top_popular {
+    flex-basis: 10%;
+}
+
+._top_new {
+    flex-basis: 10%;
+}
+
+._top_pick {
+    flex-basis: 10%;
+}
+
+._top_ad {
+    margin-top: 10px;
+
+}
+
+/* 자동슬라이드 배너 */
+
+._ad_wrapper {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 208px;
+    background-color: #000;
+}
+
+._ad_wrapper img {
+    width: 100%;
+    position: absolute;
+    left: 0%;
+    transition: all 1s;
+}
+
+/* 자동슬라이드 배너 */
+
+._category_wrapper {
+    display: flex;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+._category_wrapper div {
+    font-size: 11px;
+    color: rgb(142, 142, 142);
+    text-align: center;
+
+}
+
+._category_img {
+    width: 37px;
+    height: 37px;
+}
+
+._category_img_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 65px;
+    border-radius: 70%;
+    border: 2px solid rgb(219, 219, 219);
+    overflow: hidden;
+
+}
+
+._img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+._category_write {
+    padding-top: 10px;
+}
+
+
+.litChange {
+    align-items: center;
+    border-top: 1px solid rgb(219, 219, 219);
+    color: #8e8e8e;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: 1px;
+    text-align: center;
+
+}
+
+.lits1On {
+    margin-right: 100px;
+    align-items: center;
+    color: rgb(255 87 87);
+    cursor: pointer;
+    flex-direction: row;
+    height: 52px;
+    justify-content: center;
+    text-transform: uppercase;
+    display: flex;
+    border-top: 2px solid rgb(250, 100, 98);
+    margin-top: -3px;
+    font-weight: bolder;
+}
+
+.lits1Off {
+    margin-right: 100px;
+    align-items: center;
+    color: rgb(142, 142, 142);
+    cursor: pointer;
+    flex-direction: row;
+    height: 52px;
+    justify-content: center;
+    text-transform: uppercase;
+    display: flex;
+}
+
+.lits2Off {
+    margin-left: 100px;
+    align-items: center;
+    color: rgb(142, 142, 142);
+    cursor: pointer;
+    flex-direction: row;
+    height: 52px;
+    justify-content: center;
+    text-transform: uppercase;
+    display: flex;
+    /*border-top의 길이를 늘리기 위해 padding사용 */
+    padding: 0 8px;
+}
+
+.lits2On {
+    margin-left: 100px;
+    align-items: center;
+    color: rgb(255 87 87);
+    cursor: pointer;
+    flex-direction: row;
+    height: 52px;
+    justify-content: center;
+    text-transform: uppercase;
+    display: flex;
+    border-top: 2px solid rgb(250, 100, 98);
+    margin-top: -3px;
+    font-weight: bolder;
+    /*border-top의 길이를 늘리기 위해 padding사용 */
+    padding: 0 8px;
+}
+
+.litChange > div > a > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.litSvg {
+    position: relative;
+    height: 12px;
+    width: 12px;
+}
+
+.litSpan {
+    margin-left: 6px;
+}
+
+
+.articleClass {
+    flex-grow: 1;
+    align-items: stretch;
+    border: 0 solid black;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.content1 {
+    flex-direction: column;
+    padding-bottom: 0px;
+    padding-top: 0px;
+
+}
+
+.content2 {
+    margin-bottom: 28px;
+    flex-direction: row;
+}
+
+.content3 {
+    flex: 1 0 0%;
+    margin-right: 28px
+}
+
+.photoContent {
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.content3 {
+    flex: 1 0 0%;
+    margin-right: 28px;
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.content4 {
+    background-color: rgb(239, 239, 239);
+    display: block;
+    width: 100%;
+}
+
+.aContent {
+    text-decoration: none;
+}
+
+.content5 {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+}
+
+.contentImage {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-user-select: none;
+    width: 100%;
+    object-fit: cover;
+}
+
+.content6 {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.content2_1 {
+    flex: 1 0 0%;
+    margin-right: 28px;
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.content2_a {
+    text-decoration: none;
+    color: rgb(0, 55, 107);
+}
+
+.content2_2 {
+    background-color: rgb(239, 239, 239);
+    display: block;
+    width: 100%;
+}
+
+.content2_3 {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+}
+
+.contentImage2 {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-user-select: none;
+    width: 100%;
+    object-fit: cover;
+}
+
+.content2_4 {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.content3_1 {
+    flex: 1 0 0%;
+    margin-right: 0;
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+.content3_a {
+    text-decoration: none;
+    color: rgb(0, 55, 107);
+}
+
+.content3_2 {
+    background-color: rgb(239, 239, 239);
+    display: block;
+    width: 100%;
+}
+
+.content3_3 {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 100%;
+    position: relative;
+}
+
+.contentImage3 {
+    object-fit: cover;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-user-select: none;
+    width: 100%;
+}
+
+.content3_4 {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+/*=========================================*/
+/* 크기별 조정*/
+/*=====================================================*/
+/*
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+##Device = 데스크탑
+##Screen = 1281px 이상 해상도 데스크탑
+*/
+
+@media (min-width: 1281px) {
+}
+
+/*
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+##Device = 랩탑, 데스크탑
+##Screen = 1025px에서 1280px 사이
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+
+/*
+##Device = Tablets, Ipads (portrait),
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(세로),
+##Screen = 768px에서 1024px 사이
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (max-width: 975px) {
+    ._main_wrapper{
+        width: 100%;
+        padding: 0;
+    }
+    div.photoContents > div > figure{
+        width:50%;
+        height: 325px;
+    }
+
+    .litSpan{
+        font-weight: 900;
+        font-size: 1.3rem;
+    }
+    .litSvg{
+        height: 18px;
+        width: 18px;
+    }
+
+    ._category_img_box{
+        width: 85px;
+        height: 85px;
+    }
+    ._category_img {
+        width: 48px;
+        height: 48px;
+    }
+    ._category_wrapper div {
+        font-size: 1rem;
+        margin: auto;
+    }
+
+    div._selector_wrapper{
+        height: auto;
+    }
+    div._selector{
+        margin: 0 20px;
+        padding: 10px 20px;
+    }
+    a.a__selector{
+        flex-basis: 100%;
+        font-size: 1rem;
+    }
+    div._category_wrapper > a{
+        width: 25%;
+        margin: 20px 0;
+    }
+    div._category_wrapper{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    div.litChange{
+        justify-content: space-around;
+    }
+    a.lits1Off,
+    a.lits2Off,
+    a.lits1On,
+    a.lits2On{
+        margin: 0;
+    }
+}
+/*
+##Device = Tablets, Ipads (landscape)
+##Screen = B/w 768px to 1024px
+##Device = 태블릿, 아이패드(가로)
+##Screen = 768px에서 1024px 사이
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+}
+/*
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+##Device = 저해상도 태블릿, 모바일(가로)
+##Screen = 481px에서 767px 사이
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+/*
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+##Device = 대부분의 스마트폰 모바일 기기(세로)
+##Screen = 320px에서 479px 사이
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+
+}
+
+/*마우스 오버*/
+.over-box_a{
+    position: relative;
+}
+
+.over-box_div{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.4);
+    width: 100%;
+    height: 100%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.over-box_content1{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 15px 15px;
+}
+
+.over-box_img{
+    width: 20px !important;
+    height: 20px !important;
+}
+

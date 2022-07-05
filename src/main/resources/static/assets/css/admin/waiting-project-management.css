@@ -1,0 +1,264 @@
+@charset "UTF-8";
+@import url("default/default.css");
+@import url("default/variables.css");
+
+div,
+tr,
+th,
+td,
+tbody,
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.inner__content {
+  padding: 50px;
+}
+
+/* search table */
+.search-wrapper {
+  width: 100%;
+  height: 40%;
+  margin: 40px 0;
+  padding-bottom: 20px;
+  box-shadow: 2px 2px rgba(53, 53, 53, 0.7);
+}
+
+.search-table {
+  margin: 25px auto;
+  width: 94%;
+  padding: 0;
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.search-table tbody {
+  margin: 0;
+  padding: 0;
+  color: var(--side-black);
+}
+
+.search-table th {
+  width: 160px;
+  height: 43px;
+  text-align: left;
+  padding-left: 10px;
+  border: 1px solid var(--border-gray);
+}
+
+.search-table td {
+  height: 43px;
+  align-items: center;
+  padding-left: 10px;
+  border: 1px solid var(--border-gray);
+}
+
+#category-select,
+#search-select {
+  height: 32px;
+  border: 1px solid var(--border-gray);
+  width: 84px;
+  color: var(--side-black);
+  font-size: 14px;
+  line-height: 30px;
+  padding-left: 5px;
+}
+#category-select {
+  width: 140px;
+}
+
+#search-input {
+  height: 32px;
+  margin-left: 5px;
+  border: 1px solid var(--border-gray);
+  font-size: 14px;
+  line-height: 30px;
+  padding-left: 10px;
+  width: 400px;
+}
+
+label {
+  margin-right: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-wrapper {
+  text-align: center;
+}
+.search-button {
+  width: 84px;
+  height: 36px;
+}
+
+/* list table */
+.list-wrapper {
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 100px;
+  box-shadow: 2px 2px rgba(53, 53, 53, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list-table {
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.list-table tbody {
+  margin: 0;
+  padding: 0;
+  color: var(--side-black);
+}
+
+.list-table th {
+  height: 38px;
+  text-align: center;
+  padding: 0 10px;
+  border: 1px solid var(--border-gray);
+  background-color: var(--background-gray);
+}
+
+.list-table td {
+  height: 30px;
+  align-items: center;
+  text-align: center;
+  padding: 0 10px;
+  border: 1px solid var(--border-gray);
+}
+
+.list-info {
+  margin: 25px 20px 10px 20px;
+}
+
+.list-info span {
+  color: var(--red);
+}
+
+.list-info > div:nth-child(1) {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: var(--side-black);
+}
+
+.list-info > div:nth-child(2) {
+  font-size: 14px;
+  color: var(--font-gray);
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-box button {
+  height: 30px;
+  width: 70px;
+  padding: 0 10px 0 25px;
+  color: #1c1c1c;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 26px;
+  border: 1px solid var(--border-gray);
+  background-color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.button-box button img {
+  position: absolute;
+  left: 11px;
+  top: 6px;
+  width: 13px;
+}
+
+.button-box > button.approval-btn {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.list-box {
+  margin: auto 20px;
+  border: 1px solid var(--border-gray);
+}
+
+/* calendar */
+.calendar-icon-wrap > img {
+  width: 20px;
+  height: 20px;
+}
+.calendar-wrap > div {
+  margin-right: 5px;
+}
+
+.calendar-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+input[name="startDate"],
+input[name="endDate"] {
+  width: 100px;
+  height: 32px;
+  border: 1px solid var(--border-gray);
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+/* paging */
+.paging-wrapper {
+  padding: 25px;
+}
+
+.paging-block {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: var(--red);
+  display: flex;
+  justify-content: center;
+}
+
+.paging-block li {
+  list-style: none;
+  display: inline-block;
+  margin : 0 5px;
+}
+
+/* period */
+.col__period > div {
+  margin-right: 5px;
+}
+.period-button-wrap button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: white;
+}
+
+.period-button-wrap {
+  width: 46px;
+  height: 28px;
+}
+
+/* ======================== */
+/* chart */
+.chart-wrapper {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+}
+.chart-box {
+  max-width: 700px;
+  overflow: visible;
+  margin: 0 100px;
+}

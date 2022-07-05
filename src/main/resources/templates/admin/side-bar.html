@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/default.css" />
+</head>
+<body th:fragment="side-bar">
+<div class="side-bar__page">
+  <div class="logo-box flex__center">
+    <div class="logo">
+      <img src="/images/admin/logo-white.png" />
+    </div>
+  </div>
+  <a href="/admin/user">
+    <div class="menu-box flex">
+      <div class="icon__side-bar">
+        <img src="/images/admin/user.png" alt="" />
+      </div>
+      <div class="menu">회원 관리</div>
+    </div>
+  </a>
+  <a href="" class="arrow-ani">
+    <div class="menu-box flex">
+      <div class="icon__side-bar">
+        <img src="/images/admin/fire.png" alt="" />
+      </div>
+      <div class="menu">프로젝트 관리</div>
+      <div class="icon__side-bar__arrow">
+        <img
+                class="icon__arrow"
+                src="/images/admin/menu-arrow.png"
+                alt=""
+        />
+      </div>
+    </div>
+  </a>
+  <!-- 프로젝트 관리 메뉴의 서브 메뉴 -->
+  <div class="sub-menu-box__project">
+    <a href="/admin/waitingProject">
+      <div class="menu-box flex">
+        <div class="menu sub-menu">대기중인 프로젝트</div>
+      </div>
+    </a>
+    <a href="/admin/approvedProject">
+      <div class="menu-box flex">
+        <div class="menu sub-menu">승인된 프로젝트</div>
+      </div>
+    </a>
+  </div>
+  <!--  -->
+  <a href="/admin/review">
+    <div class="menu-box flex">
+      <div class="icon__side-bar">
+        <img src="/images/admin/board.png" alt="" />
+      </div>
+      <div class="menu">인증글 관리</div>
+    </div>
+  </a>
+  <a href="/admin/report">
+    <div class="menu-box flex">
+      <div class="icon__side-bar">
+        <img
+                src="/images/admin/exclamation.png"
+                alt=""
+        />
+      </div>
+      <div class="menu">신고 관리</div>
+    </div>
+  </a>
+</div>
+
+</body>
+</html>

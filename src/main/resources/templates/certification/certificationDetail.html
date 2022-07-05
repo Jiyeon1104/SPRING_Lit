@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인증 상세</title>
+    <link rel="stylesheet" href="/assets/css/certification/certificationDetail.css">
+    <link rel="stylesheet" href="/assets/css/certification/report.css">
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+<div th:fragment="certificationDetail">
+<div class="detailModalBackground">
+    <button class="modalCloseButton" onclick="projectDetailModalHide()">
+        <svg aria-label="닫기" class="fg7vo5n6 lrzqjn8y" color="#ffffff" fill="#ffffff" height="18" role="img" viewBox="0 0 48 48" width="18"><title>닫기</title><path clip-rule="evenodd" d="M41.8 9.8L27.5 24l14.2 14.2c.6.6.6 1.5 0 2.1l-1.4 1.4c-.6.6-1.5.6-2.1 0L24 27.5 9.8 41.8c-.6.6-1.5.6-2.1 0l-1.4-1.4c-.6-.6-.6-1.5 0-2.1L20.5 24 6.2 9.8c-.6-.6-.6-1.5 0-2.1l1.4-1.4c.6-.6 1.5-.6 2.1 0L24 20.5 38.3 6.2c.6-.6 1.5-.6 2.1 0l1.4 1.4c.6.6.6 1.6 0 2.2z" fill-rule="evenodd"></path></svg>
+    </button>
+    <div class="detailModalContentContainer">
+        <div class="detailModalContent">
+            <div class="detailContentInnerWrapepr">
+                <div class="detailContentInnerImage">
+                    <div class="innerImageWrapper">
+                        <ul class="innerImageSlides">
+<!--                            <li class="active"><img class="innerImage" src="monkey.jpg" /></li>-->
+<!--                            <li><img class="innerImage" src="info.png" /></li>-->
+<!--                            <li><img class="innerImage" src="monkey.jpg" /></li>-->
+<!--                            <li><img class="innerImage" src="info.png" /></li>-->
+                        </ul>
+                        <div class="innerImagePageButtons">
+<!--                            <div class="active"></div>-->
+<!--                            <div></div>-->
+<!--                            <div></div>-->
+<!--                            <div></div>-->
+                        </div>
+                        <div class="innerImageSideButtons">
+                            <div>
+                                <span>&lt;</span>
+                            </div>
+                            <div>
+                                <span>&gt;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detailContentInner">
+                    <div class="detailContent">
+
+                        <div class="detailContentProfileContainer">
+                            <div class="detailContentProfileWrapper">
+                                <div class="detailContentProfile">
+                                    <div class="detailContentProfileImageWrapper">
+                                        <div class="detailContentProfileImage top" id="userFileTop">
+<!--                                            <div class="detailContentProfileImageInner">-->
+<!--                                                <img class="detailProfileImage" src="monkey.jpg" style="width:100%">-->
+<!--                                            </div>-->
+                                        </div>
+                                    </div>
+                                    <div class="detailContentProfileNameWrapper">
+                                        <div class="detailContentProfileName"></div>
+                                        <div class="detailContentProfileIntro"></div>
+                                    </div>
+                                </div>
+                                <div class="detailContentProfileButtonWrapper">
+                                    <!-- 다른 사람의 페이지 클릭 시 신고 버튼 -->
+                                    <button class="detailContentProfileButton" onclick="reportModalShow()" >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="reportIcon" viewBox="0 0 16 16">
+                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                        </svg>
+                                    </button>
+                                    <!-- 자기자신의 페이지 클릭 시 삭제 버튼 드러나게 -->
+                                    <button class="detailContentDeleteButton" style="display:none;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="deleteIcon" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detailContentFeetWrapper">
+                            <div class="detailContentFeed">
+                                <div class="content_area">
+                                    <div class="detailContentWriteContainer">
+                                        <div class="detailContentWriteWrapper">
+                                            <div class="detailContentProfileImage bottom" id="userFileBottom">
+<!--                                                <div class="detailContentProfileImageInner">-->
+<!--                                                    <img class="detailProfileImage" src="monkey.jpg" style="width:100%">-->
+<!--                                                </div>-->
+                                            </div>
+                                        </div>
+                                        <div class="detailContentWriteFeed">
+                                            <div class="detailContentWrite">
+                                                <div class="detailContentWriteName"></div>
+                                                <div class="detailContentWriteComment">
+
+                                                </div>
+                                            </div>
+                                            <div class="detailContentWriteFeedBottom">
+                                                <div class="detailContentRegisterDate">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="reply_area">
+                                <!--반복구역-->
+                                </div>
+                                <a class="appendReply" style="text-align: center; padding: 55px;"><div></div></a>
+
+                            </div>
+                        </div>
+
+                        <div class="detailContentFooter">
+                            <div class="detailContentFooterButtonsWrapper">
+                                <div class="detailContentFooterButtons">
+                                    <div class="detailContentFooterButton">
+                                        <button class="detailContentLikeButton" style="display:block;">
+                                            <svg aria-label="좋아요" class="_ab6-" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg>
+                                        </button>
+                                        <button class="detailContentLikeCancel" style="display:none;">
+                                            <svg aria-label="좋아요 취소" class="_ab6-" color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="detailContentFooterWrites">
+                                <div class="detailContentFooterWirtesInner">
+                                    <div><span>좋아요&nbsp;</span><span id="likeCount">0</span><span>개</span></div>
+                                </div>
+                                <div class="detailContentFooterWirtesInnerDate">
+                                    등록 날짜
+                                </div>
+                            </div>
+                            <div class="detailContentFooterComment">
+                                <div class="detailContentFooterCommentInner">
+                                    <div class="detailContentFooterCommentImo">
+                                        <div class="detailContentFooterCommentImoIcon">
+                                            <img class="detailContentFooterCommentImoIconImage" src="/images/certification/smile.png" style="width:100%; height:100%">
+                                        </div>
+                                    </div>
+                                    <div class="detailContentFooterCommentInput">
+                                        <textarea class="detailContentFooterCommentInputArea" type="text" placeholder="댓글 달기..." autocomplete="off" autocorrect="off"></textarea>
+                                    </div>
+                                    <div class="detailContentFooterCommentButton">
+                                        <button class="commentButton" type="button" disabled>게시</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profileModal" onmouseover="this.style.display='block'" onmouseout="this.style.display='none'">
+            <div class="detailContentProfileContainer">
+                <div class="detailContentProfileWrapper">
+                    <div class="detailContentProfile">
+                        <div class="detailContentProfileImageWrapper">
+                            <div class="detailContentProfileImage">
+                                <div class="detailContentProfileImageInner">
+<!--                                    <img class="detailProfileImage" src="monkey.jpg" style="width:100%">-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detailContentProfileModalWrapper">
+                            <div class="detailContentProfileModalId">아이디</div>
+                            <div class="detailContentProfileModalName">이름</div>
+                            <div class="detailContentProfileModalIntro">소개</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detailContentProfileModalContent">
+                <div class="profileModalContent">
+                    <div>인증글</div>
+                    <strong>0</strong>
+                </div>
+                <div class="profileModalContent">
+                    <div>팔로워</div>
+                    <strong>0</strong>
+                </div>
+                <div class="profileModalContent">
+                    <div>팔로우</div>
+                    <strong>0</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="closeArea" onclick="projectDetailModalHide()"></div>
+</div>
+
+<div class="reportBackground">
+    <div class="reportModalContainer">
+        <div class="reportModal">
+            <button class="reportModalCloseButton" onclick="reportModalClose()">
+                <svg aria-label="닫기" class="fg7vo5n6 lrzqjn8y" color="black" fill="black" height="18" role="img" viewBox="0 0 48 48" width="18"><title>닫기</title><path clip-rule="evenodd" d="M41.8 9.8L27.5 24l14.2 14.2c.6.6.6 1.5 0 2.1l-1.4 1.4c-.6.6-1.5.6-2.1 0L24 27.5 9.8 41.8c-.6.6-1.5.6-2.1 0l-1.4-1.4c-.6-.6-.6-1.5 0-2.1L20.5 24 6.2 9.8c-.6-.6-.6-1.5 0-2.1l1.4-1.4c.6-.6 1.5-.6 2.1 0L24 20.5 38.3 6.2c.6-.6 1.5-.6 2.1 0l1.4 1.4c.6.6.6 1.6 0 2.2z" fill-rule="evenodd"></path></svg>
+            </button>
+            <div class="reportModalHead"><strong>신고</strong></div>
+            <div class="reportButtons">
+                <div class="reportReason"><strong>이 게시물을 신고하는 이유</strong></div>
+                <button class="reportButton" type="button" value="스팸">스팸</button>
+                <button class="reportButton" type="button" value="혐오 발언">혐오 발언</button>
+                <button class="reportButton" type="button" value="폭력 또는 위험한 단체">폭력 또는 위험한 단체</button>
+                <button class="reportButton" type="button" value="불법 판매">불법 판매</button>
+                <button class="reportButton" type="button" value="지식 재산권 침해">지식 재산권 침해</button>
+                <button class="reportButton" type="button" value="자살 또는 자해">자살 또는 자해</button>
+                <button class="reportButton" type="button" value="거짓 정보">거짓 정보</button>
+                <button class="reportButton" type="button" value="섭식 장애">섭식 장애</button>
+                <button class="reportButton" type="button" value="따돌림 또는 괴롭힘">따돌림 또는 괴롭힘</button>
+                <button class="reportButton" type="button" value="인증 방법에 부합하지 않음">인증 방법에 부합하지 않음</button>
+            </div>
+        </div>
+    </div>
+    <div class="reportCloseArea" onclick="reportModalClose()"></div>
+</div>
+</div>
+
+<button class="projectDetailButton" onclick="projectDetailModalShow()">모달✌</button>
+
+</body>
+
+<script defer src="/assets/js/certification/certificationDetail.js"></script>
+<script defer src="/assets/js/certification/report.js"></script>
+<script defer src="/assets/js/certification/certificationDetailAjax.js"></script>
+<script defer th:inline="javascript">
+    let file
+    const replyDiv = $(".reply_area");
+    let pageNum = 1;
+    // cretificationDetail에서 모달 버튼 매개변수로 넘어옴
+    let $reviewNumber
+
+    // 댓글 목록 불러오기
+    function showList(page){
+        reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function(total, list){
+                let str = "";
+
+
+                if(list == null || list.length == 0){
+                    replyDiv.html("");
+                    return;
+                }
+
+                $.each(list, function(i, reply){
+                    ////////// getJSON -> AJAX 동기식으로 변경해서 file에 pic 담을 것
+                    $.ajax({
+                        url:"/litUp/profilePic",
+                        type: "get",
+                        data:{userNumber:reply.userNumber},
+                        async:false,
+                        success:function (pic) {
+                            file = pic;
+                        }
+                    })
+                    str += '<div class="detailContentWriteContainer">';
+                    str += '<div class="detailContentWriteWrapper">';
+                    str += '<div class="detailContentProfileImage">';
+                    str += '<div class="detailContentProfileImageInne">';
+                    if (file != null && file != "") {
+                        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'></a>";
+                    } else {
+                        str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                    }
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeed">';
+                    str += '<div class="detailContentWrite">';
+                    str += '<div class="detailContentWriteName">'
+                    str +=  reply.nickname;
+                    str += '</div>';
+                    str += '<div class="detailContentWriteComment">';
+                    str +=  reply.content;
+                    str += '</div>';
+                    str += '</div>';
+                    str += '<div class="detailContentWriteFeedBottom">';
+                    str += '<div class="detailContentRegisterDate">';
+                    str +=  reviewDetailService.getReplyDate(reply.registerDate);
+                    str += '</div>';
+                    str += '<div class="detailContentCommentDelete">';
+                    str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+                    str += '</div>';
+
+                });
+                replyDiv.html(str.trim());
+                showReplyPage(total);
+            },function (a,b,c){console.log("error");}
+        );
+
+    };
+
+    //댓글 추가 보기
+   function showAppendList(page) {
+
+       reviewDetailService.getList({reviewNum: $reviewNumber, page: page}, function (total, list) {
+
+               $(".appendReply div").html("");
+               let str = "";
+
+               $.each(list, function (i, reply) {
+                   $.ajax({
+                       url:"/litUp/profilePic",
+                       type: "get",
+                       data:{userNumber:reply.userNumber},
+                       async:false,
+                       success:function (pic) {
+                           file = pic;
+                       }
+                   })
+                   str += '<div class="detailContentWriteContainer">';
+                   str += '<div class="detailContentWriteWrapper">';
+                   str += '<div class="detailContentProfileImage">';
+                   str += '<div class="detailContentProfileImageInne">';
+                   if (file != null && file != "") {
+                       str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'></a>";
+                   } else {
+                       str += "<a href='/user/mypage?userPageNumber=" + file.userNumber + "'><img class=\"detailProfileImage\" style='width: 100%' src='/images/main/profile_ex.png'></a>";
+                   }
+                   str += '</div>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '<div class="detailContentWriteFeed">';
+                   str += '<div class="detailContentWrite">';
+                   str += '<div class="detailContentWriteName">'
+                   str += reply.nickname;
+                   str += '</div>';
+                   str += '<div class="detailContentWriteComment">';
+                   str += reply.content;
+                   str += '</div>';
+                   str += '</div>';
+                   str += '<div class="detailContentWriteFeedBottom">';
+                   str += '<div class="detailContentRegisterDate">';
+                   str += reviewDetailService.getReplyDate(reply.registerDate);
+                   str += '</div>';
+                   str += '<div class="detailContentCommentDelete">';
+                   str += '<a class="remove ' + reply.replyNumber + '" style="cursor: pointer;">삭제</a>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '</div>';
+                   str += '</div>';
+
+               });
+
+               replyDiv.append(str.trim());
+               showReplyPage(total);
+           }, function (a, b, c) {
+               console.log("error");
+           }
+       )};
+
+
+       // 신고하기
+       $(".reportButton").on("click", function () {
+           let $reason = $(this).attr("value");
+
+           reviewDetailService.addReport({
+                   userNumber: use, reviewNumber: $reviewNumber, reason: $reason
+               },
+               function (result) {
+                   reportModalClose();
+                   alert("신고 되었습니다.");
+               },
+               function (a, b, c) {
+                   console.log(a, b, c)
+               }
+           );
+       })
+
+       // 댓글쓰기
+       $(".commentButton").on("click", function () {
+           let $commentValue = $(".detailContentFooterCommentInputArea").val();
+           reviewDetailService.addReply({
+                   reviewNumber: $reviewNumber, userNumber: 1, content: $commentValue
+               },
+               function (result) {
+                   $(".detailContentFooterCommentInputArea").val("");
+                   showList(1);
+                   $(".detailContentFeed").scrollTop(0);
+               },
+               function (a, b, c) {
+                   console.log(a, b, c)
+               }
+           );
+       })
+
+       // 좋아요
+       $(".detailContentLikeButton").on("click", function () {
+           reviewDetailService.addLike({reviewNumber: $reviewNumber, userNumber: 1},
+               function (result) {
+                   $("#likeCount").html(result);
+               },
+               function (a, b, c) {
+                   console.log(a, b, c)
+               })
+       })
+
+
+       // 좋아요 해제
+       $(".detailContentLikeCancel").on("click", function () {
+           reviewDetailService.removeLike({userNumber: 1, reviewNumber: $reviewNumber},
+               function (result) {
+                   $("#likeCount").html(result);
+               },
+               function (a, b, c) {
+                   console.log(a, b, c)
+               })
+       })
+
+       //댓글 append
+       $(".appendReply div").on("click", function (e) {
+           e.preventDefault();
+           pageNum = pageNum + 1;
+           showAppendList(pageNum);
+
+       })
+
+       //댓글 삭제
+       $(".reply_area").on("click", "div.detailContentCommentDelete a.remove", function (e) {
+           e.preventDefault();
+           let $replyNumber = $(this).attr("class").split(/\s+/);
+           // 유저넘버임
+           reviewDetailService.removeReply($replyNumber[1], 1, function (result) {
+               if(result) {
+                   pageNum = 1;
+                   showList(pageNum);
+               }else{
+                   alert("본인 게시물만 삭제 가능합니다.");
+               }
+           })
+       })
+
+       // 클릭시 노출페이지 조절
+       function showReplyPage(total) {
+           let endPage = Math.ceil(pageNum / 10.0) * 10;
+           let realEnd = Math.ceil(total / 10.0);
+           const $paging = $(".appendReply div");
+
+           if (endPage > realEnd) {
+               endPage = realEnd;
+           }
+           let next = pageNum < realEnd;
+           let str = "<svg aria-label=\"댓글 더 읽어들이기\" class=\"_ab6-\" color=\"#262626\" fill=\"#262626\" height=\"24\" role=\"img\" viewBox=\"0 0 24 24\" " +
+               "width=\"24\"><circle cx=\"12.001\" cy=\"12.005\" fill=\"none\" r=\"10.5\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"></circle>" +
+               "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"7.001\" x2=\"17.001\" y1=\"12.005\" y2=\"12.005\"></line>" +
+               "<line fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" x1=\"12.001\" x2=\"12.001\" y1=\"7.005\" y2=\"17.005\"></line></svg>";
+
+           if (next) {
+               $paging.html(str);
+           }
+       }
+
+    // 출력할 프로필 사진, 리뷰 사진 받아오기기  숫자 받아오기
+    $(".projectDetailButton").on("click",function () {
+        $.getJSON("/litUp/profilePic", {userNumber: userNumber}, function(pic){showUserPic(pic);})
+        $.getJSON("/litUp/reviewPic", {reviewNumber: $reviewNumber}, function(pic){showReviewPic(pic);})
+
+    })
+
+
+    // 프로필 사진 출력
+    function showUserPic(file){
+        let str ="";
+        let str2 ="";
+
+        str += "<div class=\"detailContentProfileImageInner\">";
+        str += "<a href=\"/user/mypage?userPageNumber=" + file.userNumber + "\">";
+        str += "<img class=\"detailProfileImage\" onerror=this.src='/images/main/profile_ex.png' style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>";
+        str += "</a></div>";
+
+        str2 +="<div class=\"detailContentProfileImageInner\">";
+        str2 +="<img class=\"detailProfileImage\" style='width: 100%' src='/litUp/display?fileName=" + file.uploadPath + "/s_" + file.uuid + "_"  + file.name + "'>";
+        str2 +="</div>";
+
+        $(".bottom").html(str);
+        $(".top").html(str2);
+    }
+
+    function showReviewPic(pic) {
+           let str ="";
+           let strBtn ="";
+           $.each(pic,function (i, file) {
+                str += "<li id=a" + i + "><img class=\"innerImage\" src='/litUp/display?fileName=" + file.uploadPath  + "/" + file.uuid + "_"  + file.name + "' /></li>"
+                strBtn +="<div id=b"+ i +"></div>"
+           })
+           $(".innerImageSlides").html(str);
+           $(".innerImagePageButtons").html(strBtn);
+           $("li#a0").addClass("active");
+           $("div#b0").addClass("active");
+    }
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
+

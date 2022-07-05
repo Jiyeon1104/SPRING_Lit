@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.review.ReportMapper">
+    <insert id="insert">
+        INSERT INTO TBL_REPORT
+        (REPORT_NUMBER, USER_NUMBER, REVIEW_NUMBER, REASON)
+        VALUES(SEQ_REPORT.NEXTVAL,#{userNumber}, #{reviewNumber}, #{reason})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_REPORT WHERE REPORT_NUMBER = #{reportNumber}
+    </delete>
+
+    <select id="searchReport" resultType="reportDTO">
+        SELECT TOTAL, REPORT_NUMBER, USER_NUMBER, REVIEW_NUMBER, REASON, TO_CHAR(REPORT_REGISTER_DATE, 'yyyy-mm-dd') AS REPORT_REGISTER_DATE,
+        REVIEW_USER_NUMBER, TO_CHAR(REVIEW_REGISTER_DATE, 'yyyy-mm-dd') AS REVIEW_REGISTER_DATE,
+        REVIEW_EMAIL,
+        REPORT_EMAIL,
+        CATEGORY
+        FROM(
+        SELECT ROWNUM RN, TOTAL, REPORT_NUMBER, USER_NUMBER, REVIEW_NUMBER, REASON, REPORT_REGISTER_DATE,
+        REVIEW_USER_NUMBER, REVIEW_REGISTER_DATE,
+        REVIEW_EMAIL,
+        REPORT_EMAIL,
+        CATEGORY
+        FROM(
+        SELECT COUNT(rp.REPORT_NUMBER) OVER() AS TOTAL, rp.REPORT_NUMBER, rp.USER_NUMBER, rp.REVIEW_NUMBER, rp.REASON,
+        rp.REGISTER_DATE AS REPORT_REGISTER_DATE,
+        rv.USER_NUMBER AS REVIEW_USER_NUMBER, rv.REGISTER_DATE AS REVIEW_REGISTER_DATE,
+        u.EMAIL AS REVIEW_EMAIL,
+        u2.EMAIL AS REPORT_EMAIL,
+        p.CATEGORY
+        FROM TBL_REVIEW rv
+        INNER JOIN TBL_REPORT rp
+        ON rv.REVIEW_NUMBER = rp.REVIEW_NUMBER
+        INNER JOIN TBL_USER u
+        ON rv.USER_NUMBER = u.USER_NUMBER
+        INNER JOIN TBL_USER u2
+        ON rp.USER_NUMBER = u2.USER_NUMBER
+        INNER JOIN TBL_PROJECT p
+        ON rv.PROJECT_NUMBER = p.PROJECT_NUMBER
+        WHERE
+        <choose>
+            <when test="type == 'email'">
+                u2.${type}
+            </when>
+            <otherwise>
+                rp.${type}
+            </otherwise>
+        </choose>
+
+        LIKE '%'||#{keyword}||'%'
+        <if test="category != null and category != ''">
+            AND p.CATEGORY = #{category}
+        </if>
+        <if test="startDate != null and startDate != ''">
+            <![CDATA[
+                AND TO_CHAR(rp.REGISTER_DATE, 'yyyy-mm-dd') >= #{startDate}
+                ]]>
+        </if>
+        <if test="endDate != null and endDate != ''">
+            <![CDATA[
+                AND TO_CHAR(rp.REGISTER_DATE, 'yyyy-mm-dd') <= #{endDate}
+                ]]>
+        </if>
+        <if test="order != null and order != ''">
+            <choose>
+                <when test="desc == true">
+                    ORDER BY ${order} DESC
+                </when>
+                <otherwise>
+                    ORDER BY ${order}
+                </otherwise>
+            </choose>
+        </if>
+        )
+        <![CDATA[
+            WHERE ROWNUM <= #{pageNum} * #{amount}
+            ]]>
+        )
+        <![CDATA[
+    WHERE RN > (#{pageNum} - 1) * #{amount}
+    ]]>
+
+    </select>
+
+    <select id="getTotalToday" resultType="_int">
+        SELECT COUNT(REPORT_NUMBER) FROM TBL_REPORT
+        WHERE TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') = TO_CHAR(SYSDATE, 'yyyy-mm-dd')
+    </select>
+    <select id="getReportChart" resultType="long">
+        SELECT COUNT(REPORT_NUMBER)
+        FROM TBL_REPORT
+        WHERE TO_CHAR(REGISTER_DATE, 'yyyy-mm-dd') = #{date}
+    </select>
+
+</mapper>

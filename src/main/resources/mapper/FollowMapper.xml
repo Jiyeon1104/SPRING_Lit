@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.user.FollowMapper">
+    <insert id="insert">
+        INSERT INTO TBL_FOLLOW
+        (FOLLOWING_NUMBER, FOLLOWER_NUMBER)
+        VALUES(#{followingNumber}, #{followerNumber})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM TBL_FOLLOW WHERE FOLLOWING_NUMBER = #{followingNumber}
+        AND FOLLOWER_NUMBER = #{followerNumber}
+    </delete>
+
+    <select id="followingCount" resultType="_int">
+            SELECT COUNT(FOLLOWING_NUMBER) FROM TBL_FOLLOW
+            WHERE FOLLOWING_NUMBER = #{followingNumber}
+    </select>
+
+    <select id="followerCount" resultType="_int">
+        SELECT COUNT(FOLLOWER_NUMBER) FROM TBL_FOLLOW
+        WHERE FOLLOWER_NUMBER = #{followerNumber}
+    </select>
+
+    <select id="followingCheck" resultType="_int">
+       SELECT COUNT(*) CONT FROM HR.TBL_FOLLOW
+       WHERE FOLLOWING_NUMBER = #{followingNumber}
+       AND FOLLOWER_NUMBER = #{followerNumber}
+    </select>
+</mapper>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lit_MAIN</title>
+    <link rel="stylesheet" href="/assets/css/changeinfo/changePw.css" />
+    <link rel="stylesheet" href="/assets/css/header.css" />
+    <link rel="stylesheet" href="/assets/css/footer.css" />
+    <link rel="stylesheet" href="/assets/css/default.css" />
+    <link rel="stylesheet" href="/assets/css/certification/certificationWrite.css">
+    <link rel="stylesheet" href="/assets/css/certification/fileLoad.css">
+    <!-- 경로 잡아야함 -->
+</head>
+
+<body style="background-color: rgb(250,250,250);">
+<header th:insert="~{/header :: header}"></header>
+
+    <main>
+        <div class="_changepw_main_wrapper">
+            <ul class="mainUl">
+                <li class="mainLi"><a class="mainA" href="/user/editInfo"
+                        tabindex="0">프로필 편집</a></li>
+                <li class="mainLi"><a class="mainA" href="/user/changePw"
+                        tabindex="0">비밀번호 변경</a>
+                </li>
+                <li class="mainLi"><a class="mainA" href="/user/withdraw"
+                        tabindex="0">회원 탈퇴</a>
+                </li>
+
+            </ul>
+            <div class="_changepw_wrapper">
+                <div class="_changepw_profile flexclass">
+                    <div class="_profile_icon">
+                        <div class="_profile_wrapper">
+                            <img width="38px" height="38px" class="info1ArticleImg"
+                                 th:src="'/user/display?fileName='+ ${userFileList.uploadPath} + '/' + ${userFileList.uuid} + '_' + ${userFileList.name}"
+                                 th:if="*{userFileList.fileNumber != null}"
+                            />
+                            <img class="info1ArticleImg" th:unless="*{userFileList.fileNumber != null}" th:src="'/images/main/profile_ex.png'"/>
+
+                        </div>
+                    </div>
+                    <div class="_profile_nickname">
+                        <h1 class="_nickname" th:text="${nickName}"></h1>
+                    </div>
+                </div>
+                <form class="_changepw_form">
+                    <div class="_oldPassword flexclass detail">
+                        <div class="_label_wrapper">
+                            <label for="cppOldPassword">이전 비밀번호</label>
+                        </div>
+                        <div class="_input_wrapper">
+                            <input class="cppOldPassword" id="cppOldPassword"
+                                name="cppOldPassword" required="" spellcheck="true" type="password" value=""
+                                style="padding-right: 140px;">
+                        </div>
+                    </div>
+                        
+                        <div class="_label_wrapper2"></div>
+                        <div class="_checkArea1"></div>
+
+                    <div class="_newPassword flexclass detail">
+                        <div class="_label_wrapper">
+                            <label for="cppNewPassword">새 비밀번호</label>
+                        </div>
+                        <div class="_input_wrapper">
+                            <input class="cppNewPassword" id="cppNewPassword"
+                                name="cppNewPassword" required="" spellcheck="true" type="password" value=""
+                                style="padding-right: 140px;">
+                        </div>
+                        <div class="_checkArea2"></div>
+                    </div>
+
+                    <div class="_checkNewPassword flexclass detail">
+                        <div class="_label_wrapper">
+                            <label for="cppCheckPassword">새 비밀번호 확인</label>
+                        </div>
+                        <div class="_input_wrapper">
+                            <input class="cppCheckPassword" id="cppCheckPassword"
+                                name="cppCheckPassword" required="" spellcheck="true" type="password" value=""
+                                style="padding-right: 140px;">
+                        </div>
+                    </div>
+                    <div class="_label_wrapper2"></div>
+                        <div class="_checkArea3"></div>
+                    <div class="flexclass detail">
+                        <aside class="sxIVS  tvweK"><label></label></aside>
+                        <div class="ada5V">
+                            <div class="_5Q0UX"><button class="buttonStyle" type="button" id="subBtn">비밀번호 변경</button></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer th:insert="~{/footer :: footer}"></footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="/assets/js/changeinfo/changePw.js"></script>
+<script src="/assets/js/changeinfo/changeInfoAjax.js"></script>
+<script th:inline="javascript">
+
+    // 비밀번호 유효성 검사 (db조회)
+    $('#cppOldPassword').on("keyup", function () {
+        let $password = $(this).val();
+
+        console.log($('#cppOldPassword'));
+
+        changeInfoAjax.checkOldPw({
+            userNumber : userNumber,
+            password : $password
+        }, function (result) {
+            console.log(result);
+            ckeckOldPw(result);
+        });
+    });
+
+    // 비밀번호 변경
+    $("#subBtn").on("click", function () {
+        let $newPassword = $('#cppCheckPassword').val();
+
+        changeInfoAjax.modifyPw({
+            userNumber: userNumber,
+            newPassword: $newPassword
+        });
+        location.reload();
+    });
+
+
+</script>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lit.mapper.user.AlertMapper">
+    <insert id="insert">
+        INSERT INTO TBL_ALERT
+        (ALERT_NUMBER, ALERT_USER, USER_NUMBER, TYPE_ALERT, REVIEW_NUMBER)
+        VALUES(SEQ_ALERT.NEXTVAL, #{alertUser}, #{userNumber}, #{typeAlert}, #{reviewNumber})
+    </insert>
+
+    <insert id="alertFollow">
+        INSERT INTO TBL_ALERT
+        (ALERT_NUMBER, ALERT_USER, USER_NUMBER, TYPE_ALERT)
+        VALUES(SEQ_ALERT.NEXTVAL, #{alertUser}, #{userNumber}, #{typeAlert})
+    </insert>
+
+    <select id="alertList" resultType="alertDTO">
+        SELECT ta.ALERT_USER, ta.USER_NUMBER, ta.TYPE_ALERT, ta.REVIEW_NUMBER, ta.REGISTER_DATE, tu.NICKNAME
+        FROM TBL_ALERT ta, TBL_USER tu
+        WHERE ta.ALERT_USER = #{userNumber} AND tu.USER_NUMBER = ta.USER_NUMBER ORDER BY ta.REGISTER_DATE DESC
+    </select>
+
+    <select id="getAlertNumber" resultType="_int">
+        SELECT ALERT_NUMBER
+        FROM TBL_ALERT
+        WHERE ALERT_USER = #{alertUser} AND USER_NUMBER = #{userNumber} AND TYPE_ALERT = #{typeAlert}
+                <if test="typeAlert == 'like'">
+                            AND REVIEW_NUMBER = #{reviewNumber}
+                </if>
+    </select>
+
+    <delete id="remove">
+        DELETE FROM TBL_ALERT
+        WHERE ALERT_NUMBER = #{alertNumber}
+    </delete>
+</mapper>
